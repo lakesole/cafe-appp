@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        Int        @id @default(autoincrement())
+  name      String
+  sortOrder Int        @default(0)
+  menuItems MenuItem[]
+  createdAt DateTime   @default(now())
+}
+
+model MenuItem {
+  id           Int           @id @default(autoincrement())
+  category     Category      @relation(fields: [categoryId], references: [id])
+  categoryId   Int
+  name         String
+  description  String?
+  price        Int
+  imageUrl     String?
+  isSoldOut    Boolean       @default(false)
+  isAvailable  Boolean       @default(true)
+  optionGroups OptionGroup[]
+  createdAt    DateTime      @default(now())
+}
+
+model OptionGroup {
+  id           Int            @id @default(autoincrement())
+  menuItem     MenuItem       @relation(fields: [menuItemId], references: [id])
+  menuItemId   Int
+  name         String
+  isRequired   Boolean        @default(false)
+  minSelect    Int            @default(0)
+  maxSelect    Int            @default(1)
+  optionChoices OptionChoice[]
+}
+
+model OptionChoice {
+  id            Int         @id @default(autoincrement())
+  optionGroup   OptionGroup @relation(fields: [optionGroupId], references: [id])
+  optionGroupId Int
+  name          String
+  extraPrice    Int         @default(0)
+}

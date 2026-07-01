@@ -1,0 +1,36 @@
+#menu-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+#menu-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+#menu-form label.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#menu-form input,
+#menu-form select,
+#menu-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #d8c3a5;
+  border-radius: 4px;
+}
+
+.btn {
+  background: #7a4b25;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  width: fit-content;
+}

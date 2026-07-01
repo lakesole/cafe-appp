@@ -1,0 +1,25 @@
+.admin-header {
+  background: #4a2f1c;
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #f0e2d0;
+  border-bottom: 1px solid #d8c3a5;
+}
+
+.admin-nav a {
+  font-weight: 600;
+}
+
+.admin-nav a:hover {
+  text-decoration: underline;
+}
+
+.admin-main {
+  padding: 1.5rem;
+}

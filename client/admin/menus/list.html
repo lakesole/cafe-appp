@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>메뉴 관리 - CafeOrder</title>
+  <link rel="stylesheet" href="/shared/reset.css" />
+  <link rel="stylesheet" href="/admin/index.css" />
+  <link rel="stylesheet" href="/admin/categories/list.css" />
+</head>
+<body>
+  <header class="admin-header">
+    <h1>☕ CafeOrder 관리자</h1>
+  </header>
+  <nav class="admin-nav">
+    <a href="/admin">대시보드</a>
+    <a href="/admin/categories/list">카테고리 관리</a>
+    <a href="/admin/menus/list">메뉴 관리</a>
+  </nav>
+  <main class="admin-main">
+    <div class="page-title-row">
+      <h2>메뉴 목록</h2>
+      <a class="btn" href="/admin/menus/create">+ 메뉴 등록</a>
+    </div>
+    <table id="menu-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>이름</th>
+          <th>카테고리</th>
+          <th>가격</th>
+          <th>품절</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="menu-table-body"></tbody>
+    </table>
+  </main>
+  <script src="/shared/api.js"></script>
+  <script src="list.js"></script>
+</body>
+</html>
