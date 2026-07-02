@@ -2,6 +2,8 @@
 
 > 프로젝트 임시 명칭: **CafeOrder** (추후 변경 가능)
 
+> **진행 방식 안내**: 0~1단계(스캐폴딩, 관리자 메뉴 관리)는 서버까지 완료된 상태다. 2단계부터는 **클라이언트 퍼블리싱을 먼저** 진행한다 — 화면은 하드코딩된 샘플 데이터로 채우고 `fetch` API 연동 없이 마크업/스타일/화면 인터랙션(장바구니 담기, 모달 등)까지만 만든다. 실제 서버 API 연동(로그인, 주문/결제, 실시간 알림 등)은 화면이 모두 퍼블리싱된 뒤 마지막 단계에서 한 번에 진행한다.
+
 ## 1. 개요
 
 고객이 웹에서 메뉴를 보고, 옵션을 선택해 장바구니에 담고, 주문/결제하는 카페 온라인 주문 앱.
@@ -182,18 +184,18 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - GET /api/admin/stats (일별/월별 매출, 인기 메뉴)
 - GET /api/admin/orders — 전체 주문 조회 (ADMIN은 STAFF 권한 포함)
 
-## 7. 개발 단계 (마일스톤, 우선순위 반영)
+## 7. 개발 단계 (마일스톤 — 클라이언트 퍼블리싱 우선, 서버 연동은 마지막에)
 
 | 단계 | 내용 |
 |---|---|
-| 0단계 | 프로젝트 스캐폴딩 (Express 서버 세팅, 정적 파일 서빙 + 클린 URL 설정, DB 연결) |
-| 1단계 | **메뉴 관리 시스템** (관리자) — 카테고리/메뉴 CRUD (`/admin/categories/*`, `/admin/menus/*`) |
-| 2단계 | **메뉴 조회 시스템** (고객) — 홈/메뉴 목록/상세 (`/`, `/menus/list`, `/menus/detail`) |
-| 3단계 | **장바구니 관리 시스템** (고객) — 담기/수량변경/삭제 (`/basket/list`) |
-| 4단계 | **주문 관리 시스템** — 최소 로그인(`/auth/*`) + 주문 생성/모의결제(`/checkout`) + 주문 내역(`/orders/*`, `/my`) + 종업원 처리(`/staff/*`) |
-| 5단계 | 관리자 종업원 계정 관리 (`/admin/staff/*`) |
-| 6단계 | 실시간 알림(Socket.IO), 매출 통계(`/admin/stats`) |
-| 7단계 | UI 다듬기, 반응형 대응, 배포 준비 |
+| 0단계 | (완료) 프로젝트 스캐폴딩 (Express 서버 세팅, 정적 파일 서빙 + 클린 URL 설정, DB 연결) |
+| 1단계 | (완료) **메뉴 관리 시스템** (관리자) — 카테고리/메뉴 CRUD API + 퍼블리싱 (`/admin/categories/*`, `/admin/menus/*`) |
+| 2단계 | **고객 화면 퍼블리싱** — 홈(`/`), 메뉴 목록/상세(`/menus/*`), 장바구니(`/basket/list`, localStorage 기반이라 서버 불필요), 로그인/회원가입(`/auth/*`), 주문서(`/checkout`), 주문 내역(`/orders/*`, `/my`) — 전부 샘플 데이터, API 연동 없음 |
+| 3단계 | **종업원 화면 퍼블리싱** — 주문 큐 목록/상세 (`/staff/*`, 샘플 데이터) |
+| 4단계 | **관리자 화면 퍼블리싱 나머지** — 종업원 계정 관리(`/admin/staff/*`), 매출 통계(`/admin/stats`, 샘플 데이터) |
+| 5단계 | 퍼블리싱 마무리 — 반응형 스타일 점검, 화면 간 네비게이션 정리 |
+| 6단계 (보류) | **서버 연동** — 메뉴 조회 API, 인증(JWT) API, 주문 생성/모의결제 API, 종업원 주문 상태 변경 API, 관리자 종업원 계정/매출 통계 API, 실시간 알림(Socket.IO) — 화면이 모두 퍼블리싱된 뒤 별도 논의 후 진행 |
+| 7단계 (보류) | 전체 플로우 통합 테스트, 배포 준비 |
 
 ## 8. 결정이 필요한 사항 (진행 중 확인)
 
@@ -201,6 +203,7 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - 결제는 4단계(주문 관리 시스템)에서 모의 결제로 진행, 실 PG 연동은 사업자 정보 확보 후 별도 진행
 - 배포 여부와 시점은 기능 완성 후 별도 논의
 - DB는 로컬에 PostgreSQL이 설치되어 있지 않아 1단계는 **SQLite**로 진행 (Prisma 사용 중이라 나중에 PostgreSQL로 교체 쉬움). PostgreSQL 설치 원하시면 이후 전환
+- 2단계부터는 서버(API) 작업을 진행하지 않고 클라이언트 퍼블리싱을 우선한다. 서버 착수 시점과 범위(6~7단계)는 퍼블리싱 완료 후 별도 논의
 
 ## 9. 구현 체크리스트 (TODO)
 
@@ -219,45 +222,48 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] `admin/menus/{list,create,edit}` 퍼블리싱
 - [x] `admin/index.html` 대시보드 기본 레이아웃(뼈대만)
 
-### 2단계 — 메뉴 조회 시스템 (고객)
-- [ ] `GET /api/categories`, `/api/menu-items`, `/api/menu-items/:id` 구현 (공개, 인증 불필요)
+### 2단계 — 고객 화면 퍼블리싱 (샘플 데이터, API 연동 없음)
 - [ ] `index.html` (홈) 퍼블리싱
-- [ ] `menus/list.html` + `list.js` — 카테고리 탭, 메뉴 목록 렌더링
-- [ ] `menus/detail.html` + `detail.js` — 메뉴 상세, 옵션 선택 UI
-
-### 3단계 — 장바구니 관리 시스템 (고객)
-- [ ] `shared/cart.js` — localStorage 기반 장바구니 로직 (담기/수량변경/삭제)
+- [ ] `menus/list.html` + `list.js` — 카테고리 탭, 메뉴 목록 렌더링 (샘플 데이터)
+- [ ] `menus/detail.html` + `detail.js` — 메뉴 상세, 옵션 선택 UI (샘플 데이터)
+- [ ] `shared/cart.js` — localStorage 기반 장바구니 로직 (담기/수량변경/삭제) — 서버 불필요, 실제 동작하게 구현
 - [ ] `basket/list.html` + `list.js` — 장바구니 목록 렌더링
+- [ ] `auth/login.html`, `auth/signup.html` 퍼블리싱 (제출 시 API 호출 없이 화면만)
+- [ ] `checkout/index.html` + `index.js` — 주문서 작성 폼 (샘플 데이터, 제출은 화면 전환만)
+- [ ] `orders/list.html`, `orders/detail.html` 퍼블리싱 (샘플 주문 데이터)
+- [ ] `my/index.html` 퍼블리싱
 
-### 4단계 — 주문 관리 시스템
+### 3단계 — 종업원 화면 퍼블리싱 (샘플 데이터)
+- [ ] `staff/list.html` — 주문 큐 목록 (샘플 데이터, 상태 변경 버튼은 화면 인터랙션만)
+- [ ] `staff/detail.html` — 주문 상세/상태 변경 화면
+
+### 4단계 — 관리자 화면 퍼블리싱 나머지 (샘플 데이터)
+- [ ] `admin/staff/{list,create,edit}` 퍼블리싱 — 종업원 계정 관리
+- [ ] `admin/stats/index.html` 퍼블리싱 — 매출 통계 (샘플 차트/숫자)
+
+### 5단계 — 퍼블리싱 마무리
+- [ ] 반응형 스타일 점검 (모바일/데스크톱)
+- [ ] 역할별 화면 간 네비게이션 링크 점검
+
+### 6단계 — 서버 연동 (보류, 추후 착수)
+- [ ] `GET /api/categories`, `/api/menu-items`, `/api/menu-items/:id` 구현 (공개, 인증 불필요)
 - [ ] `User` 모델 + role(`CUSTOMER`/`STAFF`/`ADMIN`) 필드 추가
-- [ ] `POST /api/auth/signup`, `login`, `refresh`, `logout` 구현 (JWT + bcrypt, 최소 구현)
-- [ ] `auth/login.html`, `auth/signup.html` 퍼블리싱
+- [ ] `POST /api/auth/signup`, `login`, `refresh`, `logout` 구현 (JWT + bcrypt)
 - [ ] `shared/auth.js` — 토큰 저장/헤더 첨부/로그인 상태 체크 유틸
 - [ ] `Order`, `OrderItem`, `Payment` 모델 추가
-- [ ] `checkout/index.html` + `index.js` — 주문서 작성 폼
-- [ ] `POST /api/orders` 구현 + `POST /api/payments/mock` (성공 시 주문 상태 `PAID`로 갱신)
+- [ ] `POST /api/orders` 구현 + `POST /api/payments/mock`
 - [ ] `GET /api/orders/me`, `GET /api/orders/:id` 구현
-- [ ] `orders/list.html`, `orders/detail.html`, `my/index.html` 퍼블리싱
 - [ ] `requireRole` 미들웨어 구현 (STAFF 이상 접근 제어)
 - [ ] `GET /api/staff/orders`, `PATCH /api/staff/orders/:id/status` 구현
-- [ ] `staff/list.html`, `staff/detail.html` 퍼블리싱
+- [ ] `/api/admin/staff` CRUD 구현
+- [ ] `GET /api/admin/stats` 구현
+- [ ] Socket.IO 서버 설정 + 신규 주문 이벤트 브로드캐스트, 클라이언트 수신 처리
+- [ ] 퍼블리싱된 화면들을 실제 API와 연결 (fetch 연동)
 
-### 5단계 — 관리자 종업원 계정 관리
-- [ ] `/api/admin/staff` CRUD 구현 (종업원 계정 생성/수정)
-- [ ] `admin/staff/{list,create,edit}` 퍼블리싱
-
-### 6단계 — 실시간 알림 + 매출 통계
-- [ ] Socket.IO 서버 설정 + 신규 주문 이벤트 브로드캐스트
-- [ ] `staff/list.html`, `admin/index.html`에서 실시간 수신 처리
-- [ ] `GET /api/admin/stats` 구현 (일별/월별 매출, 인기 메뉴)
-- [ ] `admin/stats/index.html` 퍼블리싱
-
-### 7단계 — 마무리
-- [ ] 반응형 스타일 점검 (모바일/데스크톱)
+### 7단계 — 마무리 (보류)
 - [ ] 전체 플로우 수동 테스트 (관리자 메뉴 등록 → 고객 조회 → 장바구니 → 주문/결제 → 종업원 처리 → 관리자 확인)
 - [ ] 배포 준비 (환경변수 정리, 빌드/실행 스크립트)
 
 ---
 
-이 문서를 기준으로 0단계(프로젝트 스캐폴딩)부터 순서대로 구현을 진행합니다.
+이 문서를 기준으로, 다음은 2단계(고객 화면 퍼블리싱)부터 5단계까지 진행하고, 6~7단계(서버 연동/마무리)는 이후 별도로 논의합니다.
