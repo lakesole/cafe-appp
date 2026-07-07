@@ -1,6 +1,7 @@
 import { prisma } from "../prisma";
 import { HttpError } from "../utils/http-error";
 import * as orderService from "./order.service";
+import { emitNewOrder } from "../sockets";
 
 /** 모의 결제: 항상 성공 처리 (실 PG 연동은 추후 별도 진행) */
 export async function payMock(orderId: number, userId: number, method: string) {
@@ -24,8 +25,10 @@ export async function payMock(orderId: number, userId: number, method: string) {
   const updatedOrder = await prisma.order.update({
     where: { id: order.id },
     data: { status: "PAID" },
-    include: { items: true, payment: true },
+    include: { items: true, payment: true, user: { select: { name: true } } },
   });
+
+  emitNewOrder(updatedOrder);
 
   return { order: updatedOrder, payment };
 }

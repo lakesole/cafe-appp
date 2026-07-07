@@ -257,7 +257,7 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] `GET /api/staff/orders`, `PATCH /api/staff/orders/:id/status` 구현
 - [x] `/api/admin/staff` CRUD 구현
 - [x] `GET /api/admin/stats` 구현
-- [ ] Socket.IO 서버 설정 + 신규 주문 이벤트 브로드캐스트, 클라이언트 수신 처리
+- [x] Socket.IO 서버 설정 + 신규 주문 이벤트 브로드캐스트, 클라이언트 수신 처리
 - [x] 퍼블리싱된 화면들을 실제 API와 연결 (fetch 연동)
 
 ### 7단계 — 마무리 (보류)

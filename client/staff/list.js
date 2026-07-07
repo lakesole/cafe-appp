@@ -56,4 +56,11 @@ if (!isLoggedIn() || !["STAFF", "ADMIN"].includes(getCurrentUser().role)) {
 
   renderTabs();
   renderQueue();
+
+  /* 실시간 신규 주문 알림 (Socket.IO) */
+  const socket = io({ auth: { token: getAccessToken() } });
+  socket.on("order:new", (order) => {
+    showToast(`🔔 새 주문이 들어왔어요! 주문 #${order.id} · ${order.user.name}님`);
+    renderQueue();
+  });
 }
