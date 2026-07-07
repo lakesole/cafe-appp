@@ -6,6 +6,9 @@ const categoryTabsEl = document.getElementById("category-tabs");
 const menuGridEl = document.getElementById("menu-grid");
 const emptyEl = document.getElementById("empty");
 const cartCountEl = document.getElementById("cart-count");
+const quickOrderBarEl = document.getElementById("quick-order-bar");
+const quickOrderAddedEl = document.getElementById("quick-order-added");
+const quickOrderSummaryEl = document.getElementById("quick-order-summary");
 
 let CATEGORIES = [];
 let MENU_ITEMS = [];
@@ -73,6 +76,18 @@ categoryTabsEl.addEventListener("click", (e) => {
   renderGrid();
 });
 
+function showQuickOrderBar(menu) {
+  quickOrderAddedEl.textContent = `${menu.name} 담았어요 🛒`;
+  quickOrderSummaryEl.textContent = `장바구니 ${getCartCount()}개 · 총 ${formatPrice(getCartTotal())}`;
+  quickOrderBarEl.hidden = false;
+}
+
+quickOrderBarEl.addEventListener("click", (e) => {
+  if (e.target.closest("#quick-order-close")) {
+    quickOrderBarEl.hidden = true;
+  }
+});
+
 menuGridEl.addEventListener("click", (e) => {
   const btn = e.target.closest(".js-quick-add");
   if (!btn) return;
@@ -85,6 +100,7 @@ menuGridEl.addEventListener("click", (e) => {
     selectedOptions: [],
   });
   refreshCartCount();
+  showQuickOrderBar(menu);
 });
 
 async function init() {

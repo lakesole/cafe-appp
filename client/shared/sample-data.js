@@ -123,7 +123,7 @@ const SAMPLE_MENU_ITEMS = [
     name: "자몽 에이드",
     description: "상큼한 자몽과 톡 쏘는 탄산의 조화",
     price: 5500,
-    imageUrl: "https://images.unsplash.com/photo-1497534446932-c925b458314a?w=600",
+    imageUrl: "https://images.unsplash.com/photo-1546173159-315724a31696?w=600",
     isSoldOut: false,
     isAvailable: true,
     optionGroups: [],

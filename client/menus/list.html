@@ -37,6 +37,15 @@
     <p class="empty" id="empty" hidden>해당 카테고리에 메뉴가 없습니다.</p>
   </main>
 
+  <div class="quick-order-bar" id="quick-order-bar" hidden>
+    <button type="button" class="quick-order-bar__close" id="quick-order-close" aria-label="닫기">✕</button>
+    <div class="quick-order-bar__info">
+      <p class="quick-order-bar__added" id="quick-order-added"></p>
+      <p class="quick-order-bar__summary" id="quick-order-summary"></p>
+    </div>
+    <a href="/checkout" class="btn btn-primary quick-order-bar__cta">바로 주문하기 →</a>
+  </div>
+
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>
   <script src="/shared/cart.js"></script>

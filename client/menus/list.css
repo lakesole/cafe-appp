@@ -5,7 +5,89 @@
 .page {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem;
+  padding: 2.5rem 1.5rem 6rem;
+}
+
+/* 담기 → 바로 주문 하단바 */
+.quick-order-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: min(560px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  background: #4a2f1c;
+  color: #fffaf3;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(58, 46, 38, 0.28);
+  animation: quick-order-bar-in 0.25s ease;
+}
+
+.quick-order-bar[hidden] {
+  display: none;
+}
+
+@keyframes quick-order-bar-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.quick-order-bar__close {
+  align-self: flex-start;
+  color: #d8c3a5;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 4px;
+}
+
+.quick-order-bar__close:hover {
+  color: #fff;
+}
+
+.quick-order-bar__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.quick-order-bar__added {
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-order-bar__summary {
+  font-size: 0.8rem;
+  color: #d8c3a5;
+  margin-top: 2px;
+}
+
+.quick-order-bar__cta {
+  flex-shrink: 0;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .quick-order-bar {
+    flex-wrap: wrap;
+  }
+  .quick-order-bar__cta {
+    width: 100%;
+    order: 1;
+  }
 }
 
 .page-head {
