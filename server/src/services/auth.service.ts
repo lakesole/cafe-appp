@@ -28,11 +28,11 @@ export function signRefreshToken(user: { id: number; email: string; name: string
 }
 
 export function verifyAccessToken(token: string): TokenPayload {
-  return jwt.verify(token, ACCESS_SECRET) as TokenPayload;
+  return jwt.verify(token, ACCESS_SECRET) as unknown as TokenPayload;
 }
 
 export function verifyRefreshToken(token: string): TokenPayload {
-  return jwt.verify(token, REFRESH_SECRET) as TokenPayload;
+  return jwt.verify(token, REFRESH_SECRET) as unknown as TokenPayload;
 }
 
 export async function signup(data: { email: string; password: string; name: string; phone?: string }) {

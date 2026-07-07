@@ -1,6 +1,7 @@
+import { OrderStatus } from "@prisma/client";
 import { prisma } from "../prisma";
 
-const ACTIVE_STATUSES = ["PAID", "PREPARING", "READY", "COMPLETED"] as const;
+const ACTIVE_STATUSES: OrderStatus[] = ["PAID", "PREPARING", "READY", "COMPLETED"];
 const WEEKDAY_LABELS = ["일", "월", "화", "수", "목", "금", "토"];
 
 export async function getStats() {
@@ -10,7 +11,7 @@ export async function getStats() {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
 
   const recentOrders = await prisma.order.findMany({
-    where: { status: { in: ACTIVE_STATUSES as unknown as string[] }, createdAt: { gte: sevenDaysAgo } },
+    where: { status: { in: ACTIVE_STATUSES }, createdAt: { gte: sevenDaysAgo } },
     include: { items: true },
   });
 

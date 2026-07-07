@@ -260,10 +260,35 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] Socket.IO 서버 설정 + 신규 주문 이벤트 브로드캐스트, 클라이언트 수신 처리
 - [x] 퍼블리싱된 화면들을 실제 API와 연결 (fetch 연동)
 
-### 7단계 — 마무리 (보류)
-- [ ] 전체 플로우 수동 테스트 (관리자 메뉴 등록 → 고객 조회 → 장바구니 → 주문/결제 → 종업원 처리 → 관리자 확인)
-- [ ] 배포 준비 (환경변수 정리, 빌드/실행 스크립트)
+### 7단계 — 마무리
+- [x] 전체 플로우 수동 테스트 (관리자 메뉴 등록 → 고객 조회 → 장바구니 → 주문/결제 → 종업원 처리 → 관리자 확인)
+- [x] 배포 준비 (환경변수 정리, 빌드/실행 스크립트)
+
+## 10. 실행 방법
+
+**개발 모드**
+```
+cd server
+npm install
+cp .env.example .env   # JWT_ACCESS_SECRET/JWT_REFRESH_SECRET는 반드시 무작위 값으로 교체
+npx prisma migrate dev
+npm run prisma:seed    # 샘플 카테고리/메뉴 + 데모 계정 생성
+npm run dev
+```
+브라우저에서 http://localhost:4000 접속 (client 정적 파일 + API를 같은 서버가 함께 서빙).
+
+**데모 계정**
+- 관리자: `admin@cafeorder.com` / `admin1234`
+- 종업원: `staff@cafeorder.com` / `staff1234`
+- 고객: `/auth/signup`에서 자유롭게 가입
+
+**프로덕션 빌드**
+```
+npm run build   # tsc → dist/
+npm start       # node dist/server.js
+```
+`tsc` 빌드는 strict 모드로 타입 에러 없이 통과하도록 유지한다 (`tsx`는 개발 중 타입 체크를 건너뛰므로, 배포 전 반드시 `npm run build`로 한 번 검증할 것).
 
 ---
 
-이 문서를 기준으로, 다음은 2단계(고객 화면 퍼블리싱)부터 5단계까지 진행하고, 6~7단계(서버 연동/마무리)는 이후 별도로 논의합니다.
+2~7단계(클라이언트 퍼블리싱 + 서버 연동 + 마무리)까지 전부 완료했다. 8단계 이후(실 PG 연동, 배포 등)는 별도 논의 후 진행한다.

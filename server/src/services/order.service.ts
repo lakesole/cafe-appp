@@ -1,3 +1,4 @@
+import { OrderStatus } from "@prisma/client";
 import { prisma } from "../prisma";
 import { HttpError } from "../utils/http-error";
 
@@ -94,16 +95,17 @@ export function getOrderById(orderId: number) {
   return prisma.order.findUnique({ where: { id: orderId }, include: { items: true, payment: true } });
 }
 
-const STAFF_VISIBLE_STATUSES = ["PAID", "PREPARING", "READY", "COMPLETED"] as const;
+const STAFF_VISIBLE_STATUSES: OrderStatus[] = ["PAID", "PREPARING", "READY", "COMPLETED"];
+
+function isStaffVisibleStatus(status: string): status is OrderStatus {
+  return (STAFF_VISIBLE_STATUSES as string[]).includes(status);
+}
 
 export function listOrdersForStaff(status?: string) {
-  const statusFilter =
-    status && (STAFF_VISIBLE_STATUSES as readonly string[]).includes(status)
-      ? status
-      : undefined;
+  const statusFilter = status && isStaffVisibleStatus(status) ? status : undefined;
 
   return prisma.order.findMany({
-    where: { status: (statusFilter ?? { in: STAFF_VISIBLE_STATUSES as unknown as string[] }) as any },
+    where: { status: statusFilter ?? { in: STAFF_VISIBLE_STATUSES } },
     include: { items: true, user: { select: { name: true } } },
     orderBy: { createdAt: "asc" },
   });
@@ -119,7 +121,7 @@ export async function getOrderForStaff(orderId: number) {
 }
 
 export async function updateOrderStatusByStaff(orderId: number, status: string) {
-  if (!(STAFF_VISIBLE_STATUSES as readonly string[]).includes(status)) {
+  if (!isStaffVisibleStatus(status)) {
     throw new HttpError(400, "허용되지 않는 상태값입니다.");
   }
 
@@ -128,7 +130,7 @@ export async function updateOrderStatusByStaff(orderId: number, status: string) 
 
   return prisma.order.update({
     where: { id: orderId },
-    data: { status: status as any },
+    data: { status },
     include: { items: true, user: { select: { name: true } } },
   });
 }
