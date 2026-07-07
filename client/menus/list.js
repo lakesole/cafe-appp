@@ -1,14 +1,14 @@
 /* ============================================
-   고객 - 메뉴 목록
+   고객 - 메뉴 목록 (실제 API 연동: /api/categories, /api/menu-items)
    ============================================ */
-
-const { CATEGORIES, MENU_ITEMS } = window.SAMPLE_DATA;
 
 const categoryTabsEl = document.getElementById("category-tabs");
 const menuGridEl = document.getElementById("menu-grid");
 const emptyEl = document.getElementById("empty");
 const cartCountEl = document.getElementById("cart-count");
 
+let CATEGORIES = [];
+let MENU_ITEMS = [];
 let activeCategory = "all";
 
 function refreshCartCount() {
@@ -87,6 +87,15 @@ menuGridEl.addEventListener("click", (e) => {
   refreshCartCount();
 });
 
-refreshCartCount();
-renderTabs();
-renderGrid();
+async function init() {
+  refreshCartCount();
+  [CATEGORIES, MENU_ITEMS] = await Promise.all([api.get("/categories"), api.get("/menu-items")]);
+  renderTabs();
+  renderGrid();
+}
+
+init().catch(() => {
+  menuGridEl.innerHTML = "";
+  emptyEl.textContent = "메뉴를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.";
+  emptyEl.hidden = false;
+});

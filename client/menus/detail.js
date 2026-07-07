@@ -1,8 +1,6 @@
 /* ============================================
-   고객 - 메뉴 상세
+   고객 - 메뉴 상세 (실제 API 연동: /api/menu-items/:id)
    ============================================ */
-
-const { MENU_ITEMS } = window.SAMPLE_DATA;
 
 const detailEl = document.getElementById("detail");
 const cartCountEl = document.getElementById("cart-count");
@@ -12,16 +10,15 @@ function refreshCartCount() {
 }
 refreshCartCount();
 
-const menuId = Number(new URLSearchParams(location.search).get("id"));
-const menu = MENU_ITEMS.find((m) => m.id === menuId);
-
-if (!menu) {
+function renderNotFound() {
   detailEl.innerHTML = `
     <p class="not-found">
       존재하지 않는 메뉴입니다.<br />
       <a href="list" class="back-link">메뉴 목록으로 돌아가기</a>
     </p>`;
-} else {
+}
+
+function renderMenu(menu) {
   const optionGroupsHtml = (menu.optionGroups || [])
     .map(
       (group) => `
@@ -132,3 +129,15 @@ if (!menu) {
     window.location.href = "/basket/list";
   });
 }
+
+async function init() {
+  const menuId = Number(new URLSearchParams(location.search).get("id"));
+  try {
+    const menu = await api.get(`/menu-items/${menuId}`);
+    renderMenu(menu);
+  } catch {
+    renderNotFound();
+  }
+}
+
+init();

@@ -245,8 +245,8 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] 반응형 스타일 점검 (모바일/데스크톱)
 - [x] 역할별 화면 간 네비게이션 링크 점검
 
-### 6단계 — 서버 연동 (보류, 추후 착수)
-- [ ] `GET /api/categories`, `/api/menu-items`, `/api/menu-items/:id` 구현 (공개, 인증 불필요)
+### 6단계 — 서버 연동
+- [x] `GET /api/categories`, `/api/menu-items`, `/api/menu-items/:id` 구현 (공개, 인증 불필요)
 - [ ] `User` 모델 + role(`CUSTOMER`/`STAFF`/`ADMIN`) 필드 추가
 - [ ] `POST /api/auth/signup`, `login`, `refresh`, `logout` 구현 (JWT + bcrypt)
 - [ ] `shared/auth.js` — 토큰 저장/헤더 첨부/로그인 상태 체크 유틸

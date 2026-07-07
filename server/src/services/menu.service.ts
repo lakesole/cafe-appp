@@ -2,7 +2,16 @@ import { prisma } from "../prisma";
 
 export function listMenuItems() {
   return prisma.menuItem.findMany({
-    include: { category: true },
+    include: { category: true, optionGroups: { include: { optionChoices: true } } },
+    orderBy: { id: "asc" },
+  });
+}
+
+/** 고객 노출용: isAvailable(판매 중단이 아닌) 메뉴만 반환 */
+export function listAvailableMenuItems() {
+  return prisma.menuItem.findMany({
+    where: { isAvailable: true },
+    include: { category: true, optionGroups: { include: { optionChoices: true } } },
     orderBy: { id: "asc" },
   });
 }
