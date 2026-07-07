@@ -1,8 +1,14 @@
 const API_BASE = "/api";
 
 async function request(path, options = {}) {
+  const headers = { "Content-Type": "application/json" };
+  if (typeof getAccessToken === "function") {
+    const token = getAccessToken();
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+  }
+
   const res = await fetch(API_BASE + path, {
-    headers: { "Content-Type": "application/json" },
+    headers,
     ...options,
   });
   if (!res.ok) {

@@ -16,7 +16,7 @@
         <a href="/menus/list" class="site-nav__link">메뉴</a>
         <a href="/orders/list" class="site-nav__link">주문내역</a>
         <a href="/my" class="site-nav__link">마이</a>
-        <a href="/auth/login" class="site-nav__link">로그인</a>
+        <a href="/auth/login" class="site-nav__link" id="nav-auth-link">로그인</a>
         <a href="/basket/list" class="site-nav__link cart-link">
           🛒 <span id="cart-count" class="cart-count">0</span>
         </a>
@@ -28,8 +28,8 @@
     <section class="profile-card">
       <div class="profile-avatar">👤</div>
       <div>
-        <p class="profile-name">김민준</p>
-        <p class="profile-email">minjun@example.com</p>
+        <p class="profile-name" id="profile-name"></p>
+        <p class="profile-email" id="profile-email"></p>
       </div>
     </section>
 
@@ -46,12 +46,14 @@
       <div class="quick-links">
         <a href="/orders/list" class="quick-link">📋 주문 내역</a>
         <a href="/basket/list" class="quick-link">🛒 장바구니</a>
-        <a href="/auth/login" class="quick-link">🔑 로그아웃</a>
+        <button type="button" class="quick-link" id="btn-logout">🔑 로그아웃</button>
       </div>
     </section>
   </main>
 
   <script src="/shared/sample-data.js"></script>
+  <script src="/shared/api.js"></script>
+  <script src="/shared/auth.js"></script>
   <script src="/shared/cart.js"></script>
   <script src="index.js"></script>
 </body>

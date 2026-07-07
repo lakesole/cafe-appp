@@ -247,9 +247,9 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 
 ### 6단계 — 서버 연동
 - [x] `GET /api/categories`, `/api/menu-items`, `/api/menu-items/:id` 구현 (공개, 인증 불필요)
-- [ ] `User` 모델 + role(`CUSTOMER`/`STAFF`/`ADMIN`) 필드 추가
-- [ ] `POST /api/auth/signup`, `login`, `refresh`, `logout` 구현 (JWT + bcrypt)
-- [ ] `shared/auth.js` — 토큰 저장/헤더 첨부/로그인 상태 체크 유틸
+- [x] `User` 모델 + role(`CUSTOMER`/`STAFF`/`ADMIN`) 필드 추가
+- [x] `POST /api/auth/signup`, `login`, `refresh`, `logout` 구현 (JWT + bcrypt)
+- [x] `shared/auth.js` — 토큰 저장/헤더 첨부/로그인 상태 체크 유틸
 - [ ] `Order`, `OrderItem`, `Payment` 모델 추가
 - [ ] `POST /api/orders` 구현 + `POST /api/payments/mock`
 - [ ] `GET /api/orders/me`, `GET /api/orders/:id` 구현

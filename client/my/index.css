@@ -89,6 +89,10 @@
 }
 
 .quick-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: inherit;
   background: #fffaf3;
   border: 1px solid #ecdfcd;
   border-radius: 12px;

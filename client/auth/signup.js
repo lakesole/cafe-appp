@@ -1,15 +1,35 @@
 /* ============================================
-   고객 - 회원가입 (화면만, API 연동은 6단계에서 진행)
+   고객 - 회원가입
    ============================================ */
 
 document.getElementById("cart-count").textContent = getCartCount();
 
-document.getElementById("signup-form").addEventListener("submit", (e) => {
+const form = document.getElementById("signup-form");
+const submitBtn = form.querySelector(".auth-submit");
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const form = e.target;
-  if (form.password.value !== form.passwordConfirm.value) {
+  const data = new FormData(form);
+
+  if (data.get("password") !== data.get("passwordConfirm")) {
     showToast("비밀번호가 일치하지 않습니다.");
     return;
   }
-  showToast("회원가입 기능은 서버 연동 단계에서 제공됩니다.");
+
+  submitBtn.disabled = true;
+  try {
+    const result = await api.post("/auth/signup", {
+      email: data.get("email"),
+      password: data.get("password"),
+      name: data.get("name"),
+      phone: data.get("phone") || undefined,
+    });
+    saveAuth(result);
+    showToast(`${result.user.name}님, 가입을 환영합니다!`);
+    window.location.href = "/my";
+  } catch (err) {
+    showToast(err.message || "회원가입에 실패했습니다.");
+  } finally {
+    submitBtn.disabled = false;
+  }
 });

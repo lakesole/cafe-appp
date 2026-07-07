@@ -5,6 +5,7 @@ import categoryRoutes from "./routes/admin/category.routes";
 import menuRoutes from "./routes/admin/menu.routes";
 import customerCategoryRoutes from "./routes/customer/category.routes";
 import customerMenuRoutes from "./routes/customer/menu.routes";
+import customerAuthRoutes from "./routes/customer/auth.routes";
 import { errorHandler } from "./middlewares/error.middleware";
 
 const app = express();
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/auth", customerAuthRoutes);
 app.use("/api/categories", customerCategoryRoutes);
 app.use("/api/menu-items", customerMenuRoutes);
 app.use("/api/admin/categories", categoryRoutes);

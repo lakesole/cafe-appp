@@ -1,10 +1,28 @@
 /* ============================================
-   고객 - 로그인 (화면만, API 연동은 6단계에서 진행)
+   고객 - 로그인
    ============================================ */
 
 document.getElementById("cart-count").textContent = getCartCount();
 
-document.getElementById("login-form").addEventListener("submit", (e) => {
+const form = document.getElementById("login-form");
+const submitBtn = form.querySelector(".auth-submit");
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  showToast("로그인 기능은 서버 연동 단계에서 제공됩니다.");
+  const data = new FormData(form);
+
+  submitBtn.disabled = true;
+  try {
+    const result = await api.post("/auth/login", {
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+    saveAuth(result);
+    showToast(`${result.user.name}님, 환영합니다!`);
+    window.location.href = "/my";
+  } catch (err) {
+    showToast(err.message || "로그인에 실패했습니다.");
+  } finally {
+    submitBtn.disabled = false;
+  }
 });
