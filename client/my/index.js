@@ -1,0 +1,18 @@
+/* ============================================
+   고객 - 마이페이지
+   ============================================ */
+
+const { ORDERS, ORDER_STATUS_META } = window.SAMPLE_DATA;
+
+document.getElementById("cart-count").textContent = getCartCount();
+
+document.getElementById("recent-orders").innerHTML = ORDERS.slice(0, 3)
+  .map((order) => {
+    const status = ORDER_STATUS_META[order.status];
+    return `
+      <a class="recent-order" href="/orders/detail?id=${order.id}">
+        <span>주문 #${order.id} · ${formatDateTime(order.createdAt)}</span>
+        <span class="recent-order__status" style="color:${status.color}">${status.label}</span>
+      </a>`;
+  })
+  .join("");

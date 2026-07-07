@@ -223,27 +223,27 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] `admin/index.html` 대시보드 기본 레이아웃(뼈대만)
 
 ### 2단계 — 고객 화면 퍼블리싱 (샘플 데이터, API 연동 없음)
-- [ ] `index.html` (홈) 퍼블리싱
-- [ ] `menus/list.html` + `list.js` — 카테고리 탭, 메뉴 목록 렌더링 (샘플 데이터)
-- [ ] `menus/detail.html` + `detail.js` — 메뉴 상세, 옵션 선택 UI (샘플 데이터)
-- [ ] `shared/cart.js` — localStorage 기반 장바구니 로직 (담기/수량변경/삭제) — 서버 불필요, 실제 동작하게 구현
-- [ ] `basket/list.html` + `list.js` — 장바구니 목록 렌더링
-- [ ] `auth/login.html`, `auth/signup.html` 퍼블리싱 (제출 시 API 호출 없이 화면만)
-- [ ] `checkout/index.html` + `index.js` — 주문서 작성 폼 (샘플 데이터, 제출은 화면 전환만)
-- [ ] `orders/list.html`, `orders/detail.html` 퍼블리싱 (샘플 주문 데이터)
-- [ ] `my/index.html` 퍼블리싱
+- [x] `index.html` (홈) 퍼블리싱
+- [x] `menus/list.html` + `list.js` — 카테고리 탭, 메뉴 목록 렌더링 (샘플 데이터)
+- [x] `menus/detail.html` + `detail.js` — 메뉴 상세, 옵션 선택 UI (샘플 데이터)
+- [x] `shared/cart.js` — localStorage 기반 장바구니 로직 (담기/수량변경/삭제) — 서버 불필요, 실제 동작하게 구현
+- [x] `basket/list.html` + `list.js` — 장바구니 목록 렌더링
+- [x] `auth/login.html`, `auth/signup.html` 퍼블리싱 (제출 시 API 호출 없이 화면만)
+- [x] `checkout/index.html` + `index.js` — 주문서 작성 폼 (샘플 데이터, 제출은 화면 전환만)
+- [x] `orders/list.html`, `orders/detail.html` 퍼블리싱 (샘플 주문 데이터)
+- [x] `my/index.html` 퍼블리싱
 
 ### 3단계 — 종업원 화면 퍼블리싱 (샘플 데이터)
-- [ ] `staff/list.html` — 주문 큐 목록 (샘플 데이터, 상태 변경 버튼은 화면 인터랙션만)
-- [ ] `staff/detail.html` — 주문 상세/상태 변경 화면
+- [x] `staff/list.html` — 주문 큐 목록 (샘플 데이터, 상태 변경 버튼은 화면 인터랙션만)
+- [x] `staff/detail.html` — 주문 상세/상태 변경 화면
 
 ### 4단계 — 관리자 화면 퍼블리싱 나머지 (샘플 데이터)
-- [ ] `admin/staff/{list,create,edit}` 퍼블리싱 — 종업원 계정 관리
-- [ ] `admin/stats/index.html` 퍼블리싱 — 매출 통계 (샘플 차트/숫자)
+- [x] `admin/staff/{list,create,edit}` 퍼블리싱 — 종업원 계정 관리
+- [x] `admin/stats/index.html` 퍼블리싱 — 매출 통계 (샘플 차트/숫자)
 
 ### 5단계 — 퍼블리싱 마무리
-- [ ] 반응형 스타일 점검 (모바일/데스크톱)
-- [ ] 역할별 화면 간 네비게이션 링크 점검
+- [x] 반응형 스타일 점검 (모바일/데스크톱)
+- [x] 역할별 화면 간 네비게이션 링크 점검
 
 ### 6단계 — 서버 연동 (보류, 추후 착수)
 - [ ] `GET /api/categories`, `/api/menu-items`, `/api/menu-items/:id` 구현 (공개, 인증 불필요)

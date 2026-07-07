@@ -1,0 +1,56 @@
+/* ============================================
+   종업원 - 주문 큐 (샘플 데이터, 화면 인터랙션만)
+   ============================================ */
+
+const { ORDERS, ORDER_STATUS_META } = window.SAMPLE_DATA;
+
+const STAFF_STATUSES = ["PAID", "PREPARING", "READY", "COMPLETED"];
+
+const statusTabsEl = document.getElementById("status-tabs");
+const orderQueueEl = document.getElementById("order-queue");
+
+let activeStatus = "all";
+
+function renderTabs() {
+  const tabs = [{ id: "all", label: "전체" }, ...STAFF_STATUSES.map((s) => ({ id: s, label: ORDER_STATUS_META[s].label }))];
+  statusTabsEl.innerHTML = tabs
+    .map(
+      (tab) => `
+      <button type="button" class="status-tab ${tab.id === activeStatus ? "active" : ""}" data-id="${tab.id}">
+        ${tab.label}
+      </button>`
+    )
+    .join("");
+}
+
+function renderQueue() {
+  const orders = ORDERS.filter((o) => STAFF_STATUSES.includes(o.status)).filter(
+    (o) => activeStatus === "all" || o.status === activeStatus
+  );
+
+  orderQueueEl.innerHTML = orders
+    .map((order) => {
+      const status = ORDER_STATUS_META[order.status];
+      const itemsText = order.items.map((it) => `${it.name} ×${it.quantity}`).join(", ");
+      return `
+      <li class="queue-card">
+        <a href="detail?id=${order.id}">
+          <span class="queue-card__id">주문 #${order.id}</span>
+          <p class="queue-card__items">${itemsText}</p>
+        </a>
+        <span class="queue-card__status" style="color:${status.color}">${status.label}</span>
+      </li>`;
+    })
+    .join("");
+}
+
+statusTabsEl.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-id]");
+  if (!btn) return;
+  activeStatus = btn.dataset.id;
+  renderTabs();
+  renderQueue();
+});
+
+renderTabs();
+renderQueue();

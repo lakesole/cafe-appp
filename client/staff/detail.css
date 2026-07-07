@@ -1,0 +1,65 @@
+/* ============================================
+   종업원 - 주문 상세 / 상태 변경
+   ============================================ */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #7a4b25;
+}
+
+.staff-order-detail {
+  background: #fff;
+  border: 1px solid #e6d5bd;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 520px;
+}
+
+.staff-order-detail__top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.staff-order-detail__id {
+  font-size: 1.2rem;
+  color: #4a2f1c;
+}
+
+.staff-order-detail__items {
+  border-top: 1px solid #e6d5bd;
+  border-bottom: 1px solid #e6d5bd;
+  padding: 0.75rem 0;
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.status-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.status-actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #7a4b25;
+  background: #fff;
+  color: #7a4b25;
+  font-weight: 600;
+}
+
+.status-actions button.active {
+  background: #7a4b25;
+  color: #fff;
+}
+
+.not-found {
+  padding: 2rem;
+  color: #8a7a6d;
+}

@@ -2,10 +2,10 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>메뉴 관리 - CafeOrder</title>
+  <title>종업원 관리 - CafeOrder</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/admin/index.css" />
-  <link rel="stylesheet" href="/admin/categories/list.css" />
+  <link rel="stylesheet" href="list.css" />
 </head>
 <body>
   <header class="admin-header">
@@ -20,24 +20,25 @@
   </nav>
   <main class="admin-main">
     <div class="page-title-row">
-      <h2>메뉴 목록</h2>
-      <a class="btn" href="/admin/menus/create">+ 메뉴 등록</a>
+      <h2>종업원 관리</h2>
+      <a class="btn" href="/admin/staff/create">+ 종업원 등록</a>
     </div>
-    <table id="menu-table">
+    <table id="staff-table">
       <thead>
         <tr>
           <th>ID</th>
           <th>이름</th>
-          <th>카테고리</th>
-          <th>가격</th>
-          <th>품절</th>
+          <th>이메일</th>
+          <th>역할</th>
+          <th>등록일</th>
           <th></th>
         </tr>
       </thead>
-      <tbody id="menu-table-body"></tbody>
+      <tbody id="staff-table-body"></tbody>
     </table>
   </main>
-  <script src="/shared/api.js"></script>
+
+  <script src="/shared/sample-data.js"></script>
   <script src="list.js"></script>
 </body>
 </html>

@@ -1,0 +1,155 @@
+/* ============================================
+   고객 - 메뉴 상세
+   ============================================ */
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #8a7a6d;
+}
+
+.back-link:hover {
+  color: #7a4b25;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 640px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail-media {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.detail-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-soldout {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(58, 46, 38, 0.55);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.detail-name {
+  font-size: 1.6rem;
+  color: #4a2f1c;
+}
+
+.detail-desc {
+  color: #6b5c4f;
+}
+
+.detail-price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #4a2f1c;
+}
+
+.option-group {
+  border-top: 1px solid #ecdfcd;
+  padding-top: 0.75rem;
+}
+
+.option-group__name {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.option-group__required {
+  color: #b3392c;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: 0.4rem;
+}
+
+.option-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  cursor: pointer;
+}
+
+.option-choice input {
+  accent-color: #7a4b25;
+}
+
+.option-choice__extra {
+  color: #8a7a6d;
+  font-size: 0.85rem;
+}
+
+.qty-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.qty-label {
+  font-weight: 600;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid #d8c3a5;
+  background: #fffaf3;
+  font-size: 1.1rem;
+}
+
+.qty-value {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.not-found {
+  padding: 3rem;
+  text-align: center;
+  color: #8a7a6d;
+}

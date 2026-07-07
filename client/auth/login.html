@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인 | CafeOrder</title>
+  <link rel="stylesheet" href="/shared/reset.css" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="logo">☕ CafeOrder</a>
+      <nav class="site-nav">
+        <a href="/menus/list" class="site-nav__link">메뉴</a>
+        <a href="/basket/list" class="site-nav__link cart-link">
+          🛒 <span id="cart-count" class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <form class="auth-card" id="login-form">
+      <h1 class="auth-title">로그인</h1>
+      <label>
+        이메일
+        <input type="email" name="email" required placeholder="you@example.com" />
+      </label>
+      <label>
+        비밀번호
+        <input type="password" name="password" required placeholder="••••••••" />
+      </label>
+      <button type="submit" class="btn btn-primary auth-submit">로그인</button>
+      <p class="auth-switch">
+        아직 계정이 없으신가요? <a href="/auth/signup">회원가입</a>
+      </p>
+    </form>
+  </main>
+
+  <script src="/shared/cart.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

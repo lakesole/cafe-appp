@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>주문서 작성 | CafeOrder</title>
+  <link rel="stylesheet" href="/shared/reset.css" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="logo">☕ CafeOrder</a>
+      <nav class="site-nav">
+        <a href="/menus/list" class="site-nav__link">메뉴</a>
+        <a href="/basket/list" class="site-nav__link cart-link">
+          🛒 <span id="cart-count" class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <h1 class="page-title">주문서 작성</h1>
+
+    <div class="checkout-layout">
+      <section class="checkout-section">
+        <h2 class="section-title">주문 상품</h2>
+        <ul class="order-items" id="order-items"></ul>
+      </section>
+
+      <section class="checkout-section">
+        <h2 class="section-title">픽업 시간</h2>
+        <select id="pickup-time" class="pickup-select">
+          <option value="15">15분 후</option>
+          <option value="30" selected>30분 후</option>
+          <option value="45">45분 후</option>
+          <option value="60">60분 후</option>
+        </select>
+      </section>
+
+      <section class="checkout-section">
+        <h2 class="section-title">결제 방법 (모의 결제)</h2>
+        <label class="pay-method">
+          <input type="radio" name="pay-method" value="CARD" checked />
+          신용/체크카드
+        </label>
+        <label class="pay-method">
+          <input type="radio" name="pay-method" value="KAKAO" />
+          카카오페이
+        </label>
+      </section>
+
+      <aside class="checkout-summary">
+        <div class="summary-row">
+          <span>총 수량</span>
+          <span id="summary-count">0개</span>
+        </div>
+        <div class="summary-row summary-row--total">
+          <span>결제 금액</span>
+          <span id="summary-total">0원</span>
+        </div>
+        <button type="button" class="btn btn-primary summary-checkout" id="btn-pay">결제하기</button>
+      </aside>
+    </div>
+
+    <p class="empty" id="empty" hidden>
+      장바구니가 비어있어 주문할 수 없어요.<br />
+      <a href="/menus/list" class="back-link">메뉴 보러가기 →</a>
+    </p>
+  </main>
+
+  <script src="/shared/sample-data.js"></script>
+  <script src="/shared/cart.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

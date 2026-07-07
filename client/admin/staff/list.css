@@ -1,0 +1,47 @@
+.page-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  background: #7a4b25;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+#staff-table th,
+#staff-table td {
+  text-align: left;
+  padding: 0.6rem;
+  border-bottom: 1px solid #e6d5bd;
+}
+
+.role-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #f0e2d0;
+  color: #7a4b25;
+}
+
+.role-badge.is-admin {
+  background: #4a2f1c;
+  color: #fff;
+}
+
+.row-actions a {
+  margin-right: 0.75rem;
+  color: #7a4b25;
+  font-weight: 600;
+}
+
+.row-actions button {
+  background: none;
+  border: none;
+  color: #b3392c;
+  font-weight: 600;
+}

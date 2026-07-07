@@ -2,10 +2,10 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>카테고리 수정 - CafeOrder</title>
+  <title>종업원 수정 - CafeOrder</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/admin/index.css" />
-  <link rel="stylesheet" href="/admin/categories/create.css" />
+  <link rel="stylesheet" href="/admin/staff/create.css" />
 </head>
 <body>
   <header class="admin-header">
@@ -19,14 +19,21 @@
     <a href="/admin/stats">매출 통계</a>
   </nav>
   <main class="admin-main">
-    <h2>카테고리 수정</h2>
-    <form id="category-form">
+    <h2>종업원 수정</h2>
+    <form id="staff-form">
       <label>이름 <input type="text" name="name" required /></label>
-      <label>정렬순서 <input type="number" name="sortOrder" /></label>
+      <label>이메일 <input type="email" name="email" required /></label>
+      <label>
+        역할
+        <select name="role">
+          <option value="STAFF">STAFF</option>
+          <option value="ADMIN">ADMIN</option>
+        </select>
+      </label>
       <button type="submit" class="btn">저장</button>
     </form>
   </main>
-  <script src="/shared/api.js"></script>
+  <script src="/shared/sample-data.js"></script>
   <script src="edit.js"></script>
 </body>
 </html>

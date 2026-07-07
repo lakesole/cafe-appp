@@ -1,0 +1,101 @@
+/* ============================================
+   고객 - 마이페이지
+   ============================================ */
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fffaf3;
+  border: 1px solid #ecdfcd;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #f0e2d0;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+}
+
+.profile-name {
+  font-weight: 700;
+  color: #4a2f1c;
+}
+
+.profile-email {
+  color: #8a7a6d;
+  font-size: 0.85rem;
+}
+
+.my-section {
+  margin-bottom: 1.5rem;
+}
+
+.my-section h2 {
+  font-size: 1.1rem;
+  color: #4a2f1c;
+  margin-bottom: 0.75rem;
+}
+
+.my-section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.see-all {
+  font-size: 0.85rem;
+  color: #7a4b25;
+  font-weight: 700;
+}
+
+.recent-orders {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.recent-order {
+  display: flex;
+  justify-content: space-between;
+  background: #fffaf3;
+  border: 1px solid #ecdfcd;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+}
+
+.recent-order__status {
+  font-weight: 700;
+}
+
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quick-link {
+  background: #fffaf3;
+  border: 1px solid #ecdfcd;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+}
+
+.quick-link:hover {
+  border-color: #c8956d;
+}

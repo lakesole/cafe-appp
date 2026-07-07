@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>메뉴 | CafeOrder</title>
+  <link rel="stylesheet" href="/shared/reset.css" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="list.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="logo">☕ CafeOrder</a>
+      <nav class="site-nav">
+        <a href="/menus/list" class="site-nav__link">메뉴</a>
+        <a href="/orders/list" class="site-nav__link">주문내역</a>
+        <a href="/my" class="site-nav__link">마이</a>
+        <a href="/auth/login" class="site-nav__link">로그인</a>
+        <a href="/basket/list" class="site-nav__link cart-link">
+          🛒 <span id="cart-count" class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="page-head">
+      <h1>메뉴</h1>
+      <p class="text-muted">따뜻한 한 잔의 여유를 즐겨보세요</p>
+    </section>
+
+    <div class="category-tabs" id="category-tabs"></div>
+
+    <ul class="menu-grid" id="menu-grid"></ul>
+
+    <p class="empty" id="empty" hidden>해당 카테고리에 메뉴가 없습니다.</p>
+  </main>
+
+  <script src="/shared/sample-data.js"></script>
+  <script src="/shared/cart.js"></script>
+  <script src="list.js"></script>
+</body>
+</html>

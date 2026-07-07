@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>주문 상세 | CafeOrder</title>
+  <link rel="stylesheet" href="/shared/reset.css" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="detail.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="logo">☕ CafeOrder</a>
+      <nav class="site-nav">
+        <a href="/menus/list" class="site-nav__link">메뉴</a>
+        <a href="/orders/list" class="site-nav__link">주문내역</a>
+        <a href="/my" class="site-nav__link">마이</a>
+        <a href="/auth/login" class="site-nav__link">로그인</a>
+        <a href="/basket/list" class="site-nav__link cart-link">
+          🛒 <span id="cart-count" class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <a href="list" class="back-link">← 주문 내역</a>
+    <div id="detail" class="order-detail"></div>
+  </main>
+
+  <script src="/shared/sample-data.js"></script>
+  <script src="/shared/cart.js"></script>
+  <script src="detail.js"></script>
+</body>
+</html>

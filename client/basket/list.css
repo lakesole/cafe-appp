@@ -1,0 +1,132 @@
+/* ============================================
+   고객 - 장바구니
+   ============================================ */
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  color: #4a2f1c;
+  margin-bottom: 1.5rem;
+}
+
+.basket-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .basket-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.basket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.basket-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fffaf3;
+  border: 1px solid #ecdfcd;
+  border-radius: 14px;
+}
+
+.basket-item__info {
+  flex: 1;
+}
+
+.basket-item__name {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.basket-item__options {
+  font-size: 0.8rem;
+  color: #8a7a6d;
+  margin-bottom: 4px;
+}
+
+.basket-item__price {
+  font-weight: 700;
+  color: #4a2f1c;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid #d8c3a5;
+  background: #fff;
+}
+
+.qty-value {
+  min-width: 1.4rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.remove-btn {
+  color: #b3392c;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+.basket-summary {
+  background: #fffaf3;
+  border: 1px solid #ecdfcd;
+  border-radius: 14px;
+  padding: 1.25rem;
+  position: sticky;
+  top: 80px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  color: #6b5c4f;
+}
+
+.summary-row--total {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #4a2f1c;
+  border-top: 1px solid #ecdfcd;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+}
+
+.summary-checkout {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: #8a7a6d;
+}
+
+.back-link {
+  font-weight: 700;
+  color: #7a4b25;
+}

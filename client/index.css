@@ -1,0 +1,156 @@
+/* ============================================
+   공통 사이트 헤더 (고객용 전체 페이지에서 링크로 공유)
+   + 홈 페이지 전용 스타일
+   ============================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fffaf3;
+  border-bottom: 1px solid #d8c3a5;
+}
+
+.site-header__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #4a2f1c;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-nav__link {
+  font-weight: 600;
+  color: #8a7a6d;
+  transition: color 0.2s ease;
+}
+
+.site-nav__link:hover {
+  color: #7a4b25;
+}
+
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #c8956d;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  border: none;
+}
+
+.btn-primary {
+  background: #7a4b25;
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid #7a4b25;
+  color: #7a4b25;
+}
+
+/* 홈 */
+.hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+
+.hero__eyebrow {
+  color: #8a7a6d;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero__title {
+  font-size: 2.75rem;
+  color: #4a2f1c;
+  margin-bottom: 0.75rem;
+}
+
+.hero__desc {
+  color: #6b5c4f;
+  margin-bottom: 1.75rem;
+}
+
+.highlights {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.highlight-card {
+  background: #fffaf3;
+  border: 1px solid #ecdfcd;
+  border-radius: 16px;
+  padding: 1.75rem;
+  text-align: center;
+}
+
+.highlight-card__emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.highlight-card h2 {
+  font-size: 1.05rem;
+  color: #4a2f1c;
+  margin-bottom: 0.4rem;
+}
+
+.highlight-card p {
+  color: #8a7a6d;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+  .site-nav {
+    gap: 0.75rem;
+  }
+  .hero__title {
+    font-size: 2rem;
+  }
+}

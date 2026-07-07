@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CafeOrder</title>
+  <link rel="stylesheet" href="/shared/reset.css" />
+  <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="logo">☕ CafeOrder</a>
+      <nav class="site-nav">
+        <a href="/menus/list" class="site-nav__link">메뉴</a>
+        <a href="/orders/list" class="site-nav__link">주문내역</a>
+        <a href="/my" class="site-nav__link">마이</a>
+        <a href="/auth/login" class="site-nav__link">로그인</a>
+        <a href="/basket/list" class="site-nav__link cart-link">
+          🛒 <span id="cart-count" class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero__eyebrow">따뜻한 한 잔의 여유</p>
+      <h1 class="hero__title">CafeOrder</h1>
+      <p class="hero__desc">주문은 앱으로 간편하게, 커피는 저희가 정성껏.</p>
+      <a href="/menus/list" class="btn btn-primary">메뉴 보러가기</a>
+    </section>
+
+    <section class="highlights">
+      <div class="highlight-card">
+        <span class="highlight-card__emoji">📱</span>
+        <h2>미리 주문하고 줄서지 않기</h2>
+        <p>매장에 도착하기 전에 주문을 완료하세요.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="highlight-card__emoji">🧾</span>
+        <h2>실시간 주문 현황 확인</h2>
+        <p>접수부터 제조, 픽업까지 진행 상태를 알려드려요.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="highlight-card__emoji">☕</span>
+        <h2>취향대로 커스터마이징</h2>
+        <p>사이즈, 샷 추가 등 옵션을 자유롭게 선택하세요.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/shared/cart.js"></script>
+  <script src="/index.js"></script>
+</body>
+</html>
