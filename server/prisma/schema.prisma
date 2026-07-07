@@ -20,7 +20,59 @@ model User {
   name         String
   phone        String?
   role         Role     @default(CUSTOMER)
+  orders       Order[]
   createdAt    DateTime @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PREPARING
+  READY
+  COMPLETED
+  CANCELED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  user        User        @relation(fields: [userId], references: [id])
+  userId      Int
+  status      OrderStatus @default(PENDING)
+  totalPrice  Int
+  pickupTime  DateTime?
+  items       OrderItem[]
+  payment     Payment?
+  createdAt   DateTime    @default(now())
+}
+
+model OrderItem {
+  id              Int      @id @default(autoincrement())
+  order           Order    @relation(fields: [orderId], references: [id])
+  orderId         Int
+  menuItem        MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItemId      Int
+  name            String
+  quantity        Int
+  unitPrice       Int
+  selectedOptions Json
+}
+
+model Payment {
+  id              Int           @id @default(autoincrement())
+  order           Order         @relation(fields: [orderId], references: [id])
+  orderId         Int           @unique
+  method          String
+  amount          Int
+  status          PaymentStatus @default(PENDING)
+  pgTransactionId String?
+  paidAt          DateTime?
+  createdAt       DateTime      @default(now())
 }
 
 model Category {
@@ -42,6 +94,7 @@ model MenuItem {
   isSoldOut    Boolean       @default(false)
   isAvailable  Boolean       @default(true)
   optionGroups OptionGroup[]
+  orderItems   OrderItem[]
   createdAt    DateTime      @default(now())
 }
 

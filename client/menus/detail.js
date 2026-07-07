@@ -97,6 +97,7 @@ function renderMenu(menu) {
       const checked = groupEl.querySelector("input:checked");
       if (checked) {
         selected.push({
+          optionChoiceId: Number(checked.value),
           groupName: groupEl.querySelector(".option-group__name").textContent.trim(),
           choiceName: checked.dataset.name,
           extraPrice: Number(checked.dataset.extra),

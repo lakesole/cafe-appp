@@ -250,10 +250,10 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] `User` 모델 + role(`CUSTOMER`/`STAFF`/`ADMIN`) 필드 추가
 - [x] `POST /api/auth/signup`, `login`, `refresh`, `logout` 구현 (JWT + bcrypt)
 - [x] `shared/auth.js` — 토큰 저장/헤더 첨부/로그인 상태 체크 유틸
-- [ ] `Order`, `OrderItem`, `Payment` 모델 추가
-- [ ] `POST /api/orders` 구현 + `POST /api/payments/mock`
-- [ ] `GET /api/orders/me`, `GET /api/orders/:id` 구현
-- [ ] `requireRole` 미들웨어 구현 (STAFF 이상 접근 제어)
+- [x] `Order`, `OrderItem`, `Payment` 모델 추가
+- [x] `POST /api/orders` 구현 + `POST /api/payments/mock`
+- [x] `GET /api/orders/me`, `GET /api/orders/:id` 구현
+- [x] `requireRole` 미들웨어 구현 (STAFF 이상 접근 제어)
 - [ ] `GET /api/staff/orders`, `PATCH /api/staff/orders/:id/status` 구현
 - [ ] `/api/admin/staff` CRUD 구현
 - [ ] `GET /api/admin/stats` 구현
