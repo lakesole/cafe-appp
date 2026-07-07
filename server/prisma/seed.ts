@@ -1,8 +1,33 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
+/** 데모용 STAFF/ADMIN 계정 (회원가입은 고객만 가능하므로 시드로 생성) */
+async function seedStaffAccounts() {
+  const accounts = [
+    { email: "staff@cafeorder.com", password: "staff1234", name: "이서연", role: "STAFF" as const },
+    { email: "admin@cafeorder.com", password: "admin1234", name: "김도윤", role: "ADMIN" as const },
+  ];
+
+  for (const acc of accounts) {
+    const passwordHash = await bcrypt.hash(acc.password, 10);
+    await prisma.user.upsert({
+      where: { email: acc.email },
+      update: {},
+      create: { email: acc.email, passwordHash, name: acc.name, role: acc.role },
+    });
+  }
+
+  console.log("Seeded demo accounts: staff@cafeorder.com / staff1234, admin@cafeorder.com / admin1234");
+}
+
 async function main() {
+  await seedStaffAccounts();
+
+  await prisma.payment.deleteMany();
+  await prisma.orderItem.deleteMany();
+  await prisma.order.deleteMany();
   await prisma.optionChoice.deleteMany();
   await prisma.optionGroup.deleteMany();
   await prisma.menuItem.deleteMany();

@@ -8,6 +8,7 @@ import customerMenuRoutes from "./routes/customer/menu.routes";
 import customerAuthRoutes from "./routes/customer/auth.routes";
 import customerOrderRoutes from "./routes/customer/order.routes";
 import customerPaymentRoutes from "./routes/customer/payment.routes";
+import staffOrderRoutes from "./routes/staff/order.routes";
 import { errorHandler } from "./middlewares/error.middleware";
 
 const app = express();
@@ -20,6 +21,7 @@ app.use("/api/categories", customerCategoryRoutes);
 app.use("/api/menu-items", customerMenuRoutes);
 app.use("/api/orders", customerOrderRoutes);
 app.use("/api/payments", customerPaymentRoutes);
+app.use("/api/staff/orders", staffOrderRoutes);
 app.use("/api/admin/categories", categoryRoutes);
 app.use("/api/admin/menu-items", menuRoutes);
 

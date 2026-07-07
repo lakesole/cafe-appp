@@ -94,6 +94,41 @@ export function getOrderById(orderId: number) {
   return prisma.order.findUnique({ where: { id: orderId }, include: { items: true, payment: true } });
 }
 
-export function updateOrderStatus(orderId: number, status: string) {
-  return prisma.order.update({ where: { id: orderId }, data: { status: status as any } });
+const STAFF_VISIBLE_STATUSES = ["PAID", "PREPARING", "READY", "COMPLETED"] as const;
+
+export function listOrdersForStaff(status?: string) {
+  const statusFilter =
+    status && (STAFF_VISIBLE_STATUSES as readonly string[]).includes(status)
+      ? status
+      : undefined;
+
+  return prisma.order.findMany({
+    where: { status: (statusFilter ?? { in: STAFF_VISIBLE_STATUSES as unknown as string[] }) as any },
+    include: { items: true, user: { select: { name: true } } },
+    orderBy: { createdAt: "asc" },
+  });
+}
+
+export async function getOrderForStaff(orderId: number) {
+  const order = await prisma.order.findUnique({
+    where: { id: orderId },
+    include: { items: true, user: { select: { name: true } } },
+  });
+  if (!order) throw new HttpError(404, "주문을 찾을 수 없습니다.");
+  return order;
+}
+
+export async function updateOrderStatusByStaff(orderId: number, status: string) {
+  if (!(STAFF_VISIBLE_STATUSES as readonly string[]).includes(status)) {
+    throw new HttpError(400, "허용되지 않는 상태값입니다.");
+  }
+
+  const order = await prisma.order.findUnique({ where: { id: orderId } });
+  if (!order) throw new HttpError(404, "주문을 찾을 수 없습니다.");
+
+  return prisma.order.update({
+    where: { id: orderId },
+    data: { status: status as any },
+    include: { items: true, user: { select: { name: true } } },
+  });
 }

@@ -254,7 +254,7 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] `POST /api/orders` 구현 + `POST /api/payments/mock`
 - [x] `GET /api/orders/me`, `GET /api/orders/:id` 구현
 - [x] `requireRole` 미들웨어 구현 (STAFF 이상 접근 제어)
-- [ ] `GET /api/staff/orders`, `PATCH /api/staff/orders/:id/status` 구현
+- [x] `GET /api/staff/orders`, `PATCH /api/staff/orders/:id/status` 구현
 - [ ] `/api/admin/staff` CRUD 구현
 - [ ] `GET /api/admin/stats` 구현
 - [ ] Socket.IO 서버 설정 + 신규 주문 이벤트 브로드캐스트, 클라이언트 수신 처리

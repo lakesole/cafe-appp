@@ -19,7 +19,9 @@ form.addEventListener("submit", async (e) => {
     });
     saveAuth(result);
     showToast(`${result.user.name}님, 환영합니다!`);
-    window.location.href = "/my";
+
+    const roleHome = { STAFF: "/staff/list", ADMIN: "/admin" };
+    window.location.href = roleHome[result.user.role] || "/my";
   } catch (err) {
     showToast(err.message || "로그인에 실패했습니다.");
   } finally {
