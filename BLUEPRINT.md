@@ -255,10 +255,10 @@ Payment       id, orderId, method, amount, status(PENDING|SUCCESS|FAILED), paidA
 - [x] `GET /api/orders/me`, `GET /api/orders/:id` 구현
 - [x] `requireRole` 미들웨어 구현 (STAFF 이상 접근 제어)
 - [x] `GET /api/staff/orders`, `PATCH /api/staff/orders/:id/status` 구현
-- [ ] `/api/admin/staff` CRUD 구현
-- [ ] `GET /api/admin/stats` 구현
+- [x] `/api/admin/staff` CRUD 구현
+- [x] `GET /api/admin/stats` 구현
 - [ ] Socket.IO 서버 설정 + 신규 주문 이벤트 브로드캐스트, 클라이언트 수신 처리
-- [ ] 퍼블리싱된 화면들을 실제 API와 연결 (fetch 연동)
+- [x] 퍼블리싱된 화면들을 실제 API와 연결 (fetch 연동)
 
 ### 7단계 — 마무리 (보류)
 - [ ] 전체 플로우 수동 테스트 (관리자 메뉴 등록 → 고객 조회 → 장바구니 → 주문/결제 → 종업원 처리 → 관리자 확인)

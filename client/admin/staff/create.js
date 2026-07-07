@@ -1,21 +1,26 @@
 /* ============================================
-   관리자 - 종업원 등록 (샘플 데이터, 화면 인터랙션만)
+   관리자 - 종업원 등록 (실제 API 연동: POST /api/admin/staff)
    ============================================ */
 
-document.getElementById("staff-form").addEventListener("submit", (e) => {
+if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
+  window.location.href = "/auth/login";
+} else {
+
+document.getElementById("staff-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const data = new FormData(e.target);
-  const staffList = getStaffList();
-  const nextId = staffList.reduce((max, s) => Math.max(max, s.id), 0) + 1;
 
-  staffList.push({
-    id: nextId,
-    name: data.get("name"),
-    email: data.get("email"),
-    role: data.get("role"),
-    createdAt: new Date().toISOString().slice(0, 10),
-  });
-  saveStaffList(staffList);
-
-  location.href = "/admin/staff/list";
+  try {
+    await api.post("/admin/staff", {
+      name: data.get("name"),
+      email: data.get("email"),
+      password: data.get("password"),
+      role: data.get("role"),
+    });
+    location.href = "/admin/staff/list";
+  } catch (err) {
+    showToast(err.message || "종업원 등록에 실패했습니다.");
+  }
 });
+
+}

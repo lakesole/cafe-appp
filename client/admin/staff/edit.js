@@ -1,25 +1,40 @@
 /* ============================================
-   관리자 - 종업원 수정 (샘플 데이터, 화면 인터랙션만)
+   관리자 - 종업원 수정 (실제 API 연동: PUT /api/admin/staff/:id)
    ============================================ */
+
+if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
+  window.location.href = "/auth/login";
+} else {
 
 const staffId = Number(new URLSearchParams(location.search).get("id"));
 const form = document.getElementById("staff-form");
-const staffList = getStaffList();
-const staff = staffList.find((s) => s.id === staffId);
 
-if (staff) {
-  form.name.value = staff.name;
-  form.email.value = staff.email;
-  form.role.value = staff.role;
+async function loadStaff() {
+  try {
+    const staff = await api.get(`/admin/staff/${staffId}`);
+    form.name.value = staff.name;
+    form.email.value = staff.email;
+    form.role.value = staff.role;
+  } catch {
+    showToast("종업원 정보를 불러오지 못했습니다.");
+  }
 }
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if (!staff) return;
   const data = new FormData(form);
-  staff.name = data.get("name");
-  staff.email = data.get("email");
-  staff.role = data.get("role");
-  saveStaffList(staffList);
-  location.href = "/admin/staff/list";
+  try {
+    await api.put(`/admin/staff/${staffId}`, {
+      name: data.get("name"),
+      email: data.get("email"),
+      role: data.get("role"),
+    });
+    location.href = "/admin/staff/list";
+  } catch (err) {
+    showToast(err.message || "수정에 실패했습니다.");
+  }
 });
+
+loadStaff();
+
+}

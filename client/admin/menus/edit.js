@@ -1,3 +1,7 @@
+if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
+  window.location.href = "/auth/login";
+} else {
+
 const menuId = new URLSearchParams(location.search).get("id");
 const categorySelect = document.getElementById("category-select");
 const form = document.getElementById("menu-form");
@@ -34,3 +38,5 @@ form.addEventListener("submit", async (e) => {
 });
 
 loadForm();
+
+}

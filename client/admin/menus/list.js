@@ -1,3 +1,7 @@
+if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
+  window.location.href = "/auth/login";
+} else {
+
 async function loadMenuItems() {
   const menuItems = await api.get("/admin/menu-items");
   const tbody = document.getElementById("menu-table-body");
@@ -28,3 +32,5 @@ async function loadMenuItems() {
 }
 
 loadMenuItems();
+
+}

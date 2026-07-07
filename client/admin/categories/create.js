@@ -1,3 +1,7 @@
+if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
+  window.location.href = "/auth/login";
+} else {
+
 document.getElementById("category-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = new FormData(e.target);
@@ -7,3 +11,5 @@ document.getElementById("category-form").addEventListener("submit", async (e) =>
   });
   location.href = "/admin/categories/list";
 });
+
+}

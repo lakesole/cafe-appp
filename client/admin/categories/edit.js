@@ -1,3 +1,7 @@
+if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
+  window.location.href = "/auth/login";
+} else {
+
 const categoryId = new URLSearchParams(location.search).get("id");
 const form = document.getElementById("category-form");
 
@@ -18,3 +22,5 @@ form.addEventListener("submit", async (e) => {
 });
 
 loadCategory();
+
+}

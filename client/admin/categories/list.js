@@ -1,3 +1,7 @@
+if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
+  window.location.href = "/auth/login";
+} else {
+
 async function loadCategories() {
   const categories = await api.get("/admin/categories");
   const tbody = document.getElementById("category-table-body");
@@ -26,3 +30,5 @@ async function loadCategories() {
 }
 
 loadCategories();
+
+}
