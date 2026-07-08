@@ -59,8 +59,8 @@ function renderGrid() {
             type="button"
             class="add-btn js-quick-add"
             data-id="${menu.id}"
-            title="${hasOptions ? "옵션 선택은 상세페이지에서" : "장바구니에 담기"}"
-            ${menu.isSoldOut || hasOptions ? "disabled" : ""}
+            title="${hasOptions ? "기본 옵션으로 담기 (옵션 변경은 상세페이지에서)" : "장바구니에 담기"}"
+            ${menu.isSoldOut ? "disabled" : ""}
           >+</button>
         </div>
       </li>`;
@@ -76,8 +76,24 @@ categoryTabsEl.addEventListener("click", (e) => {
   renderGrid();
 });
 
-function showQuickOrderBar(menu) {
-  quickOrderAddedEl.textContent = `${menu.name} 담았어요 🛒`;
+/** 필수 옵션 그룹은 첫 번째 선택지를 기본값으로 담는다 (선택 옵션은 담지 않음) */
+function getDefaultSelectedOptions(menu) {
+  return (menu.optionGroups || [])
+    .filter((group) => group.isRequired && group.optionChoices.length > 0)
+    .map((group) => {
+      const choice = group.optionChoices[0];
+      return {
+        optionChoiceId: choice.id,
+        groupName: group.name,
+        choiceName: choice.name,
+        extraPrice: choice.extraPrice,
+      };
+    });
+}
+
+function showQuickOrderBar(menu, selectedOptions) {
+  const optionsText = selectedOptions.map((o) => o.choiceName).join(", ");
+  quickOrderAddedEl.textContent = `${menu.name}${optionsText ? ` (${optionsText})` : ""} 담았어요 🛒`;
   quickOrderSummaryEl.textContent = `장바구니 ${getCartCount()}개 · 총 ${formatPrice(getCartTotal())}`;
   quickOrderBarEl.hidden = false;
 }
@@ -92,15 +108,18 @@ menuGridEl.addEventListener("click", (e) => {
   const btn = e.target.closest(".js-quick-add");
   if (!btn) return;
   const menu = MENU_ITEMS.find((m) => m.id === Number(btn.dataset.id));
+  const selectedOptions = getDefaultSelectedOptions(menu);
+  const extraTotal = selectedOptions.reduce((sum, o) => sum + o.extraPrice, 0);
+
   addToCart({
     menuItemId: menu.id,
     name: menu.name,
-    unitPrice: menu.price,
+    unitPrice: menu.price + extraTotal,
     quantity: 1,
-    selectedOptions: [],
+    selectedOptions,
   });
   refreshCartCount();
-  showQuickOrderBar(menu);
+  showQuickOrderBar(menu, selectedOptions);
 });
 
 async function init() {
