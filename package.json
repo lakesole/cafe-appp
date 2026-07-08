@@ -1,13 +1,10 @@
 {
   "name": "cafe-appp",
   "version": "1.0.0",
-  "description": {
-    "start" : "serve -l 3127"
-  },
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "serve -l 3127"
-  },
+    "start": "serve -l 3127",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
