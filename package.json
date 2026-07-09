@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "serve -l 3121",
+    "start": "cd server && npm install && npm run build && npm start",
+    "serve:static": "serve -l 3121",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
