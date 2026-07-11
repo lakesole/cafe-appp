@@ -48,17 +48,21 @@ async function logout() {
   window.location.href = "/";
 }
 
-/** 헤더의 로그인/사용자명 링크(id="nav-auth-link")를 로그인 상태에 맞게 갱신 */
+/** 사이드바 하단 사용자 칩(id="nav-auth-link")을 로그인 상태에 맞게 갱신 */
 function renderAuthNav() {
   const link = document.getElementById("nav-auth-link");
-  if (!link) return;
+  const nameEl = document.getElementById("nav-auth-name");
+  const statusEl = document.getElementById("nav-auth-status");
+  if (!link || !nameEl) return;
 
   const user = getCurrentUser();
   if (user) {
-    link.textContent = `${user.name}님`;
+    nameEl.textContent = `${user.name}님`;
+    if (statusEl) statusEl.textContent = "로그인 됨";
     link.href = "/my";
   } else {
-    link.textContent = "로그인";
+    nameEl.textContent = "로그인";
+    if (statusEl) statusEl.textContent = "계정에 접속하세요";
     link.href = "/auth/login";
   }
 }

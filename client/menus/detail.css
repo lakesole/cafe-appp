@@ -2,21 +2,15 @@
    고객 - 메뉴 상세
    ============================================ */
 
-.page {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
-}
-
 .back-link {
   display: inline-block;
   margin-bottom: 1rem;
   font-weight: 600;
-  color: #8a7a6d;
+  color: #6f695e;
 }
 
 .back-link:hover {
-  color: #7a4b25;
+  color: #d1451f;
 }
 
 .detail {
@@ -35,7 +29,7 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
 }
 
 .detail-media img {
@@ -49,7 +43,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(58, 46, 38, 0.55);
+  background: rgba(23, 20, 15, 0.6);
   color: #fff;
   font-weight: 700;
   font-size: 1.1rem;
@@ -63,21 +57,23 @@
 
 .detail-name {
   font-size: 1.6rem;
-  color: #4a2f1c;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #17140f;
 }
 
 .detail-desc {
-  color: #6b5c4f;
+  color: #6f695e;
 }
 
 .detail-price {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #4a2f1c;
+  color: #17140f;
 }
 
 .option-group {
-  border-top: 1px solid #ecdfcd;
+  border-top: 1px solid #e7e3db;
   padding-top: 0.75rem;
 }
 
@@ -87,9 +83,13 @@
 }
 
 .option-group__required {
-  color: #b3392c;
-  font-size: 0.8rem;
+  display: inline-block;
+  color: #6f695e;
+  background: #f5f3ee;
+  font-size: 0.7rem;
   font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
   margin-left: 0.4rem;
 }
 
@@ -102,11 +102,11 @@
 }
 
 .option-choice input {
-  accent-color: #7a4b25;
+  accent-color: #d1451f;
 }
 
 .option-choice__extra {
-  color: #8a7a6d;
+  color: #6f695e;
   font-size: 0.85rem;
 }
 
@@ -131,8 +131,8 @@
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  border: 1px solid #d8c3a5;
-  background: #fffaf3;
+  border: 1px solid #e7e3db;
+  background: #f5f3ee;
   font-size: 1.1rem;
 }
 
@@ -151,5 +151,5 @@
 .not-found {
   padding: 3rem;
   text-align: center;
-  color: #8a7a6d;
+  color: #6f695e;
 }

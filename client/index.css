@@ -1,66 +1,207 @@
 /* ============================================
-   공통 사이트 헤더 (고객용 전체 페이지에서 링크로 공유)
+   공통 앱 셸: 왼쪽 사이드바 + 메인 영역
+   (고객용 전체 페이지에서 링크로 공유)
    + 홈 페이지 전용 스타일
    ============================================ */
 
-.site-header {
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f3ee;
+  --text: #17140f;
+  --text-muted: #6f695e;
+  --accent: #d1451f;
+  --accent-dark: #a83417;
+  --border: #e7e3db;
+  --side-bg: #15130f;
+  --side-text: #ece8e0;
+  --side-muted: #8a8478;
+  --side-active-bg: rgba(209, 69, 31, 0.18);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+/* ── 사이드바 ── */
+.app-sidebar {
+  width: 248px;
+  flex-shrink: 0;
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: #fffaf3;
-  border-bottom: 1px solid #d8c3a5;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--side-bg);
+  color: var(--side-text);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
 }
 
-.site-header__inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  height: 64px;
+.app-sidebar__logo {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.01em;
+  color: #fff;
+  padding: 6px 10px 30px;
+}
+
+.app-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app-nav-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #4a2f1c;
-}
-
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.site-nav__link {
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  color: var(--side-muted);
+  font-size: 1.02rem;
   font-weight: 600;
-  color: #8a7a6d;
-  transition: color 0.2s ease;
+  border-left: 3px solid transparent;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.site-nav__link:hover {
-  color: #7a4b25;
+.app-nav-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
-.cart-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+.app-nav-link:hover {
+  color: var(--side-text);
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.cart-count {
+.app-nav-link.is-active {
+  color: #fff;
+  background: var(--side-active-bg);
+  border-left-color: var(--accent);
+}
+
+.app-nav-link__badge {
+  margin-left: auto;
   display: inline-grid;
   place-items: center;
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
   border-radius: 999px;
-  background: #c8956d;
+  background: var(--accent);
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
+}
+
+.app-sidebar__spacer {
+  flex: 1;
+}
+
+.app-sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.app-sidebar__user:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.app-sidebar__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #ffb27a, var(--accent));
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+}
+
+.app-sidebar__user strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.app-sidebar__user span {
+  font-size: 0.7rem;
+  color: var(--side-muted);
+}
+
+/* ── 메인 영역 ── */
+.app-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    flex-direction: column;
+  }
+  .app-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    padding: 12px 14px;
+  }
+  .app-sidebar__logo {
+    padding: 6px 12px;
+    flex-shrink: 0;
+  }
+  .app-sidebar__nav {
+    flex-direction: row;
+  }
+  .app-nav-link {
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+  .app-nav-link.is-active {
+    border-left-color: transparent;
+    border-bottom-color: var(--accent);
+  }
+  .app-sidebar__spacer {
+    display: none;
+  }
+  .app-sidebar__user {
+    flex-shrink: 0;
+  }
+  .app-sidebar__user strong,
+  .app-sidebar__user span {
+    white-space: nowrap;
+  }
+  .page {
+    padding: 28px 20px 60px;
+  }
 }
 
 .btn {
@@ -74,83 +215,302 @@
 }
 
 .btn-primary {
-  background: #7a4b25;
+  background: var(--accent);
   color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
 }
 
 .btn-outline {
   background: transparent;
-  border: 1.5px solid #7a4b25;
-  color: #7a4b25;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
 }
 
-/* 홈 */
-.hero {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 4rem 1.5rem 3rem;
-  text-align: center;
+.btn-outline:hover {
+  background: var(--accent);
+  color: #fff;
 }
 
-.hero__eyebrow {
-  color: #8a7a6d;
+/* ── 홈: 포스터 (슬라이드쇼) ── */
+.poster {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: clamp(380px, 46vw, 560px);
+  background: #17140f;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.poster.is-dragging {
+  cursor: grabbing;
+}
+
+.poster__slides {
+  position: absolute;
+  inset: 0;
+}
+
+.poster__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.poster__slide.is-active {
+  opacity: 1;
+}
+
+.poster__slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(0deg, rgba(21, 19, 15, 0.82) 0%, rgba(21, 19, 15, 0.15) 62%);
+  pointer-events: none;
+}
+
+.poster__content {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  color: #fff;
+}
+
+.poster__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffd7b0;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 14px;
 }
 
-.hero__title {
-  font-size: 2.75rem;
-  color: #4a2f1c;
-  margin-bottom: 0.75rem;
+.poster__eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffd7b0;
 }
 
-.hero__desc {
-  color: #6b5c4f;
-  margin-bottom: 1.75rem;
+.poster__title {
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+
+.poster__title em {
+  font-style: normal;
+  color: #ffe4c9;
+}
+
+.poster__desc {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: 42ch;
+}
+
+.poster__dots {
+  position: absolute;
+  z-index: 3;
+  right: 32px;
+  bottom: 28px;
+  display: flex;
+  gap: 8px;
+}
+
+.poster__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.poster__dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.poster__dot.is-active {
+  width: 22px;
+  background: #fff;
+}
+
+.poster__arrow {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(21, 19, 15, 0.32);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.poster__arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.poster__arrow:hover {
+  background: rgba(21, 19, 15, 0.62);
+}
+
+.poster__arrow--prev {
+  left: 24px;
+}
+
+.poster__arrow--next {
+  right: 24px;
+}
+
+/* ── 홈: 인기 메뉴 미리보기 ── */
+.menu-preview {
+  padding-top: 56px;
+}
+
+.menu-preview__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.menu-preview__head h2 {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.menu-preview__link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.menu-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.menu-preview__card {
+  background: var(--surface);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.menu-preview__thumb {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.menu-preview__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-preview__body {
+  padding: 0.85rem 1rem 1rem;
+}
+
+.menu-preview__name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+}
+
+.menu-preview__price {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--text);
 }
 
 .highlights {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 44px 0 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .highlight-card {
-  background: #fffaf3;
-  border: 1px solid #ecdfcd;
-  border-radius: 16px;
-  padding: 1.75rem;
-  text-align: center;
+  background: var(--text);
+  border-radius: 20px;
+  padding: 1.9rem 1.6rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.highlight-card__emoji {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.75rem;
+.highlight-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 100% at 100% 0%, rgba(209, 69, 31, 0.22), transparent 60%);
+  pointer-events: none;
+}
+
+.highlight-card__icon-wrap {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: rgba(209, 69, 31, 0.2);
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+}
+
+.highlight-card__icon {
+  width: 22px;
+  height: 22px;
+  color: #ff9466;
 }
 
 .highlight-card h2 {
+  position: relative;
   font-size: 1.05rem;
-  color: #4a2f1c;
-  margin-bottom: 0.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
 }
 
 .highlight-card p {
-  color: #8a7a6d;
-  font-size: 0.9rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.86rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 720px) {
+  .menu-preview__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .highlights {
     grid-template-columns: 1fr;
-  }
-  .site-nav {
-    gap: 0.75rem;
-  }
-  .hero__title {
-    font-size: 2rem;
   }
 }

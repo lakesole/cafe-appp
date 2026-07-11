@@ -2,8 +2,6 @@
    고객 - 회원가입
    ============================================ */
 
-document.getElementById("cart-count").textContent = getCartCount();
-
 const form = document.getElementById("signup-form");
 const submitBtn = form.querySelector(".auth-submit");
 

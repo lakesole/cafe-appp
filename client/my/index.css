@@ -4,16 +4,14 @@
 
 .page {
   max-width: 640px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
 }
 
 .profile-card {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: #fffaf3;
-  border: 1px solid #ecdfcd;
+  background: #f5f3ee;
+  border: 1px solid #e7e3db;
   border-radius: 16px;
   padding: 1.25rem;
   margin-bottom: 1.5rem;
@@ -23,7 +21,7 @@
   width: 52px;
   height: 52px;
   border-radius: 999px;
-  background: #f0e2d0;
+  background: linear-gradient(135deg, #ffb27a, #d1451f);
   display: grid;
   place-items: center;
   font-size: 1.5rem;
@@ -31,11 +29,11 @@
 
 .profile-name {
   font-weight: 700;
-  color: #4a2f1c;
+  color: #17140f;
 }
 
 .profile-email {
-  color: #8a7a6d;
+  color: #6f695e;
   font-size: 0.85rem;
 }
 
@@ -45,7 +43,8 @@
 
 .my-section h2 {
   font-size: 1.1rem;
-  color: #4a2f1c;
+  font-weight: 800;
+  color: #17140f;
   margin-bottom: 0.75rem;
 }
 
@@ -58,7 +57,7 @@
 
 .see-all {
   font-size: 0.85rem;
-  color: #7a4b25;
+  color: #d1451f;
   font-weight: 700;
 }
 
@@ -71,8 +70,8 @@
 .recent-order {
   display: flex;
   justify-content: space-between;
-  background: #fffaf3;
-  border: 1px solid #ecdfcd;
+  background: #f5f3ee;
+  border: 1px solid #e7e3db;
   border-radius: 12px;
   padding: 0.8rem 1rem;
   font-size: 0.9rem;
@@ -93,13 +92,17 @@
   width: 100%;
   text-align: left;
   color: inherit;
-  background: #fffaf3;
-  border: 1px solid #ecdfcd;
+  background: #f5f3ee;
+  border: 1px solid #e7e3db;
   border-radius: 12px;
   padding: 0.8rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
   font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
 }
 
 .quick-link:hover {
-  border-color: #c8956d;
+  border-color: #d1451f;
 }

@@ -3,53 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>마이페이지 | CafeOrder</title>
+  <title>마이페이지 | New Lake</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/index.css" />
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a href="/" class="logo">☕ CafeOrder</a>
-      <nav class="site-nav">
-        <a href="/menus/list" class="site-nav__link">메뉴</a>
-        <a href="/orders/list" class="site-nav__link">주문내역</a>
-        <a href="/my" class="site-nav__link">마이</a>
-        <a href="/auth/login" class="site-nav__link" id="nav-auth-link">로그인</a>
-        <a href="/basket/list" class="site-nav__link cart-link">
-          🛒 <span id="cart-count" class="cart-count">0</span>
+  <div class="app-shell">
+    <aside class="app-sidebar">
+      <a href="/" class="app-sidebar__logo">New Lake</a>
+      <nav class="app-sidebar__nav">
+        <a href="/" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7" /><path d="M5 10v10h14V10" /></svg>
+          홈
+        </a>
+        <a href="/menus/list" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="M4 10h16" /></svg>
+          메뉴
+        </a>
+        <a href="/basket/list" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.2" /></svg>
+          장바구니
+          <span id="cart-count" class="app-nav-link__badge">0</span>
+        </a>
+        <a href="/orders/list" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v14l-4-3H4z" /><path d="M8 9h8M8 12h5" /></svg>
+          주문내역
+        </a>
+        <a href="/my" class="app-nav-link is-active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4" /><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" /></svg>
+          마이페이지
         </a>
       </nav>
+      <div class="app-sidebar__spacer"></div>
+      <a href="/auth/login" class="app-sidebar__user" id="nav-auth-link">
+        <span class="app-sidebar__avatar">👤</span>
+        <span>
+          <strong id="nav-auth-name">로그인</strong><br />
+          <span id="nav-auth-status">계정에 접속하세요</span>
+        </span>
+      </a>
+    </aside>
+
+    <div class="app-main">
+      <main class="page">
+        <section class="profile-card">
+          <div class="profile-avatar">👤</div>
+          <div>
+            <p class="profile-name" id="profile-name"></p>
+            <p class="profile-email" id="profile-email"></p>
+          </div>
+        </section>
+
+        <section class="my-section">
+          <div class="my-section__head">
+            <h2>최근 주문</h2>
+            <a href="/orders/list" class="see-all">전체보기 →</a>
+          </div>
+          <ul class="recent-orders" id="recent-orders"></ul>
+        </section>
+
+        <section class="my-section">
+          <h2>바로가기</h2>
+          <div class="quick-links">
+            <a href="/orders/list" class="quick-link">📋 주문 내역</a>
+            <a href="/basket/list" class="quick-link">🛒 장바구니</a>
+            <button type="button" class="quick-link" id="btn-logout">🔑 로그아웃</button>
+          </div>
+        </section>
+      </main>
     </div>
-  </header>
-
-  <main class="page">
-    <section class="profile-card">
-      <div class="profile-avatar">👤</div>
-      <div>
-        <p class="profile-name" id="profile-name"></p>
-        <p class="profile-email" id="profile-email"></p>
-      </div>
-    </section>
-
-    <section class="my-section">
-      <div class="my-section__head">
-        <h2>최근 주문</h2>
-        <a href="/orders/list" class="see-all">전체보기 →</a>
-      </div>
-      <ul class="recent-orders" id="recent-orders"></ul>
-    </section>
-
-    <section class="my-section">
-      <h2>바로가기</h2>
-      <div class="quick-links">
-        <a href="/orders/list" class="quick-link">📋 주문 내역</a>
-        <a href="/basket/list" class="quick-link">🛒 장바구니</a>
-        <button type="button" class="quick-link" id="btn-logout">🔑 로그아웃</button>
-      </div>
-    </section>
-  </main>
+  </div>
 
   <script src="/shared/sample-data.js"></script>
   <script src="/shared/api.js"></script>

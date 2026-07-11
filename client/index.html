@@ -3,52 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CafeOrder</title>
+  <title>New Lake</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/index.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a href="/" class="logo">☕ CafeOrder</a>
-      <nav class="site-nav">
-        <a href="/menus/list" class="site-nav__link">메뉴</a>
-        <a href="/orders/list" class="site-nav__link">주문내역</a>
-        <a href="/my" class="site-nav__link">마이</a>
-        <a href="/auth/login" class="site-nav__link" id="nav-auth-link">로그인</a>
-        <a href="/basket/list" class="site-nav__link cart-link">
-          🛒 <span id="cart-count" class="cart-count">0</span>
+  <div class="app-shell">
+    <aside class="app-sidebar">
+      <a href="/" class="app-sidebar__logo">New Lake</a>
+      <nav class="app-sidebar__nav">
+        <a href="/" class="app-nav-link is-active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7" /><path d="M5 10v10h14V10" /></svg>
+          홈
+        </a>
+        <a href="/menus/list" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="M4 10h16" /></svg>
+          메뉴
+        </a>
+        <a href="/basket/list" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.2" /></svg>
+          장바구니
+          <span id="cart-count" class="app-nav-link__badge">0</span>
+        </a>
+        <a href="/orders/list" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v14l-4-3H4z" /><path d="M8 9h8M8 12h5" /></svg>
+          주문내역
+        </a>
+        <a href="/my" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4" /><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" /></svg>
+          마이페이지
         </a>
       </nav>
+      <div class="app-sidebar__spacer"></div>
+      <a href="/auth/login" class="app-sidebar__user" id="nav-auth-link">
+        <span class="app-sidebar__avatar">👤</span>
+        <span>
+          <strong id="nav-auth-name">로그인</strong><br />
+          <span id="nav-auth-status">계정에 접속하세요</span>
+        </span>
+      </a>
+    </aside>
+
+    <div class="app-main">
+      <main class="page">
+        <section class="poster" id="poster">
+          <div class="poster__slides" id="poster-slides">
+            <div class="poster__slide is-active" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1400')">
+              <div class="poster__content">
+                <p class="poster__eyebrow">New Lake 만의 특징</p>
+                <h1 class="poster__title">줄서지 말고<br /><em>주문부터</em> 하세요</h1>
+                <p class="poster__desc">매장 도착 전에 미리 주문하고, 도착하면 바로 픽업하세요.</p>
+              </div>
+            </div>
+            <div class="poster__slide" style="background-image:url('https://images.unsplash.com/photo-1546173159-315724a31696?w=1400')">
+              <div class="poster__content">
+                <p class="poster__eyebrow">이번 주 추천 메뉴</p>
+                <h1 class="poster__title">자몽 에이드</h1>
+                <p class="poster__desc">상큼한 자몽과 톡 쏘는 탄산의 조화 · 5,500원</p>
+              </div>
+            </div>
+            <div class="poster__slide" style="background-image:url('https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=1400')">
+              <div class="poster__content">
+                <p class="poster__eyebrow">NEW · 이벤트 메뉴</p>
+                <h1 class="poster__title">티라미수</h1>
+                <p class="poster__desc">커피와 마스카포네 크림의 이탈리안 디저트 · 6,500원</p>
+              </div>
+            </div>
+          </div>
+          <div class="poster__dots" id="poster-dots">
+            <button type="button" class="poster__dot is-active" data-index="0" aria-label="첫 번째 이미지 보기"></button>
+            <button type="button" class="poster__dot" data-index="1" aria-label="두 번째 이미지 보기"></button>
+            <button type="button" class="poster__dot" data-index="2" aria-label="세 번째 이미지 보기"></button>
+          </div>
+          <button type="button" class="poster__arrow poster__arrow--prev" id="poster-prev" aria-label="이전 이미지">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" /></svg>
+          </button>
+          <button type="button" class="poster__arrow poster__arrow--next" id="poster-next" aria-label="다음 이미지">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
+        </section>
+
+        <section class="highlights">
+          <div class="highlight-card">
+            <span class="highlight-card__icon-wrap">
+              <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="3" /><path d="M9 18h6" /></svg>
+            </span>
+            <h2>미리 주문하고 줄서지 않기</h2>
+            <p>매장에 도착하기 전에 주문을 완료하세요.</p>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-card__icon-wrap">
+              <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v14l-4-3H4z" /><path d="M8 9h8M8 12h5" /></svg>
+            </span>
+            <h2>실시간 주문 현황 확인</h2>
+            <p>접수부터 제조, 픽업까지 진행 상태를 알려드려요.</p>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-card__icon-wrap">
+              <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z" /></svg>
+            </span>
+            <h2>취향대로 커스터마이징</h2>
+            <p>사이즈, 샷 추가 등 옵션을 자유롭게 선택하세요.</p>
+          </div>
+        </section>
+
+        <section class="menu-preview">
+          <div class="menu-preview__head">
+            <h2>인기 메뉴</h2>
+            <a href="/menus/list" class="menu-preview__link">전체 메뉴 보기 →</a>
+          </div>
+          <ul class="menu-preview__grid" id="menu-preview-grid"></ul>
+        </section>
+      </main>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <p class="hero__eyebrow">따뜻한 한 잔의 여유</p>
-      <h1 class="hero__title">CafeOrder</h1>
-      <p class="hero__desc">주문은 앱으로 간편하게, 커피는 저희가 정성껏.</p>
-      <a href="/menus/list" class="btn btn-primary">메뉴 보러가기</a>
-    </section>
-
-    <section class="highlights">
-      <div class="highlight-card">
-        <span class="highlight-card__emoji">📱</span>
-        <h2>미리 주문하고 줄서지 않기</h2>
-        <p>매장에 도착하기 전에 주문을 완료하세요.</p>
-      </div>
-      <div class="highlight-card">
-        <span class="highlight-card__emoji">🧾</span>
-        <h2>실시간 주문 현황 확인</h2>
-        <p>접수부터 제조, 픽업까지 진행 상태를 알려드려요.</p>
-      </div>
-      <div class="highlight-card">
-        <span class="highlight-card__emoji">☕</span>
-        <h2>취향대로 커스터마이징</h2>
-        <p>사이즈, 샷 추가 등 옵션을 자유롭게 선택하세요.</p>
-      </div>
-    </section>
-  </main>
+  </div>
 
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>

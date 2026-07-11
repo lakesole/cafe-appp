@@ -2,8 +2,6 @@
    고객 - 로그인
    ============================================ */
 
-document.getElementById("cart-count").textContent = getCartCount();
-
 const form = document.getElementById("login-form");
 const submitBtn = form.querySelector(".auth-submit");
 

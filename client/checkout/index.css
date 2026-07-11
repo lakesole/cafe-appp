@@ -3,14 +3,14 @@
    ============================================ */
 
 .page {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
+  max-width: 640px;
 }
 
 .page-title {
   font-size: 1.75rem;
-  color: #4a2f1c;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #17140f;
   margin-bottom: 1.5rem;
 }
 
@@ -21,15 +21,16 @@
 }
 
 .checkout-section {
-  background: #fffaf3;
-  border: 1px solid #ecdfcd;
+  background: #f5f3ee;
+  border: 1px solid #e7e3db;
   border-radius: 14px;
   padding: 1.25rem;
 }
 
 .section-title {
   font-size: 1.05rem;
-  color: #4a2f1c;
+  font-weight: 800;
+  color: #17140f;
   margin-bottom: 0.75rem;
 }
 
@@ -42,17 +43,17 @@
 .order-item {
   display: flex;
   justify-content: space-between;
-  color: #4a2f1c;
+  color: #17140f;
 }
 
 .order-item__meta {
   font-size: 0.8rem;
-  color: #8a7a6d;
+  color: #6f695e;
 }
 
 .pickup-select {
   padding: 0.6rem 0.75rem;
-  border: 1px solid #d8c3a5;
+  border: 1px solid #e7e3db;
   border-radius: 8px;
   width: 100%;
 }
@@ -66,12 +67,12 @@
 }
 
 .pay-method input {
-  accent-color: #7a4b25;
+  accent-color: #d1451f;
 }
 
 .checkout-summary {
-  background: #fffaf3;
-  border: 1px solid #ecdfcd;
+  background: #f5f3ee;
+  border: 1px solid #e7e3db;
   border-radius: 14px;
   padding: 1.25rem;
 }
@@ -80,14 +81,14 @@
   display: flex;
   justify-content: space-between;
   padding: 0.3rem 0;
-  color: #6b5c4f;
+  color: #6f695e;
 }
 
 .summary-row--total {
   font-weight: 800;
   font-size: 1.1rem;
-  color: #4a2f1c;
-  border-top: 1px solid #ecdfcd;
+  color: #17140f;
+  border-top: 1px solid #e7e3db;
   margin-top: 0.5rem;
   padding-top: 0.75rem;
 }
@@ -100,10 +101,10 @@
 .empty {
   text-align: center;
   padding: 3rem;
-  color: #8a7a6d;
+  color: #6f695e;
 }
 
 .back-link {
   font-weight: 700;
-  color: #7a4b25;
+  color: #d1451f;
 }
