@@ -217,6 +217,35 @@
   color: #17140f;
 }
 
+.menu-foot__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-order-now {
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1.5px solid #d1451f;
+  background: transparent;
+  color: #d1451f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn-order-now:hover {
+  background: #d1451f;
+  color: #fff;
+}
+
+.btn-order-now:disabled {
+  border-color: #e7e3db;
+  color: #a8a196;
+  cursor: not-allowed;
+}
+
 .add-btn {
   width: 34px;
   height: 34px;

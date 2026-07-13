@@ -120,3 +120,6 @@ function getCartCount() {
 function getCartTotal() {
   return getCart().reduce((sum, c) => sum + c.unitPrice * c.quantity, 0);
 }
+
+const footerYearEl = document.getElementById("footer-year");
+if (footerYearEl) footerYearEl.textContent = new Date().getFullYear();

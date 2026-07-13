@@ -55,13 +55,21 @@ function renderGrid() {
         </a>
         <div class="menu-body menu-foot">
           <span class="menu-price">${formatPrice(menu.price)}</span>
-          <button
-            type="button"
-            class="add-btn js-quick-add"
-            data-id="${menu.id}"
-            title="${hasOptions ? "기본 옵션으로 담기 (옵션 변경은 상세페이지에서)" : "장바구니에 담기"}"
-            ${menu.isSoldOut ? "disabled" : ""}
-          >+</button>
+          <div class="menu-foot__actions">
+            <button
+              type="button"
+              class="btn-order-now js-order-now"
+              data-id="${menu.id}"
+              ${menu.isSoldOut ? "disabled" : ""}
+            >바로 주문</button>
+            <button
+              type="button"
+              class="add-btn js-quick-add"
+              data-id="${menu.id}"
+              title="${hasOptions ? "기본 옵션으로 담기 (옵션 변경은 상세페이지에서)" : "장바구니에 담기"}"
+              ${menu.isSoldOut ? "disabled" : ""}
+            >+</button>
+          </div>
         </div>
       </li>`;
     })
@@ -104,10 +112,7 @@ quickOrderBarEl.addEventListener("click", (e) => {
   }
 });
 
-menuGridEl.addEventListener("click", (e) => {
-  const btn = e.target.closest(".js-quick-add");
-  if (!btn) return;
-  const menu = MENU_ITEMS.find((m) => m.id === Number(btn.dataset.id));
+function addMenuToCart(menu) {
   const selectedOptions = getDefaultSelectedOptions(menu);
   const extraTotal = selectedOptions.reduce((sum, o) => sum + o.extraPrice, 0);
 
@@ -118,6 +123,23 @@ menuGridEl.addEventListener("click", (e) => {
     quantity: 1,
     selectedOptions,
   });
+
+  return selectedOptions;
+}
+
+menuGridEl.addEventListener("click", (e) => {
+  const orderNowBtn = e.target.closest(".js-order-now");
+  if (orderNowBtn) {
+    const menu = MENU_ITEMS.find((m) => m.id === Number(orderNowBtn.dataset.id));
+    addMenuToCart(menu);
+    window.location.href = "/checkout";
+    return;
+  }
+
+  const btn = e.target.closest(".js-quick-add");
+  if (!btn) return;
+  const menu = MENU_ITEMS.find((m) => m.id === Number(btn.dataset.id));
+  const selectedOptions = addMenuToCart(menu);
   refreshCartCount();
   showQuickOrderBar(menu, selectedOptions);
 });

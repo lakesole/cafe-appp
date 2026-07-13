@@ -1,9 +1,27 @@
 document.getElementById("cart-count").textContent = getCartCount();
 
+let PREVIEW_MENU_ITEMS = [];
+
+/** 필수 옵션 그룹은 첫 번째 선택지를 기본값으로 담는다 (선택 옵션은 담지 않음) */
+function getDefaultSelectedOptions(menu) {
+  return (menu.optionGroups || [])
+    .filter((group) => group.isRequired && group.optionChoices.length > 0)
+    .map((group) => {
+      const choice = group.optionChoices[0];
+      return {
+        optionChoiceId: choice.id,
+        groupName: group.name,
+        choiceName: choice.name,
+        extraPrice: choice.extraPrice,
+      };
+    });
+}
+
 async function loadMenuPreview() {
   const grid = document.getElementById("menu-preview-grid");
   try {
     const menuItems = await api.get("/menu-items");
+    PREVIEW_MENU_ITEMS = menuItems;
     grid.innerHTML = menuItems
       .slice(0, 8)
       .map(
@@ -12,12 +30,14 @@ async function loadMenuPreview() {
           <a href="/menus/detail?id=${menu.id}">
             <div class="menu-preview__thumb">
               <img src="${menu.imageUrl}" alt="${menu.name}" />
+              ${menu.isSoldOut ? '<div class="menu-preview__soldout">품절</div>' : ""}
             </div>
-            <div class="menu-preview__body">
-              <p class="menu-preview__name">${menu.name}</p>
-              <p class="menu-preview__price">${formatPrice(menu.price)}</p>
-            </div>
+            <p class="menu-preview__name">${menu.name}</p>
           </a>
+          <div class="menu-preview__foot">
+            <span class="menu-preview__price">${formatPrice(menu.price)}</span>
+            <button type="button" class="btn-order-now js-order-now" data-id="${menu.id}" ${menu.isSoldOut ? "disabled" : ""}>바로 주문</button>
+          </div>
         </li>`
       )
       .join("");
@@ -25,6 +45,23 @@ async function loadMenuPreview() {
     grid.innerHTML = "";
   }
 }
+
+document.getElementById("menu-preview-grid").addEventListener("click", (e) => {
+  const btn = e.target.closest(".js-order-now");
+  if (!btn) return;
+  const menu = PREVIEW_MENU_ITEMS.find((m) => m.id === Number(btn.dataset.id));
+  if (!menu) return;
+  const selectedOptions = getDefaultSelectedOptions(menu);
+  const extraTotal = selectedOptions.reduce((sum, o) => sum + o.extraPrice, 0);
+  addToCart({
+    menuItemId: menu.id,
+    name: menu.name,
+    unitPrice: menu.price + extraTotal,
+    quantity: 1,
+    selectedOptions,
+  });
+  window.location.href = "/checkout";
+});
 
 loadMenuPreview();
 
