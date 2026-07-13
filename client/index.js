@@ -36,7 +36,16 @@ async function loadMenuPreview() {
           </a>
           <div class="menu-preview__foot">
             <span class="menu-preview__price">${formatPrice(menu.price)}</span>
-            <button type="button" class="btn-order-now js-order-now" data-id="${menu.id}" ${menu.isSoldOut ? "disabled" : ""}>바로 주문</button>
+            <div class="menu-preview__foot-actions">
+              <button type="button" class="btn-order-now js-order-now" data-id="${menu.id}" ${menu.isSoldOut ? "disabled" : ""}>바로 주문</button>
+              <button
+                type="button"
+                class="add-btn js-quick-add"
+                data-id="${menu.id}"
+                title="${menu.optionGroups && menu.optionGroups.length ? "기본 옵션으로 담기 (옵션 변경은 상세페이지에서)" : "장바구니에 담기"}"
+                ${menu.isSoldOut ? "disabled" : ""}
+              >+</button>
+            </div>
           </div>
         </li>`
       )
@@ -46,11 +55,7 @@ async function loadMenuPreview() {
   }
 }
 
-document.getElementById("menu-preview-grid").addEventListener("click", (e) => {
-  const btn = e.target.closest(".js-order-now");
-  if (!btn) return;
-  const menu = PREVIEW_MENU_ITEMS.find((m) => m.id === Number(btn.dataset.id));
-  if (!menu) return;
+function addPreviewMenuToCart(menu) {
   const selectedOptions = getDefaultSelectedOptions(menu);
   const extraTotal = selectedOptions.reduce((sum, o) => sum + o.extraPrice, 0);
   addToCart({
@@ -60,7 +65,26 @@ document.getElementById("menu-preview-grid").addEventListener("click", (e) => {
     quantity: 1,
     selectedOptions,
   });
-  window.location.href = "/checkout";
+  return selectedOptions;
+}
+
+document.getElementById("menu-preview-grid").addEventListener("click", (e) => {
+  const orderNowBtn = e.target.closest(".js-order-now");
+  if (orderNowBtn) {
+    const menu = PREVIEW_MENU_ITEMS.find((m) => m.id === Number(orderNowBtn.dataset.id));
+    if (!menu) return;
+    addPreviewMenuToCart(menu);
+    window.location.href = "/checkout";
+    return;
+  }
+
+  const addBtn = e.target.closest(".js-quick-add");
+  if (!addBtn) return;
+  const menu = PREVIEW_MENU_ITEMS.find((m) => m.id === Number(addBtn.dataset.id));
+  if (!menu) return;
+  addPreviewMenuToCart(menu);
+  document.getElementById("cart-count").textContent = getCartCount();
+  showToast(`${menu.name} 담았어요 🛒`);
 });
 
 loadMenuPreview();

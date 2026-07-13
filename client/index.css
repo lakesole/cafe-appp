@@ -486,9 +486,38 @@ body {
   white-space: nowrap;
 }
 
-.menu-preview__foot .btn-order-now {
-  width: 100%;
+.menu-preview__foot-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-preview__foot-actions .btn-order-now {
+  flex: 1;
   text-align: center;
+}
+
+.add-btn {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s ease, transform 0.2s ease;
+}
+
+.add-btn:hover {
+  background: var(--accent-dark);
+}
+
+.add-btn:disabled {
+  background: var(--border);
+  cursor: not-allowed;
 }
 
 .btn-order-now {
