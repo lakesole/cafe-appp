@@ -21,17 +21,59 @@
     <a href="/admin/stats">매출 통계</a>
   </nav>
   <main class="admin-main">
-    <h2>메뉴 등록</h2>
-    <form id="menu-form">
-      <label>카테고리
-        <select name="categoryId" id="category-select" required></select>
-      </label>
-      <label>이름 <input type="text" name="name" required /></label>
-      <label>설명 <textarea name="description"></textarea></label>
-      <label>가격 <input type="number" name="price" required /></label>
-      <label>이미지 URL <input type="text" name="imageUrl" /></label>
-      <label class="checkbox"><input type="checkbox" name="isSoldOut" /> 품절</label>
-      <button type="submit" class="btn">등록</button>
+    <a href="/admin/menus/list" class="back-link">← 메뉴 관리</a>
+    <div class="page-title-row">
+      <h2>메뉴 등록</h2>
+    </div>
+
+    <form id="menu-form" class="menu-form-layout">
+      <div class="form-card">
+        <label class="field">
+          <span class="field__label">카테고리</span>
+          <select name="categoryId" id="category-select" required></select>
+        </label>
+        <label class="field">
+          <span class="field__label">이름</span>
+          <input type="text" name="name" placeholder="예: 카페라떼" required />
+        </label>
+        <label class="field">
+          <span class="field__label">설명</span>
+          <textarea name="description" rows="3" placeholder="메뉴에 대한 짧은 설명"></textarea>
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">가격</span>
+            <div class="field__price">
+              <input type="number" name="price" placeholder="0" required />
+              <span>원</span>
+            </div>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">이미지 URL</span>
+          <input type="text" name="imageUrl" id="image-url-input" placeholder="https://..." />
+        </label>
+        <label class="field-toggle">
+          <input type="checkbox" name="isSoldOut" />
+          <span class="field-toggle__box"></span>
+          <span class="field-toggle__label">품절 상태로 등록</span>
+        </label>
+
+        <div class="form-actions">
+          <a href="/admin/menus/list" class="btn btn-outline">취소</a>
+          <button type="submit" class="btn">등록</button>
+        </div>
+      </div>
+
+      <aside class="form-preview">
+        <p class="form-preview__label">미리보기</p>
+        <div class="form-preview__thumb">
+          <img id="preview-img" alt="" hidden />
+          <span id="preview-empty" class="form-preview__empty">이미지 URL을 입력하면<br />여기에 표시돼요</span>
+        </div>
+        <p class="form-preview__name" id="preview-name">메뉴 이름</p>
+        <p class="form-preview__price" id="preview-price">0원</p>
+      </aside>
     </form>
   </main>
   <script src="/shared/api.js"></script>

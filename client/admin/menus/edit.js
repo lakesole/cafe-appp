@@ -5,6 +5,27 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
 const menuId = new URLSearchParams(location.search).get("id");
 const categorySelect = document.getElementById("category-select");
 const form = document.getElementById("menu-form");
+const previewImg = document.getElementById("preview-img");
+const previewEmpty = document.getElementById("preview-empty");
+const previewName = document.getElementById("preview-name");
+const previewPrice = document.getElementById("preview-price");
+
+function updatePreview() {
+  const imageUrl = form.imageUrl.value.trim();
+  if (imageUrl) {
+    previewImg.src = imageUrl;
+    previewImg.hidden = false;
+    previewEmpty.hidden = true;
+  } else {
+    previewImg.hidden = true;
+    previewEmpty.hidden = false;
+  }
+  previewName.textContent = form.name.value.trim() || "메뉴 이름";
+  const price = Number(form.price.value) || 0;
+  previewPrice.textContent = `${price.toLocaleString("ko-KR")}원`;
+}
+
+form.addEventListener("input", updatePreview);
 
 async function loadForm() {
   const [categories, menuItem] = await Promise.all([
@@ -21,6 +42,7 @@ async function loadForm() {
   form.price.value = menuItem.price;
   form.imageUrl.value = menuItem.imageUrl || "";
   form.isSoldOut.checked = menuItem.isSoldOut;
+  updatePreview();
 }
 
 form.addEventListener("submit", async (e) => {
