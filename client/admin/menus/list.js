@@ -13,12 +13,14 @@ let activeCategory = "all";
 function renderCategoryFilter() {
   const options = [{ id: "all", name: "전체" }, ...CATEGORIES];
   categoryFilterEl.innerHTML = options
-    .map(
-      (c) => `
+    .map((c) => {
+      const count = c.id === "all" ? MENU_ITEMS.length : MENU_ITEMS.filter((m) => m.categoryId === c.id).length;
+      return `
       <button type="button" class="category-filter__item ${c.id === activeCategory ? "is-active" : ""}" data-id="${c.id}">
-        ${c.name}
-      </button>`
-    )
+        <span class="category-filter__name">${c.name}</span>
+        <span class="category-filter__count">${count}</span>
+      </button>`;
+    })
     .join("");
 }
 
@@ -63,6 +65,7 @@ function renderTable() {
 
 async function loadMenuItems() {
   MENU_ITEMS = await api.get("/admin/menu-items");
+  renderCategoryFilter();
   renderTable();
 }
 
@@ -76,7 +79,6 @@ categoryFilterEl.addEventListener("click", (e) => {
 
 async function init() {
   CATEGORIES = await api.get("/admin/categories");
-  renderCategoryFilter();
   await loadMenuItems();
 }
 
