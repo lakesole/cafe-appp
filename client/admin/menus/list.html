@@ -25,19 +25,27 @@
       <h2>메뉴 목록</h2>
       <a class="btn" href="/admin/menus/create">+ 메뉴 등록</a>
     </div>
-    <table id="menu-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>이름</th>
-          <th>카테고리</th>
-          <th>가격</th>
-          <th>상태</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="menu-table-body"></tbody>
-    </table>
+
+    <div class="menu-manage-layout">
+      <aside class="category-filter" id="category-filter"></aside>
+
+      <div>
+        <table id="menu-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>이름</th>
+              <th>카테고리</th>
+              <th>가격</th>
+              <th>상태</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="menu-table-body"></tbody>
+        </table>
+        <p class="empty" id="empty" hidden>해당 카테고리에 메뉴가 없습니다.</p>
+      </div>
+    </div>
   </main>
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>

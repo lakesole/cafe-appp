@@ -2,6 +2,56 @@
    관리자 - 메뉴 목록
    ============================================ */
 
+.menu-manage-layout {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .menu-manage-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.category-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px;
+  position: sticky;
+  top: 20px;
+}
+
+.category-filter__item {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.category-filter__item:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.category-filter__item.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+
 #menu-table td:first-child {
   width: 64px;
 }
