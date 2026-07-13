@@ -21,6 +21,9 @@ function render() {
       const optionsText = (item.selectedOptions || []).map((o) => o.choiceName).join(", ");
       return `
       <li class="basket-item" data-cart-item-id="${item.cartItemId}">
+        <div class="basket-item__thumb">
+          ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" />` : ""}
+        </div>
         <div class="basket-item__info">
           <p class="basket-item__name">${item.name}</p>
           ${optionsText ? `<p class="basket-item__options">${optionsText}</p>` : ""}

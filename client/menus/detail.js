@@ -113,6 +113,7 @@ function renderMenu(menu) {
     addToCart({
       menuItemId: menu.id,
       name: menu.name,
+      imageUrl: menu.imageUrl,
       unitPrice: menu.price + extraTotal,
       quantity: qty,
       selectedOptions: selected,

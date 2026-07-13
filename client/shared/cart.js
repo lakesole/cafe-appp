@@ -81,6 +81,7 @@ function addToCart(item) {
       cartItemId: `${item.menuItemId}-${Date.now()}`,
       menuItemId: item.menuItemId,
       name: item.name,
+      imageUrl: item.imageUrl || "",
       unitPrice: item.unitPrice,
       quantity: item.quantity,
       selectedOptions: item.selectedOptions || [],
