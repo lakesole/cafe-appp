@@ -6,6 +6,7 @@ if (!isLoggedIn()) {
   window.location.href = "/auth/login";
 } else {
   const { ORDER_STATUS_META } = window.SAMPLE_DATA;
+  const ORDER_TYPE_LABEL = { DINE_IN: "매장식사", TAKEOUT: "포장" };
 
   document.getElementById("cart-count").textContent = getCartCount();
 
@@ -24,7 +25,10 @@ if (!isLoggedIn()) {
             <span class="order-card__id">주문 #${order.id}</span>
             <span class="order-status" style="color:${status.color}">${status.label}</span>
           </div>
-          <p class="order-card__items">${itemsText}</p>
+          <p class="order-card__items">
+            <span class="order-type-tag">${ORDER_TYPE_LABEL[order.orderType] || "포장"}</span>
+            ${itemsText}
+          </p>
           <div class="order-card__bottom">
             <span>${formatDateTime(order.createdAt)}</span>
             <span class="order-card__total">${formatPrice(order.totalPrice)}</span>

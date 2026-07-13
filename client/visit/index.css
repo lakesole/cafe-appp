@@ -1,0 +1,21 @@
+/* ============================================
+   고객 - 오시는 길
+   ============================================ */
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.page-desc {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 1.75rem;
+}
+
+.visit__body {
+  margin-bottom: 1.5rem;
+}

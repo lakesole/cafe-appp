@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>문의하기 | New Lake</title>
+  <title>오시는 길 | New Lake</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/index.css" />
-  <link rel="stylesheet" href="list.css" />
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -21,7 +21,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="M4 10h16" /></svg>
           메뉴
         </a>
-        <a href="/visit" class="app-nav-link">
+        <a href="/visit" class="app-nav-link is-active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>
           오시는 길
         </a>
@@ -51,26 +51,51 @@
 
     <div class="app-main">
       <main class="page">
-        <h1 class="page-title">문의하기</h1>
-        <p class="page-desc">궁금한 점을 남겨주시면 New Lake 팀이 확인 후 답변해드려요.</p>
+        <h1 class="page-title">오시는 길</h1>
+        <p class="page-desc">픽업은 매장에서만 가능해요. 방문 전에 위치와 영업시간을 확인하세요.</p>
 
-        <form class="qna-form" id="qna-form">
-          <label>
-            제목
-            <input type="text" name="title" required placeholder="문의 제목을 입력해주세요" maxlength="80" />
-          </label>
-          <label>
-            내용
-            <textarea name="content" required placeholder="문의하실 내용을 자세히 적어주세요" rows="4"></textarea>
-          </label>
-          <button type="submit" class="btn btn-primary">문의 등록</button>
-        </form>
-
-        <section class="qna-section">
-          <h2>내 문의 내역</h2>
-          <ul class="qna-list" id="qna-list"></ul>
-          <p class="empty" id="empty" hidden>아직 등록한 문의가 없어요.</p>
-        </section>
+        <div class="visit__body">
+          <div class="visit__map" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>
+          </div>
+          <dl class="visit__info">
+            <div class="visit__row">
+              <dt>주소</dt>
+              <dd>서울특별시 강남구 테헤란로 427, 1층</dd>
+            </div>
+            <div class="visit__row">
+              <dt>영업시간</dt>
+              <dd>매일 08:00 – 21:00 · 라스트오더 20:30</dd>
+            </div>
+            <div class="visit__row">
+              <dt>전화</dt>
+              <dd>02-1234-5678</dd>
+            </div>
+            <div class="visit__row">
+              <dt>매장 좌석</dt>
+              <dd>
+                24석 (테이블 8개) · 포장·매장 식사 모두 가능
+                <span class="seat-badge" id="seat-badge" hidden></span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <div class="visit__actions">
+          <a
+            class="btn btn-outline"
+            href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C%20427"
+            target="_blank"
+            rel="noopener"
+            >네이버 지도에서 길찾기 →</a
+          >
+          <a
+            class="btn btn-outline"
+            href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C%20427"
+            target="_blank"
+            rel="noopener"
+            >카카오맵에서 길찾기 →</a
+          >
+        </div>
 
         <footer class="app-footer">
           <p>© <span id="footer-year"></span> New Lake. All rights reserved.</p>
@@ -82,6 +107,6 @@
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>
   <script src="/shared/cart.js"></script>
-  <script src="list.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

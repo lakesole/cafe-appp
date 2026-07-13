@@ -6,6 +6,7 @@ if (!isLoggedIn()) {
   window.location.href = "/auth/login";
 } else {
   const { ORDER_STATUS_META } = window.SAMPLE_DATA;
+  const ORDER_TYPE_LABEL = { DINE_IN: "매장식사", TAKEOUT: "포장" };
 
   document.getElementById("cart-count").textContent = getCartCount();
 
@@ -44,6 +45,7 @@ if (!isLoggedIn()) {
         <span class="order-status" style="color:${status.color}">${status.label}</span>
       </div>
       <p class="order-detail__meta">
+        <span class="order-type-tag">${ORDER_TYPE_LABEL[order.orderType] || "포장"}</span>
         주문일시 ${formatDateTime(order.createdAt)}
         ${order.pickupTime ? `· 픽업 예정 ${formatDateTime(order.pickupTime)}` : ""}
       </p>

@@ -40,11 +40,17 @@ enum PaymentStatus {
   FAILED
 }
 
+enum OrderType {
+  DINE_IN
+  TAKEOUT
+}
+
 model Order {
   id          Int         @id @default(autoincrement())
   user        User        @relation(fields: [userId], references: [id])
   userId      Int
   status      OrderStatus @default(PENDING)
+  orderType   OrderType   @default(TAKEOUT)
   totalPrice  Int
   pickupTime  DateTime?
   items       OrderItem[]

@@ -34,6 +34,18 @@
   margin-bottom: 0.75rem;
 }
 
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-title-row .section-title {
+  margin-bottom: 0;
+}
+
 .order-items {
   display: flex;
   flex-direction: column;

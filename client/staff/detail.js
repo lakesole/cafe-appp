@@ -6,6 +6,7 @@ if (!isLoggedIn() || !["STAFF", "ADMIN"].includes(getCurrentUser().role)) {
   window.location.href = "/auth/login";
 } else {
   const { ORDER_STATUS_META } = window.SAMPLE_DATA;
+  const ORDER_TYPE_LABEL = { DINE_IN: "매장식사", TAKEOUT: "포장" };
   const STAFF_STATUSES = ["PAID", "PREPARING", "READY", "COMPLETED"];
 
   const detailEl = document.getElementById("detail");
@@ -27,7 +28,10 @@ if (!isLoggedIn() || !["STAFF", "ADMIN"].includes(getCurrentUser().role)) {
         <h1 class="staff-order-detail__id">주문 #${order.id} · ${order.user.name}님</h1>
         <span style="color:${status.color}; font-weight:700;">${status.label}</span>
       </div>
-      <p>주문일시 ${formatDateTime(order.createdAt)} ${order.pickupTime ? `· 픽업 예정 ${formatDateTime(order.pickupTime)}` : ""}</p>
+      <p>
+        <span class="badge">${ORDER_TYPE_LABEL[order.orderType] || "포장"}</span>
+        주문일시 ${formatDateTime(order.createdAt)} ${order.pickupTime ? `· 픽업 예정 ${formatDateTime(order.pickupTime)}` : ""}
+      </p>
 
       <div class="staff-order-detail__items">
         ${order.items

@@ -8,6 +8,7 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     const order = await orderService.createOrder(req.user!.sub, {
       items: req.body.items,
       pickupTime: req.body.pickupTime,
+      orderType: req.body.orderType,
     });
     res.status(201).json(order);
   } catch (err) {

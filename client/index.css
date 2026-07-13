@@ -710,29 +710,7 @@ body {
   }
 }
 
-/* ── 홈: 오시는 길 ── */
-.visit {
-  margin-top: 56px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
-}
-
-.visit__head {
-  margin-bottom: 24px;
-}
-
-.visit__head h2 {
-  font-size: 1.3rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  margin-bottom: 6px;
-}
-
-.visit__desc {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
+/* ── 오시는 길 ── */
 .visit__body {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -830,4 +808,17 @@ body {
   max-width: 420px;
   margin: 40px auto 24px;
   padding: 20px 1.5rem 0;
+}
+
+/* ── 공통: 주문 방식(매장식사/포장) 태그 ── */
+.order-type-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-right: 6px;
 }

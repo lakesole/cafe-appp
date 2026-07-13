@@ -6,6 +6,7 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
   window.location.href = "/auth/login";
 } else {
   const { ORDER_STATUS_META } = window.SAMPLE_DATA;
+  const ORDER_TYPE_LABEL = { DINE_IN: "매장식사", TAKEOUT: "포장" };
 
   const QUEUE_STATUSES = ["PAID", "PREPARING", "READY", "COMPLETED"];
 
@@ -40,7 +41,10 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
         <li class="queue-card">
           <a href="detail?id=${order.id}">
             <span class="queue-card__id">주문 #${order.id} · ${order.user.name}님</span>
-            <p class="queue-card__items">${itemsText}</p>
+            <p class="queue-card__items">
+              <span class="badge">${ORDER_TYPE_LABEL[order.orderType] || "포장"}</span>
+              ${itemsText}
+            </p>
           </a>
           <span class="queue-card__status" style="color:${status.color}">${status.label}</span>
         </li>`;

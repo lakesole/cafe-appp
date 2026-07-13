@@ -1,6 +1,12 @@
-import { OrderStatus } from "@prisma/client";
+import { OrderStatus, OrderType } from "@prisma/client";
 import { prisma } from "../prisma";
 import { HttpError } from "../utils/http-error";
+
+const ORDER_TYPES: OrderType[] = ["DINE_IN", "TAKEOUT"];
+
+function isOrderType(value: unknown): value is OrderType {
+  return typeof value === "string" && (ORDER_TYPES as string[]).includes(value);
+}
 
 type OrderItemInput = {
   menuItemId: number;
@@ -52,10 +58,13 @@ async function buildOrderItem(input: OrderItemInput) {
 
 export async function createOrder(
   userId: number,
-  data: { items: OrderItemInput[]; pickupTime?: string }
+  data: { items: OrderItemInput[]; pickupTime?: string; orderType?: string }
 ) {
   if (!data.items || data.items.length === 0) {
     throw new HttpError(400, "주문 항목이 없습니다.");
+  }
+  if (!isOrderType(data.orderType)) {
+    throw new HttpError(400, "orderType은 DINE_IN 또는 TAKEOUT이어야 합니다.");
   }
 
   const items = await Promise.all(data.items.map(buildOrderItem));
@@ -65,6 +74,7 @@ export async function createOrder(
     data: {
       userId,
       totalPrice,
+      orderType: data.orderType,
       pickupTime: data.pickupTime ? new Date(data.pickupTime) : undefined,
       items: { create: items },
     },

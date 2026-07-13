@@ -21,6 +21,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="M4 10h16" /></svg>
           메뉴
         </a>
+        <a href="/visit" class="app-nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>
+          오시는 길
+        </a>
         <a href="/basket/list" class="app-nav-link is-active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.2" /></svg>
           장바구니
@@ -53,6 +57,21 @@
       <section class="checkout-section">
         <h2 class="section-title">주문 상품</h2>
         <ul class="order-items" id="order-items"></ul>
+      </section>
+
+      <section class="checkout-section">
+        <div class="section-title-row">
+          <h2 class="section-title">주문 방식</h2>
+          <span class="seat-badge" id="checkout-seat-badge" hidden></span>
+        </div>
+        <label class="pay-method">
+          <input type="radio" name="order-type" value="TAKEOUT" checked />
+          포장
+        </label>
+        <label class="pay-method">
+          <input type="radio" name="order-type" value="DINE_IN" />
+          매장식사
+        </label>
       </section>
 
       <section class="checkout-section">
