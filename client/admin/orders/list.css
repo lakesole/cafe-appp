@@ -1,5 +1,5 @@
 /* ============================================
-   종업원 - 주문 큐
+   관리자 - 주문 관리
    ============================================ */
 
 .status-tabs {
@@ -17,6 +17,11 @@
   color: var(--text-muted);
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+.status-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .status-tab.active {
@@ -51,7 +56,7 @@
 .queue-card a {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .queue-card__id {
@@ -67,4 +72,10 @@
 .queue-card__status {
   font-weight: 700;
   font-size: 0.9rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
 }

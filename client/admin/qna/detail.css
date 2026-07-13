@@ -1,0 +1,115 @@
+/* ============================================
+   관리자 - 문의 상세 / 답변
+   ============================================ */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.qna-detail-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  max-width: 620px;
+}
+
+.qna-detail-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.qna-detail-card__title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.qna-detail-card__badge {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 11px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.qna-detail-card__badge.is-waiting {
+  background: #f0e6da;
+  color: #8a6a3d;
+}
+
+.qna-detail-card__badge.is-answered {
+  background: #e4efe1;
+  color: #4a7a3d;
+}
+
+.qna-detail-card__meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.qna-detail-card__content {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
+.answer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.answer-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.answer-form textarea {
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 400;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  resize: vertical;
+}
+
+.answer-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.answer-form .btn {
+  align-self: flex-start;
+}
+
+.qna-detail-card__answered-at {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.not-found {
+  padding: 2rem;
+  color: var(--text-muted);
+}

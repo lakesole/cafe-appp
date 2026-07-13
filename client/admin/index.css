@@ -1,25 +1,242 @@
+/* ============================================
+   관리자 공통 스타일 (모든 admin/*, staff/* 페이지에서 링크로 공유)
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f3ee;
+  --text: #17140f;
+  --text-muted: #6f695e;
+  --accent: #d1451f;
+  --accent-dark: #a83417;
+  --border: #e7e3db;
+  --side-bg: #3a2818;
+  --side-text: #ece8e0;
+  --side-muted: #c2a98c;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
 .admin-header {
-  background: #4a2f1c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--side-bg);
   color: #fff;
-  padding: 1rem 1.5rem;
+  padding: 18px 28px;
+}
+
+.admin-header h1 {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: 0.01em;
+}
+
+.admin-header__user {
+  font-size: 0.85rem;
+  color: var(--side-muted);
+}
+
+.admin-header__user strong {
+  color: #fff;
 }
 
 .admin-nav {
   display: flex;
-  gap: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: #f0e2d0;
-  border-bottom: 1px solid #d8c3a5;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 14px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
 }
 
 .admin-nav a {
+  padding: 8px 16px;
+  border-radius: 999px;
   font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .admin-nav a:hover {
-  text-decoration: underline;
+  background: rgba(23, 20, 15, 0.06);
+  color: var(--text);
+}
+
+.admin-nav a.is-active {
+  background: var(--accent);
+  color: #fff;
 }
 
 .admin-main {
-  padding: 1.5rem;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 32px 28px 64px;
+}
+
+.admin-main h2 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.page-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.page-title-row h2 {
+  margin-bottom: 0;
+}
+
+/* ── 버튼 ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  transition: background 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+.btn-danger-outline {
+  background: transparent;
+  border: 1.5px solid #e7c9c2;
+  color: #b3392c;
+}
+
+.btn-danger-outline:hover {
+  background: #b3392c;
+  border-color: #b3392c;
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+/* ── 테이블 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+thead tr {
+  background: var(--surface);
+}
+
+th {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: rgba(209, 69, 31, 0.04);
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.row-actions a,
+.row-actions button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.row-actions a {
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+
+.row-actions a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.row-actions button.delete-btn {
+  border: 1.5px solid #e7c9c2;
+  background: transparent;
+  color: #b3392c;
+}
+
+.row-actions button.delete-btn:hover {
+  background: #b3392c;
+  border-color: #b3392c;
+  color: #fff;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.badge-soldout {
+  background: #f6e2df;
+  color: #b3392c;
+}
+
+.badge-ok {
+  background: #e4efe1;
+  color: #4a7a3d;
 }

@@ -5,21 +5,24 @@
   <title>New Lake 관리자</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="dashboard.css" />
 </head>
 <body>
   <header class="admin-header">
-    <h1>☕ New Lake 관리자</h1>
+    <h1>New Lake Coffee</h1>
   </header>
   <nav class="admin-nav">
-    <a href="/admin">대시보드</a>
+    <a href="/admin" class="is-active">대시보드</a>
     <a href="/admin/categories/list">카테고리 관리</a>
     <a href="/admin/menus/list">메뉴 관리</a>
+    <a href="/admin/orders/list">주문 관리</a>
     <a href="/admin/staff/list">종업원 관리</a>
+    <a href="/admin/qna/list">QnA 관리</a>
     <a href="/admin/stats">매출 통계</a>
   </nav>
   <main class="admin-main">
     <h2>대시보드</h2>
-    <p>카테고리·메뉴·종업원 관리, 매출 통계 기능을 상단 메뉴에서 이용하실 수 있습니다.</p>
+    <div class="dashboard-grid" id="dashboard-grid"></div>
   </main>
 
   <script src="/shared/api.js"></script>

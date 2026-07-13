@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>종업원 관리 - New Lake</title>
+  <title>주문 관리 - New Lake</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/admin/index.css" />
   <link rel="stylesheet" href="list.css" />
@@ -15,34 +15,27 @@
     <a href="/admin">대시보드</a>
     <a href="/admin/categories/list">카테고리 관리</a>
     <a href="/admin/menus/list">메뉴 관리</a>
-    <a href="/admin/orders/list">주문 관리</a>
-    <a href="/admin/staff/list" class="is-active">종업원 관리</a>
+    <a href="/admin/orders/list" class="is-active">주문 관리</a>
+    <a href="/admin/staff/list">종업원 관리</a>
     <a href="/admin/qna/list">QnA 관리</a>
     <a href="/admin/stats">매출 통계</a>
   </nav>
   <main class="admin-main">
     <div class="page-title-row">
-      <h2>종업원 관리</h2>
-      <a class="btn" href="/admin/staff/create">+ 종업원 등록</a>
+      <h2>주문 관리</h2>
     </div>
-    <table id="staff-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>이름</th>
-          <th>이메일</th>
-          <th>역할</th>
-          <th>등록일</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="staff-table-body"></tbody>
-    </table>
+
+    <div class="status-tabs" id="status-tabs"></div>
+
+    <ul class="order-queue" id="order-queue"></ul>
+    <p class="empty" id="empty" hidden>해당 상태의 주문이 없습니다.</p>
   </main>
 
+  <script src="/shared/sample-data.js"></script>
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>
   <script src="/shared/cart.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="list.js"></script>
 </body>
 </html>

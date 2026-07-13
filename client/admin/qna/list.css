@@ -1,5 +1,5 @@
 /* ============================================
-   종업원 - 주문 큐
+   관리자 - QnA 관리
    ============================================ */
 
 .status-tabs {
@@ -19,52 +19,80 @@
   font-size: 0.9rem;
 }
 
+.status-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .status-tab.active {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
 }
 
-.order-queue {
+.qna-admin-list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   list-style: none;
 }
 
-.queue-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.qna-admin-card {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 1rem 1.25rem;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.queue-card:hover {
+.qna-admin-card:hover {
   border-color: var(--accent);
   box-shadow: 0 8px 20px rgba(23, 20, 15, 0.06);
 }
 
-.queue-card a {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.qna-admin-card a {
+  display: block;
+  padding: 1rem 1.25rem;
 }
 
-.queue-card__id {
+.qna-admin-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.qna-admin-card__title {
   font-weight: 700;
   color: var(--text);
 }
 
-.queue-card__items {
-  color: var(--text-muted);
-  font-size: 0.85rem;
+.qna-admin-card__badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
-.queue-card__status {
-  font-weight: 700;
-  font-size: 0.9rem;
+.qna-admin-card__badge.is-waiting {
+  background: #f0e6da;
+  color: #8a6a3d;
+}
+
+.qna-admin-card__badge.is-answered {
+  background: #e4efe1;
+  color: #4a7a3d;
+}
+
+.qna-admin-card__meta {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 3px;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
 }

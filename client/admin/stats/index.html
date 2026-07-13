@@ -9,14 +9,16 @@
 </head>
 <body>
   <header class="admin-header">
-    <h1>☕ New Lake 관리자</h1>
+    <h1>New Lake Coffee</h1>
   </header>
   <nav class="admin-nav">
     <a href="/admin">대시보드</a>
     <a href="/admin/categories/list">카테고리 관리</a>
     <a href="/admin/menus/list">메뉴 관리</a>
+    <a href="/admin/orders/list">주문 관리</a>
     <a href="/admin/staff/list">종업원 관리</a>
-    <a href="/admin/stats">매출 통계</a>
+    <a href="/admin/qna/list">QnA 관리</a>
+    <a href="/admin/stats" class="is-active">매출 통계</a>
   </nav>
   <main class="admin-main">
     <h2>매출 통계</h2>
@@ -24,13 +26,23 @@
     <div class="stat-cards" id="stat-cards"></div>
 
     <section class="stats-section">
-      <h3>인기 메뉴 TOP 5</h3>
-      <ul class="rank-list" id="top-menu-list"></ul>
+      <h3>오늘 주문 상태 현황</h3>
+      <div class="status-breakdown" id="status-breakdown"></div>
     </section>
 
     <section class="stats-section">
       <h3>최근 7일 매출</h3>
       <div class="bar-chart" id="bar-chart"></div>
+    </section>
+
+    <section class="stats-section">
+      <h3>인기 메뉴 TOP 5 <span class="stats-section__sub">(최근 7일 매출 기준)</span></h3>
+      <ul class="rank-list" id="top-menu-list"></ul>
+    </section>
+
+    <section class="stats-section">
+      <h3>카테고리별 매출 <span class="stats-section__sub">(최근 7일)</span></h3>
+      <ul class="category-breakdown" id="category-breakdown"></ul>
     </section>
   </main>
 

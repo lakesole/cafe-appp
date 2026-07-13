@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>마이페이지 | New Lake</title>
+  <title>문의하기 | New Lake</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/index.css" />
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="list.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -30,7 +30,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v14l-4-3H4z" /><path d="M8 9h8M8 12h5" /></svg>
           주문내역
         </a>
-        <a href="/my" class="app-nav-link is-active">
+        <a href="/my" class="app-nav-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4" /><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" /></svg>
           마이페이지
         </a>
@@ -47,30 +47,25 @@
 
     <div class="app-main">
       <main class="page">
-        <section class="profile-card">
-          <div class="profile-avatar">👤</div>
-          <div>
-            <p class="profile-name" id="profile-name"></p>
-            <p class="profile-email" id="profile-email"></p>
-          </div>
-        </section>
+        <h1 class="page-title">문의하기</h1>
+        <p class="page-desc">궁금한 점을 남겨주시면 New Lake 팀이 확인 후 답변해드려요.</p>
 
-        <section class="my-section">
-          <div class="my-section__head">
-            <h2>최근 주문</h2>
-            <a href="/orders/list" class="see-all">전체보기 →</a>
-          </div>
-          <ul class="recent-orders" id="recent-orders"></ul>
-        </section>
+        <form class="qna-form" id="qna-form">
+          <label>
+            제목
+            <input type="text" name="title" required placeholder="문의 제목을 입력해주세요" maxlength="80" />
+          </label>
+          <label>
+            내용
+            <textarea name="content" required placeholder="문의하실 내용을 자세히 적어주세요" rows="4"></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">문의 등록</button>
+        </form>
 
-        <section class="my-section">
-          <h2>바로가기</h2>
-          <div class="quick-links">
-            <a href="/orders/list" class="quick-link">📋 주문 내역</a>
-            <a href="/basket/list" class="quick-link">🛒 장바구니</a>
-            <a href="/qna/list" class="quick-link">❓ 문의하기</a>
-            <button type="button" class="quick-link" id="btn-logout">🔑 로그아웃</button>
-          </div>
+        <section class="qna-section">
+          <h2>내 문의 내역</h2>
+          <ul class="qna-list" id="qna-list"></ul>
+          <p class="empty" id="empty" hidden>아직 등록한 문의가 없어요.</p>
         </section>
 
         <footer class="app-footer">
@@ -80,10 +75,9 @@
     </div>
   </div>
 
-  <script src="/shared/sample-data.js"></script>
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>
   <script src="/shared/cart.js"></script>
-  <script src="index.js"></script>
+  <script src="list.js"></script>
 </body>
 </html>

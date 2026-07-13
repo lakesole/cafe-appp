@@ -12,7 +12,7 @@ export async function getStats() {
 
   const recentOrders = await prisma.order.findMany({
     where: { status: { in: ACTIVE_STATUSES }, createdAt: { gte: sevenDaysAgo } },
-    include: { items: true },
+    include: { items: { include: { menuItem: { include: { category: true } } } } },
   });
 
   const todayOrders = recentOrders.filter((o) => o.createdAt >= todayStart);
@@ -20,16 +20,37 @@ export async function getStats() {
   const totalOrders = todayOrders.length;
   const avgOrderValue = totalOrders ? Math.round(totalRevenue / totalOrders) : 0;
 
-  const menuCounts: Record<string, number> = {};
+  const statusBreakdown = ACTIVE_STATUSES.map((status) => ({
+    status,
+    count: todayOrders.filter((o) => o.status === status).length,
+  }));
+
+  const menuStats: Record<string, { count: number; revenue: number }> = {};
+  const categoryStats: Record<string, { count: number; revenue: number }> = {};
+
   recentOrders.forEach((order) => {
     order.items.forEach((item) => {
-      menuCounts[item.name] = (menuCounts[item.name] || 0) + item.quantity;
+      const lineRevenue = item.unitPrice * item.quantity;
+
+      if (!menuStats[item.name]) menuStats[item.name] = { count: 0, revenue: 0 };
+      menuStats[item.name].count += item.quantity;
+      menuStats[item.name].revenue += lineRevenue;
+
+      const categoryName = item.menuItem.category.name;
+      if (!categoryStats[categoryName]) categoryStats[categoryName] = { count: 0, revenue: 0 };
+      categoryStats[categoryName].count += item.quantity;
+      categoryStats[categoryName].revenue += lineRevenue;
     });
   });
-  const topMenus = Object.entries(menuCounts)
-    .sort((a, b) => b[1] - a[1])
+
+  const topMenus = Object.entries(menuStats)
+    .sort((a, b) => b[1].revenue - a[1].revenue)
     .slice(0, 5)
-    .map(([name, count]) => ({ name, count }));
+    .map(([name, s]) => ({ name, count: s.count, revenue: s.revenue }));
+
+  const categoryBreakdown = Object.entries(categoryStats)
+    .sort((a, b) => b[1].revenue - a[1].revenue)
+    .map(([name, s]) => ({ name, count: s.count, revenue: s.revenue }));
 
   const weekly = [];
   for (let i = 6; i >= 0; i--) {
@@ -38,12 +59,19 @@ export async function getStats() {
     const dayEnd = new Date(dayStart);
     dayEnd.setDate(dayEnd.getDate() + 1);
 
-    const amount = recentOrders
-      .filter((o) => o.createdAt >= dayStart && o.createdAt < dayEnd)
-      .reduce((sum, o) => sum + o.totalPrice, 0);
+    const dayOrders = recentOrders.filter((o) => o.createdAt >= dayStart && o.createdAt < dayEnd);
+    const amount = dayOrders.reduce((sum, o) => sum + o.totalPrice, 0);
 
-    weekly.push({ label: WEEKDAY_LABELS[dayStart.getDay()], amount });
+    weekly.push({ label: WEEKDAY_LABELS[dayStart.getDay()], amount, orderCount: dayOrders.length });
   }
 
-  return { totalRevenue, totalOrders, avgOrderValue, topMenus, weekly };
+  return {
+    totalRevenue,
+    totalOrders,
+    avgOrderValue,
+    statusBreakdown,
+    topMenus,
+    categoryBreakdown,
+    weekly,
+  };
 }
