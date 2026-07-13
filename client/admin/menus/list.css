@@ -4,7 +4,7 @@
 
 .menu-manage-layout {
   display: grid;
-  grid-template-columns: 168px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 1.5rem;
   align-items: start;
 }
@@ -19,9 +19,10 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  background: var(--side-bg);
+  background: #fff;
+  border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 12px 10px;
+  padding: 10px;
   position: sticky;
   top: 20px;
 }
@@ -29,44 +30,74 @@
 .category-filter__item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  gap: 12px;
   text-align: left;
-  padding: 10px 12px;
-  border-radius: 9px;
-  border-left: 3px solid transparent;
+  padding: 8px 10px;
+  border-radius: 10px;
   font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--side-muted);
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  font-weight: 700;
+  color: var(--text-muted);
+  position: relative;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.category-filter__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.category-filter__icon svg {
+  width: 16px;
+  height: 16px;
 }
 
 .category-filter__name {
+  flex: 1;
   letter-spacing: 0.01em;
 }
 
 .category-filter__count {
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.74rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: inherit;
-  opacity: 0.7;
+  color: var(--text-muted);
 }
 
 .category-filter__item:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--side-text);
+  background: var(--surface);
 }
 
 .category-filter__item.is-active {
+  color: var(--accent-dark);
+  background: rgba(209, 69, 31, 0.08);
+}
+
+.category-filter__item.is-active .category-filter__icon {
+  background: var(--accent);
   color: #fff;
-  background: var(--side-active-bg);
-  border-left-color: var(--accent);
 }
 
 .category-filter__item.is-active .category-filter__count {
-  opacity: 1;
   color: var(--accent);
+}
+
+.category-filter__item.is-active::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.35;
 }
 
 .empty {
