@@ -14,10 +14,10 @@
   --accent: #d1451f;
   --accent-dark: #a83417;
   --border: #e7e3db;
-  --side-bg: #15130f;
+  --side-bg: #3a2818;
   --side-text: #ece8e0;
-  --side-muted: #8a8478;
-  --side-active-bg: rgba(209, 69, 31, 0.18);
+  --side-muted: #c2a98c;
+  --side-active-bg: rgba(209, 69, 31, 0.22);
 }
 
 body {
@@ -264,11 +264,17 @@ body {
   background-size: cover;
   background-position: center;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.9s ease;
 }
 
 .poster__slide.is-active {
   opacity: 1;
+  pointer-events: auto;
+}
+
+.poster__slide.is-clickable:hover {
+  cursor: pointer;
 }
 
 .poster__slide::before {
@@ -413,22 +419,26 @@ body {
 
 .menu-preview__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
 }
 
 .menu-preview__card {
   background: var(--surface);
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid transparent;
+  border: 1px solid var(--border);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .menu-preview__card:hover {
   transform: translateY(-6px);
   border-color: var(--accent);
-  box-shadow: 0 16px 32px rgba(23, 20, 15, 0.12);
+  box-shadow: 0 16px 32px rgba(23, 20, 15, 0.14);
+}
+
+.menu-preview__card a {
+  display: block;
 }
 
 .menu-preview__thumb {
@@ -448,6 +458,14 @@ body {
   transform: scale(1.06);
 }
 
+.menu-preview__card:hover .menu-preview__name {
+  color: var(--accent);
+}
+
+.menu-preview__card:hover .add-btn {
+  transform: scale(1.08);
+}
+
 .menu-preview__soldout {
   position: absolute;
   inset: 0;
@@ -456,32 +474,39 @@ body {
   background: rgba(23, 20, 15, 0.6);
   color: #fff;
   font-weight: 700;
-  font-size: 0.85rem;
+}
+
+.menu-preview__body {
+  padding: 1rem;
 }
 
 .menu-preview__name {
-  display: block;
   font-weight: 700;
-  font-size: 0.92rem;
-  padding: 0.85rem 1rem 0;
+  font-size: 1rem;
+  margin-bottom: 4px;
   transition: color 0.2s ease;
 }
 
-.menu-preview__card:hover .menu-preview__name {
-  color: var(--accent);
+.menu-preview__desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.4em;
+  margin-bottom: 0.5rem;
 }
 
 .menu-preview__foot {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
-  padding: 6px 1rem 1rem;
 }
 
 .menu-preview__price {
   font-weight: 800;
-  font-size: 0.85rem;
   color: var(--text);
   white-space: nowrap;
 }
@@ -490,11 +515,6 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.menu-preview__foot-actions .btn-order-now {
-  flex: 1;
-  text-align: center;
 }
 
 .add-btn {
