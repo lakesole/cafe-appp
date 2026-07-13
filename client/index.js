@@ -1,5 +1,22 @@
 document.getElementById("cart-count").textContent = getCartCount();
 
+const quickOrderBarEl = document.getElementById("quick-order-bar");
+const quickOrderAddedEl = document.getElementById("quick-order-added");
+const quickOrderSummaryEl = document.getElementById("quick-order-summary");
+
+function showQuickOrderBar(menu, selectedOptions) {
+  const optionsText = selectedOptions.map((o) => o.choiceName).join(", ");
+  quickOrderAddedEl.textContent = `${menu.name}${optionsText ? ` (${optionsText})` : ""} 담았어요 🛒`;
+  quickOrderSummaryEl.textContent = `장바구니 ${getCartCount()}개 · 총 ${formatPrice(getCartTotal())}`;
+  quickOrderBarEl.hidden = false;
+}
+
+quickOrderBarEl.addEventListener("click", (e) => {
+  if (e.target.closest("#quick-order-close")) {
+    quickOrderBarEl.hidden = true;
+  }
+});
+
 let PREVIEW_MENU_ITEMS = [];
 
 /** 필수 옵션 그룹은 첫 번째 선택지를 기본값으로 담는다 (선택 옵션은 담지 않음) */
@@ -81,9 +98,9 @@ document.getElementById("menu-preview-grid").addEventListener("click", (e) => {
   if (!addBtn) return;
   const menu = PREVIEW_MENU_ITEMS.find((m) => m.id === Number(addBtn.dataset.id));
   if (!menu) return;
-  addPreviewMenuToCart(menu);
+  const selectedOptions = addPreviewMenuToCart(menu);
   document.getElementById("cart-count").textContent = getCartCount();
-  showToast(`${menu.name} 담았어요 🛒`);
+  showQuickOrderBar(menu, selectedOptions);
 });
 
 /* 포스터 슬라이드쇼 (자동 재생 + 점 클릭 + 마우스 드래그/터치 스와이프 + 메뉴 클릭 이동) */
