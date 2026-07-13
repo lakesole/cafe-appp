@@ -710,6 +710,86 @@ body {
   }
 }
 
+/* ── 홈: 오시는 길 ── */
+.visit {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.visit__head {
+  margin-bottom: 24px;
+}
+
+.visit__head h2 {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.visit__desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.visit__body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 640px) {
+  .visit__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.visit__map {
+  border-radius: 18px;
+  min-height: 160px;
+  background: linear-gradient(160deg, var(--side-bg), #1f150c);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+}
+
+.visit__map svg {
+  width: 40px;
+  height: 40px;
+}
+
+.visit__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.visit__row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 12px;
+  font-size: 0.92rem;
+}
+
+.visit__row dt {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.visit__row dd {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.visit__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 /* ── 공통: 페이지 하단 카피라이트 ── */
 .app-footer {
   margin-top: 56px;
