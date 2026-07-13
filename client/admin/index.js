@@ -16,17 +16,42 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
       </a>`;
   }
 
+  const SEAT_STATUS_LABEL = { AVAILABLE: "가능", FULL: "만석" };
+
+  function renderSeatStatusControl(current) {
+    const controlEl = document.getElementById("seat-status-control");
+    controlEl.innerHTML = ["AVAILABLE", "FULL"]
+      .map(
+        (status) => `
+        <button type="button" class="seat-status__btn ${status === current ? "is-active" : ""} ${status === "FULL" ? "seat-status__btn--full" : ""}" data-status="${status}">
+          ${SEAT_STATUS_LABEL[status]}
+        </button>`
+      )
+      .join("");
+
+    controlEl.querySelectorAll("[data-status]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        if (btn.classList.contains("is-active")) return;
+        const updated = await api.patch("/admin/store-status", { seatStatus: btn.dataset.status });
+        renderSeatStatusControl(updated.seatStatus);
+      });
+    });
+  }
+
   async function init() {
     const gridEl = document.getElementById("dashboard-grid");
 
-    const [categories, menuItems, staff, orders, questions, stats] = await Promise.all([
+    const [categories, menuItems, staff, orders, questions, stats, storeStatus] = await Promise.all([
       api.get("/admin/categories"),
       api.get("/admin/menu-items"),
       api.get("/admin/staff"),
       api.get("/staff/orders"),
       api.get("/admin/questions"),
       api.get("/admin/stats"),
+      api.get("/admin/store-status"),
     ]);
+
+    renderSeatStatusControl(storeStatus.seatStatus);
 
     const soldOutCount = menuItems.filter((m) => m.isSoldOut).length;
     const activeOrders = orders.filter((o) => ACTIVE_ORDER_STATUSES.includes(o.status));

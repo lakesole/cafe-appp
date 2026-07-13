@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "StoreStatus" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "seatStatus" TEXT NOT NULL DEFAULT 'AVAILABLE',
+    "updatedAt" DATETIME NOT NULL
+);

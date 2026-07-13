@@ -9,10 +9,12 @@ import customerAuthRoutes from "./routes/customer/auth.routes";
 import customerOrderRoutes from "./routes/customer/order.routes";
 import customerPaymentRoutes from "./routes/customer/payment.routes";
 import customerQuestionRoutes from "./routes/customer/question.routes";
+import customerStoreStatusRoutes from "./routes/customer/store-status.routes";
 import staffOrderRoutes from "./routes/staff/order.routes";
 import adminStaffRoutes from "./routes/admin/staff.routes";
 import adminStatsRoutes from "./routes/admin/stats.routes";
 import adminQuestionRoutes from "./routes/admin/question.routes";
+import adminStoreStatusRoutes from "./routes/admin/store-status.routes";
 import { authenticate, requireRole } from "./middlewares/auth.middleware";
 import { errorHandler } from "./middlewares/error.middleware";
 
@@ -27,6 +29,7 @@ app.use("/api/menu-items", customerMenuRoutes);
 app.use("/api/orders", customerOrderRoutes);
 app.use("/api/payments", customerPaymentRoutes);
 app.use("/api/questions", customerQuestionRoutes);
+app.use("/api/store-status", customerStoreStatusRoutes);
 app.use("/api/staff/orders", staffOrderRoutes);
 
 app.use("/api/admin", authenticate, requireRole("ADMIN"));
@@ -35,6 +38,7 @@ app.use("/api/admin/menu-items", menuRoutes);
 app.use("/api/admin/staff", adminStaffRoutes);
 app.use("/api/admin/stats", adminStatsRoutes);
 app.use("/api/admin/questions", adminQuestionRoutes);
+app.use("/api/admin/store-status", adminStoreStatusRoutes);
 
 const clientDir = path.join(__dirname, "..", "..", "client");
 app.use(express.static(clientDir, { extensions: ["html"] }));

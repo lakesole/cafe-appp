@@ -60,3 +60,58 @@
 .dash-card--warn .dash-card__value {
   color: var(--accent);
 }
+
+.seat-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+}
+
+.seat-status__label {
+  font-weight: 800;
+  font-size: 0.98rem;
+  margin-bottom: 3px;
+}
+
+.seat-status__desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.seat-status__control {
+  display: flex;
+  gap: 8px;
+}
+
+.seat-status__btn {
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.seat-status__btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.seat-status__btn.is-active {
+  background: #4a7a3d;
+  border-color: #4a7a3d;
+  color: #fff;
+}
+
+.seat-status__btn.seat-status__btn--full.is-active {
+  background: #b3392c;
+  border-color: #b3392c;
+}

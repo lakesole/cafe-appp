@@ -784,6 +784,32 @@ body {
   font-weight: 600;
 }
 
+.seat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #e4efe1;
+  color: #4a7a3d;
+}
+
+.seat-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.seat-badge--full {
+  background: #f6e2df;
+  color: #b3392c;
+}
+
 .visit__actions {
   display: flex;
   gap: 0.75rem;

@@ -128,3 +128,15 @@ model Question {
   answeredAt DateTime?
   createdAt  DateTime  @default(now())
 }
+
+enum SeatStatus {
+  AVAILABLE
+  FULL
+}
+
+/** 매장 좌석 현황 (싱글턴, 항상 id=1 한 행만 사용) */
+model StoreStatus {
+  id         Int        @id @default(autoincrement())
+  seatStatus SeatStatus @default(AVAILABLE)
+  updatedAt  DateTime   @updatedAt
+}
