@@ -84,6 +84,13 @@
   }
 }
 
+/* 하단 탭바와 겹치지 않도록 띄우기 (app-bottom-nav 표시 breakpoint와 동일) */
+@media (max-width: 640px) {
+  .quick-order-bar {
+    bottom: 76px;
+  }
+}
+
 .page-head {
   margin-bottom: 1.5rem;
 }

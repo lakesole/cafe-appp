@@ -10,7 +10,6 @@ if (!isLoggedIn()) {
   const emptyEl = document.getElementById("empty");
   const summaryCountEl = document.getElementById("summary-count");
   const summaryTotalEl = document.getElementById("summary-total");
-  const cartCountEl = document.getElementById("cart-count");
   const payBtn = document.getElementById("btn-pay");
   const seatBadgeEl = document.getElementById("checkout-seat-badge");
 
@@ -28,7 +27,7 @@ if (!isLoggedIn()) {
 
   function render() {
     const cart = getCart();
-    cartCountEl.textContent = getCartCount();
+    refreshCartBadges();
 
     checkoutLayoutEl.hidden = cart.length === 0;
     emptyEl.hidden = cart.length > 0;

@@ -122,5 +122,13 @@ function getCartTotal() {
   return getCart().reduce((sum, c) => sum + c.unitPrice * c.quantity, 0);
 }
 
+/** 데스크톱 사이드바 + 모바일 하단 탭바의 장바구니 뱃지를 한 번에 갱신 */
+function refreshCartBadges() {
+  const count = getCartCount();
+  document.querySelectorAll(".app-nav-link__badge").forEach((el) => {
+    el.textContent = count;
+  });
+}
+
 const footerYearEl = document.getElementById("footer-year");
 if (footerYearEl) footerYearEl.textContent = new Date().getFullYear();

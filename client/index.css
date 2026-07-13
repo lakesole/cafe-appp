@@ -204,6 +204,93 @@ body {
   }
 }
 
+/* ── 하단 탭바 (모바일 전용) ── */
+.app-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .app-sidebar__nav {
+    display: none;
+  }
+  .app-sidebar__spacer {
+    display: none;
+  }
+  .app-sidebar__user {
+    display: none;
+  }
+  .app-sidebar {
+    padding: 10px 16px;
+  }
+  .app-sidebar__logo {
+    padding: 0;
+  }
+  .page {
+    padding-bottom: 92px;
+  }
+
+  .app-bottom-nav {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: var(--side-bg);
+    padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.18);
+  }
+
+  .app-bottom-nav__link {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 2px;
+    color: var(--side-muted);
+    position: relative;
+  }
+
+  .app-bottom-nav__link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .app-bottom-nav__link span {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .app-bottom-nav__link.is-active {
+    color: #fff;
+  }
+
+  .app-bottom-nav__link.is-active svg {
+    color: var(--accent);
+  }
+
+  .app-bottom-nav__badge {
+    position: absolute;
+    top: 2px;
+    right: 14px;
+    min-width: 15px;
+    height: 15px;
+    padding: 0 3px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    line-height: 1;
+  }
+
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -642,6 +729,13 @@ body {
   .quick-order-bar__cta {
     width: 100%;
     order: 1;
+  }
+}
+
+/* 하단 탭바와 겹치지 않도록 띄우기 (app-bottom-nav 표시 breakpoint와 동일) */
+@media (max-width: 640px) {
+  .quick-order-bar {
+    bottom: 76px;
   }
 }
 

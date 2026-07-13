@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
   const { ORDER_STATUS_META } = window.SAMPLE_DATA;
   const ORDER_TYPE_LABEL = { DINE_IN: "매장식사", TAKEOUT: "포장" };
 
-  document.getElementById("cart-count").textContent = getCartCount();
+  refreshCartBadges();
 
   const orderListEl = document.getElementById("order-list");
 

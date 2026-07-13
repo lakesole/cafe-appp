@@ -5,7 +5,6 @@
 const categoryTabsEl = document.getElementById("category-tabs");
 const menuGridEl = document.getElementById("menu-grid");
 const emptyEl = document.getElementById("empty");
-const cartCountEl = document.getElementById("cart-count");
 const quickOrderBarEl = document.getElementById("quick-order-bar");
 const quickOrderAddedEl = document.getElementById("quick-order-added");
 const quickOrderSummaryEl = document.getElementById("quick-order-summary");
@@ -15,7 +14,7 @@ let MENU_ITEMS = [];
 let activeCategory = "all";
 
 function refreshCartCount() {
-  cartCountEl.textContent = getCartCount();
+  refreshCartBadges();
 }
 
 function renderTabs() {

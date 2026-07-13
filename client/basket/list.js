@@ -7,11 +7,10 @@ const basketLayoutEl = document.querySelector(".basket-layout");
 const emptyEl = document.getElementById("empty");
 const summaryCountEl = document.getElementById("summary-count");
 const summaryTotalEl = document.getElementById("summary-total");
-const cartCountEl = document.getElementById("cart-count");
 
 function render() {
   const cart = getCart();
-  cartCountEl.textContent = getCartCount();
+  refreshCartBadges();
 
   basketLayoutEl.hidden = cart.length === 0;
   emptyEl.hidden = cart.length > 0;

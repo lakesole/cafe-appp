@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
 } else {
   const { ORDER_STATUS_META } = window.SAMPLE_DATA;
 
-  document.getElementById("cart-count").textContent = getCartCount();
+  refreshCartBadges();
 
   const currentUser = getCurrentUser();
   document.getElementById("profile-name").textContent = currentUser.name;

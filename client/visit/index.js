@@ -2,7 +2,7 @@
    고객 - 오시는 길
    ============================================ */
 
-document.getElementById("cart-count").textContent = getCartCount();
+refreshCartBadges();
 
 async function loadSeatStatus() {
   const badgeEl = document.getElementById("seat-badge");

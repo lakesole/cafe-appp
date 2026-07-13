@@ -1,4 +1,4 @@
-document.getElementById("cart-count").textContent = getCartCount();
+refreshCartBadges();
 
 const quickOrderBarEl = document.getElementById("quick-order-bar");
 const quickOrderAddedEl = document.getElementById("quick-order-added");
@@ -99,7 +99,7 @@ document.getElementById("menu-preview-grid").addEventListener("click", (e) => {
   const menu = PREVIEW_MENU_ITEMS.find((m) => m.id === Number(addBtn.dataset.id));
   if (!menu) return;
   const selectedOptions = addPreviewMenuToCart(menu);
-  document.getElementById("cart-count").textContent = getCartCount();
+  refreshCartBadges();
   showQuickOrderBar(menu, selectedOptions);
 });
 

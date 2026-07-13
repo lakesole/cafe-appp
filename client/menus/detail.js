@@ -3,10 +3,9 @@
    ============================================ */
 
 const detailEl = document.getElementById("detail");
-const cartCountEl = document.getElementById("cart-count");
 
 function refreshCartCount() {
-  cartCountEl.textContent = getCartCount();
+  refreshCartBadges();
 }
 refreshCartCount();
 

@@ -5,7 +5,7 @@
 if (!isLoggedIn()) {
   window.location.href = "/auth/login";
 } else {
-  document.getElementById("cart-count").textContent = getCartCount();
+  refreshCartBadges();
 
   const formEl = document.getElementById("qna-form");
   const listEl = document.getElementById("qna-list");
