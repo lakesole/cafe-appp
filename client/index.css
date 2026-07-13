@@ -47,12 +47,26 @@ body {
 }
 
 .app-sidebar__logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   font-family: "Dancing Script", cursive;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.9rem;
+  line-height: 1;
   letter-spacing: 0.01em;
   color: #fff;
-  padding: 6px 10px 30px;
+  padding: 6px 10px 28px;
+}
+
+.app-sidebar__logo-sub {
+  font-family: -apple-system, "Malgun Gothic", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--side-muted);
+  padding-left: 2px;
 }
 
 .app-sidebar__nav {
