@@ -17,9 +17,11 @@ async function renderStaff() {
       <td>${s.email}</td>
       <td><span class="role-badge ${s.role === "ADMIN" ? "is-admin" : ""}">${s.role}</span></td>
       <td>${new Date(s.createdAt).toLocaleDateString("ko-KR")}</td>
-      <td class="row-actions">
-        <a href="/admin/staff/edit?id=${s.id}">수정</a>
-        <button data-id="${s.id}" class="delete-btn">삭제</button>
+      <td>
+        <div class="row-actions">
+          <a href="/admin/staff/edit?id=${s.id}">수정</a>
+          <button data-id="${s.id}" class="delete-btn">삭제</button>
+        </div>
       </td>
     </tr>`
   ).join("");

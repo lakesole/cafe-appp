@@ -20,9 +20,11 @@ async function loadMenuItems() {
       <td>
         <span class="badge ${m.isSoldOut ? "badge-soldout" : "badge-ok"}">${m.isSoldOut ? "품절" : "판매중"}</span>
       </td>
-      <td class="row-actions">
-        <a href="/admin/menus/edit?id=${m.id}">수정</a>
-        <button data-id="${m.id}" class="delete-btn">삭제</button>
+      <td>
+        <div class="row-actions">
+          <a href="/admin/menus/edit?id=${m.id}">수정</a>
+          <button data-id="${m.id}" class="delete-btn">삭제</button>
+        </div>
       </td>
     </tr>`
     )

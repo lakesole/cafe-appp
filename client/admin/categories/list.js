@@ -12,9 +12,11 @@ async function loadCategories() {
       <td>${c.id}</td>
       <td>${c.name}</td>
       <td>${c.sortOrder}</td>
-      <td class="row-actions">
-        <a href="/admin/categories/edit?id=${c.id}">수정</a>
-        <button data-id="${c.id}" class="delete-btn">삭제</button>
+      <td>
+        <div class="row-actions">
+          <a href="/admin/categories/edit?id=${c.id}">수정</a>
+          <button data-id="${c.id}" class="delete-btn">삭제</button>
+        </div>
       </td>
     </tr>`
     )
