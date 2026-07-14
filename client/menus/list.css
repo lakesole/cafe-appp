@@ -283,7 +283,40 @@
 
 @media (max-width: 600px) {
   .menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .menu-card {
+    border-radius: 14px;
+  }
+
+  .menu-card a {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .menu-thumb {
+    flex: 0 0 auto;
+    aspect-ratio: 1 / 1;
+    width: 76px;
+    border-radius: 10px;
+  }
+
+  .menu-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .menu-foot {
+    padding: 0 10px 10px calc(76px + 12px + 10px);
+  }
+
+  .menu-desc {
+    -webkit-line-clamp: 1;
+    min-height: unset;
   }
 }
