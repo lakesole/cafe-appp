@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>종업원 관리 - New Lake</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/admin/index.css" />
@@ -25,19 +26,21 @@
       <h2>종업원 관리</h2>
       <a class="btn" href="/admin/staff/create">+ 종업원 등록</a>
     </div>
-    <table id="staff-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>이름</th>
-          <th>이메일</th>
-          <th>역할</th>
-          <th>등록일</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="staff-table-body"></tbody>
-    </table>
+    <div class="admin-table-scroll">
+      <table id="staff-table">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>아이디</th>
+            <th>역할</th>
+            <th>등록일</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="staff-table-body"></tbody>
+      </table>
+    </div>
   </main>
 
   <script src="/shared/api.js"></script>

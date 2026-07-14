@@ -80,35 +80,45 @@
       <main class="page">
         <section class="poster" id="poster">
           <div class="poster__slides" id="poster-slides">
-            <div class="poster__slide is-active" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1400')">
+            <div class="poster__slide is-active">
+              <div class="poster__bg" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1600&amp;h=800&amp;fit=crop&amp;crop=entropy')"></div>
+              <div class="poster__fg" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&amp;q=80')"></div>
               <div class="poster__content">
                 <p class="poster__eyebrow">New Lake Coffee 만의 특징</p>
                 <h1 class="poster__title">줄서지 말고<br /><em>주문부터</em> 하세요</h1>
                 <p class="poster__desc">매장 도착 전에 미리 주문하고, 도착하면 바로 픽업하세요.</p>
               </div>
             </div>
-            <div class="poster__slide" data-menu-name="자몽 에이드" style="background-image:url('https://images.unsplash.com/photo-1546173159-315724a31696?w=1400')">
+            <div class="poster__slide" data-menu-name="자몽 에이드">
+              <div class="poster__bg" style="background-image:url('https://images.unsplash.com/photo-1546173159-315724a31696?w=1600&amp;h=800&amp;fit=crop&amp;crop=entropy')"></div>
+              <div class="poster__fg" style="background-image:url('https://images.unsplash.com/photo-1546173159-315724a31696?w=1200&amp;q=80')"></div>
               <div class="poster__content">
                 <p class="poster__eyebrow">이번 주 추천 메뉴</p>
                 <h1 class="poster__title">자몽 에이드</h1>
                 <p class="poster__desc">상큼한 자몽과 톡 쏘는 탄산의 조화 · 5,500원</p>
               </div>
             </div>
-            <div class="poster__slide" data-menu-name="티라미수" style="background-image:url('https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=1400')">
+            <div class="poster__slide" data-menu-name="티라미수">
+              <div class="poster__bg" style="background-image:url('/images/menu/tiramisu.jpg')"></div>
+              <div class="poster__fg" style="background-image:url('/images/menu/tiramisu.jpg')"></div>
               <div class="poster__content">
                 <p class="poster__eyebrow">NEW · 이벤트 메뉴</p>
                 <h1 class="poster__title">티라미수</h1>
                 <p class="poster__desc">커피와 마스카포네 크림의 이탈리안 디저트 · 6,500원</p>
               </div>
             </div>
-            <div class="poster__slide" data-menu-name="망고 스무디" style="background-image:url('https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=1400')">
+            <div class="poster__slide" data-menu-name="망고 스무디">
+              <div class="poster__bg" style="background-image:url('/images/menu/mango-smoothie.jpg')"></div>
+              <div class="poster__fg" style="background-image:url('/images/menu/mango-smoothie.jpg')"></div>
               <div class="poster__content">
                 <p class="poster__eyebrow">NEW · 스무디 출시</p>
                 <h1 class="poster__title">망고 스무디</h1>
                 <p class="poster__desc">잘 익은 망고를 갈아 만든 진한 열대과일 스무디 · 5,800원</p>
               </div>
             </div>
-            <div class="poster__slide" data-menu-name="쿠키" style="background-image:url('https://images.unsplash.com/photo-1621236378699-8597faf6a176?w=1400')">
+            <div class="poster__slide" data-menu-name="쿠키">
+              <div class="poster__bg" style="background-image:url('/images/menu/cookie.jpg')"></div>
+              <div class="poster__fg" style="background-image:url('/images/menu/cookie.jpg')"></div>
               <div class="poster__content">
                 <p class="poster__eyebrow">달콤한 디저트 타임</p>
                 <h1 class="poster__title">쿠키</h1>
@@ -132,27 +142,34 @@
         </section>
 
         <section class="highlights">
-          <div class="highlight-card">
+          <a href="/menus/list" class="highlight-card">
             <span class="highlight-card__icon-wrap">
               <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="3" /><path d="M9 18h6" /></svg>
             </span>
             <h2>미리 주문하고 줄서지 않기</h2>
             <p>매장에 도착하기 전에 주문을 완료하세요.</p>
-          </div>
-          <div class="highlight-card">
+          </a>
+          <button type="button" id="btn-order-status" class="highlight-card">
             <span class="highlight-card__icon-wrap">
               <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v14l-4-3H4z" /><path d="M8 9h8M8 12h5" /></svg>
             </span>
             <h2>실시간 주문 현황 확인</h2>
             <p>접수부터 제조, 픽업까지 진행 상태를 알려드려요.</p>
-          </div>
-          <div class="highlight-card">
+          </button>
+          <a href="/visit" class="highlight-card">
             <span class="highlight-card__icon-wrap">
-              <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z" /></svg>
+              <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>
             </span>
-            <h2>취향대로 커스터마이징</h2>
-            <p>사이즈, 샷 추가 등 옵션을 자유롭게 선택하세요.</p>
-          </div>
+            <h2>오시는 길</h2>
+            <p>주소·영업시간을 확인하고 길찾기로 바로 이동하세요.</p>
+          </a>
+          <a href="/visit" class="highlight-card">
+            <span class="highlight-card__icon-wrap">
+              <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13v-2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2" /><path d="M3 13h18v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4Z" /><path d="M6 19v2M18 19v2" /></svg>
+            </span>
+            <h2>매장 좌석 현황</h2>
+            <p id="highlight-seat-status">지금 좌석 현황을 확인하는 중...</p>
+          </a>
         </section>
 
         <section class="menu-preview">
@@ -182,6 +199,8 @@
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>
   <script src="/shared/cart.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/shared/notify.js"></script>
   <script src="/index.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 import { OrderStatus, OrderType } from "@prisma/client";
 import { prisma } from "../prisma";
 import { HttpError } from "../utils/http-error";
+import { emitOrderStatusUpdate } from "../sockets";
 
 const ORDER_TYPES: OrderType[] = ["DINE_IN", "TAKEOUT"];
 
@@ -138,9 +139,13 @@ export async function updateOrderStatusByStaff(orderId: number, status: string) 
   const order = await prisma.order.findUnique({ where: { id: orderId } });
   if (!order) throw new HttpError(404, "주문을 찾을 수 없습니다.");
 
-  return prisma.order.update({
+  const updated = await prisma.order.update({
     where: { id: orderId },
     data: { status },
     include: { items: true, user: { select: { name: true } } },
   });
+
+  emitOrderStatusUpdate(order.userId, updated);
+
+  return updated;
 }

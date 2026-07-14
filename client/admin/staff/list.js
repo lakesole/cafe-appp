@@ -14,7 +14,7 @@ async function renderStaff() {
     <tr>
       <td>${s.id}</td>
       <td>${s.name}</td>
-      <td>${s.email}</td>
+      <td>${s.username}</td>
       <td><span class="role-badge ${s.role === "ADMIN" ? "is-admin" : ""}">${s.role}</span></td>
       <td>${new Date(s.createdAt).toLocaleDateString("ko-KR")}</td>
       <td>

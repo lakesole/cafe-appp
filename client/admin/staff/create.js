@@ -13,7 +13,7 @@ document.getElementById("staff-form").addEventListener("submit", async (e) => {
   try {
     await api.post("/admin/staff", {
       name: data.get("name"),
-      email: data.get("email"),
+      username: data.get("username"),
       password: data.get("password"),
       role: data.get("role"),
     });

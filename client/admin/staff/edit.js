@@ -13,7 +13,7 @@ async function loadStaff() {
   try {
     const staff = await api.get(`/admin/staff/${staffId}`);
     form.name.value = staff.name;
-    form.email.value = staff.email;
+    form.username.value = staff.username;
     form.role.value = staff.role;
   } catch {
     showToast("종업원 정보를 불러오지 못했습니다.");
@@ -26,7 +26,7 @@ form.addEventListener("submit", async (e) => {
   try {
     await api.put(`/admin/staff/${staffId}`, {
       name: data.get("name"),
-      email: data.get("email"),
+      username: data.get("username"),
       role: data.get("role"),
     });
     location.href = "/admin/staff/list";

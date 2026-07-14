@@ -16,6 +16,10 @@ function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
+function updateAccessToken(accessToken) {
+  localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+}
+
 function getRefreshToken() {
   return localStorage.getItem(REFRESH_TOKEN_KEY);
 }

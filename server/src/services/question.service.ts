@@ -14,7 +14,7 @@ export function getQuestionForUser(id: number, userId: number) {
 
 export function listAllQuestions() {
   return prisma.question.findMany({
-    include: { user: { select: { name: true, email: true } } },
+    include: { user: { select: { name: true, username: true } } },
     orderBy: { createdAt: "desc" },
   });
 }
@@ -22,7 +22,7 @@ export function listAllQuestions() {
 export function getQuestion(id: number) {
   return prisma.question.findUnique({
     where: { id },
-    include: { user: { select: { name: true, email: true } } },
+    include: { user: { select: { name: true, username: true } } },
   });
 }
 
@@ -30,6 +30,6 @@ export function answerQuestion(id: number, answer: string) {
   return prisma.question.update({
     where: { id },
     data: { answer, answeredAt: new Date() },
-    include: { user: { select: { name: true, email: true } } },
+    include: { user: { select: { name: true, username: true } } },
   });
 }

@@ -11,7 +11,7 @@ if (!isLoggedIn()) {
 
   const currentUser = getCurrentUser();
   document.getElementById("profile-name").textContent = currentUser.name;
-  document.getElementById("profile-email").textContent = currentUser.email;
+  document.getElementById("profile-username").textContent = currentUser.username;
 
   document.getElementById("btn-logout").addEventListener("click", () => {
     logout();

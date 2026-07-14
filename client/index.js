@@ -191,6 +191,36 @@ function initPosterSlideshow(menuItems) {
   startAutoplay();
 }
 
+document.getElementById("btn-order-status").addEventListener("click", async () => {
+  if (!isLoggedIn()) {
+    window.location.href = "/auth/login";
+    return;
+  }
+
+  try {
+    const orders = await api.get("/orders/me");
+    const activeOrder = orders.find((o) => o.status !== "PENDING" && o.status !== "CANCELED");
+    if (!activeOrder) {
+      showToast("아직 결제 완료된 주문이 없어요.");
+      return;
+    }
+    window.location.href = `/orders/detail?id=${activeOrder.id}`;
+  } catch {
+    showToast("주문 현황을 불러오지 못했습니다.");
+  }
+});
+
+async function loadSeatStatusHighlight() {
+  const el = document.getElementById("highlight-seat-status");
+  if (!el) return;
+  try {
+    const { seatStatus } = await api.get("/store-status");
+    el.textContent = seatStatus === "FULL" ? "지금은 만석이에요. 포장 주문을 추천해요." : "지금 좌석 이용 가능해요.";
+  } catch {
+    el.textContent = "매장 좌석 현황을 확인해보세요.";
+  }
+}
+
 async function main() {
   try {
     const menuItems = await api.get("/menu-items");
@@ -204,3 +234,4 @@ async function main() {
 }
 
 main();
+loadSeatStatusHighlight();

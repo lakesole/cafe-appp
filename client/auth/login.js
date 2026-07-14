@@ -12,7 +12,7 @@ form.addEventListener("submit", async (e) => {
   submitBtn.disabled = true;
   try {
     const result = await api.post("/auth/login", {
-      email: data.get("email"),
+      username: data.get("username"),
       password: data.get("password"),
     });
     saveAuth(result);

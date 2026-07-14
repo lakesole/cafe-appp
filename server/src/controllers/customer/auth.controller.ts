@@ -2,18 +2,18 @@ import { Request, Response, NextFunction } from "express";
 import * as authService from "../../services/auth.service";
 import { HttpError } from "../../utils/http-error";
 
-function toUserResponse(user: { id: number; email: string; name: string; phone: string | null; role: string }) {
-  return { id: user.id, email: user.email, name: user.name, phone: user.phone, role: user.role };
+function toUserResponse(user: { id: number; username: string; name: string; phone: string | null; role: string }) {
+  return { id: user.id, username: user.username, name: user.name, phone: user.phone, role: user.role };
 }
 
 export async function signup(req: Request, res: Response, next: NextFunction) {
   try {
-    const { email, password, name, phone } = req.body;
-    if (!email || !password || !name) {
-      throw new HttpError(400, "이메일, 비밀번호, 이름은 필수입니다.");
+    const { username, password, name, phone } = req.body;
+    if (!username || !password || !name) {
+      throw new HttpError(400, "아이디, 비밀번호, 이름은 필수입니다.");
     }
 
-    const user = await authService.signup({ email, password, name, phone });
+    const user = await authService.signup({ username, password, name, phone });
     const accessToken = authService.signAccessToken(user);
     const refreshToken = authService.signRefreshToken(user);
 
@@ -25,12 +25,12 @@ export async function signup(req: Request, res: Response, next: NextFunction) {
 
 export async function login(req: Request, res: Response, next: NextFunction) {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      throw new HttpError(400, "이메일과 비밀번호를 입력해주세요.");
+    const { username, password } = req.body;
+    if (!username || !password) {
+      throw new HttpError(400, "아이디와 비밀번호를 입력해주세요.");
     }
 
-    const user = await authService.login(email, password);
+    const user = await authService.login(username, password);
     const accessToken = authService.signAccessToken(user);
     const refreshToken = authService.signRefreshToken(user);
 

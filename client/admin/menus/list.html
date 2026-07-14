@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>메뉴 관리 - New Lake</title>
   <link rel="stylesheet" href="/shared/reset.css" />
   <link rel="stylesheet" href="/admin/index.css" />
@@ -29,20 +30,22 @@
     <div class="menu-manage-layout">
       <aside class="category-filter" id="category-filter"></aside>
 
-      <div>
-        <table id="menu-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>이름</th>
-              <th>카테고리</th>
-              <th>가격</th>
-              <th>상태</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="menu-table-body"></tbody>
-        </table>
+      <div class="menu-manage-content">
+        <div class="admin-table-scroll">
+          <table id="menu-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>이름</th>
+                <th>카테고리</th>
+                <th>가격</th>
+                <th>상태</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="menu-table-body"></tbody>
+          </table>
+        </div>
         <p class="empty" id="empty" hidden>해당 카테고리에 메뉴가 없습니다.</p>
       </div>
     </div>

@@ -185,6 +185,22 @@ tbody tr:hover {
   background: rgba(209, 69, 31, 0.04);
 }
 
+/* 메뉴 관리 · 종업원 관리 표 — 좁은 화면에서 셀 텍스트가 줄바꿈되는 대신 가로 스크롤되게 함 */
+.admin-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+}
+
+.admin-table-scroll table {
+  min-width: 640px;
+}
+
+.admin-table-scroll th,
+.admin-table-scroll td {
+  white-space: nowrap;
+}
+
 .row-actions {
   display: flex;
   gap: 8px;

@@ -4,10 +4,15 @@
   padding: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: -apple-system, "Malgun Gothic", sans-serif;
   color: #3a2a1e;
   background: #faf3ea;
+  overflow-x: hidden;
 }
 
 a {

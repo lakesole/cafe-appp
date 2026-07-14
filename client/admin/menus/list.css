@@ -15,6 +15,10 @@
   }
 }
 
+.menu-manage-content {
+  min-width: 0;
+}
+
 .category-filter {
   display: flex;
   flex-direction: column;

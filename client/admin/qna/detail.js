@@ -22,7 +22,7 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
         <h1 class="qna-detail-card__title">${q.title}</h1>
         <span class="qna-detail-card__badge ${q.answer ? "is-answered" : "is-waiting"}">${q.answer ? "답변 완료" : "답변 대기"}</span>
       </div>
-      <p class="qna-detail-card__meta">${q.user.name} (${q.user.email}) · ${formatDateTime(q.createdAt)}</p>
+      <p class="qna-detail-card__meta">${q.user.name} (${q.user.username}) · ${formatDateTime(q.createdAt)}</p>
       <p class="qna-detail-card__content">${q.content}</p>
 
       <form class="answer-form" id="answer-form">

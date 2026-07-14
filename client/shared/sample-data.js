@@ -192,9 +192,9 @@ const SAMPLE_ORDERS = [
 ];
 
 const SAMPLE_STAFF = [
-  { id: 1, name: "이서연", email: "seoyeon@cafeorder.com", role: "STAFF", createdAt: "2026-03-02" },
-  { id: 2, name: "박준호", email: "junho@cafeorder.com", role: "STAFF", createdAt: "2026-04-11" },
-  { id: 3, name: "김도윤", email: "doyoon@cafeorder.com", role: "ADMIN", createdAt: "2026-01-15" },
+  { id: 1, name: "이서연", username: "seoyeon", role: "STAFF", createdAt: "2026-03-02" },
+  { id: 2, name: "박준호", username: "junho", role: "STAFF", createdAt: "2026-04-11" },
+  { id: 3, name: "김도윤", username: "doyoon", role: "ADMIN", createdAt: "2026-01-15" },
 ];
 
 /* 종업원 목록은 localStorage에 오버레이하여 등록/수정/삭제가 새로고침·페이지 이동에도 유지되게 한다 */
