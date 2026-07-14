@@ -96,9 +96,10 @@
           <input type="radio" name="order-type" value="TAKEOUT" checked />
           포장
         </label>
-        <label class="pay-method">
-          <input type="radio" name="order-type" value="DINE_IN" />
+        <label class="pay-method" id="dine-in-label">
+          <input type="radio" name="order-type" value="DINE_IN" id="dine-in-radio" />
           매장식사
+          <span class="pay-method__hint" id="dine-in-hint" hidden>(매장 만석으로 잠시 선택할 수 없어요)</span>
         </label>
       </section>
 

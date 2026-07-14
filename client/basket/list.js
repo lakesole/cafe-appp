@@ -21,7 +21,7 @@ function render() {
       return `
       <li class="basket-item" data-cart-item-id="${item.cartItemId}">
         <div class="basket-item__thumb">
-          ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" />` : ""}
+          ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy" />` : ""}
         </div>
         <div class="basket-item__info">
           <p class="basket-item__name">${item.name}</p>

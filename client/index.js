@@ -44,7 +44,7 @@ function renderMenuPreview(menuItems) {
       <li class="menu-preview__card">
         <a href="/menus/detail?id=${menu.id}">
           <div class="menu-preview__thumb">
-            <img src="${menu.imageUrl}" alt="${menu.name}" />
+            <img src="${menu.imageUrl}" alt="${menu.name}" loading="lazy" />
             ${menu.isSoldOut ? '<div class="menu-preview__soldout">품절</div>' : ""}
           </div>
           <div class="menu-preview__body">

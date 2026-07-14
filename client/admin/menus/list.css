@@ -143,3 +143,34 @@
   font-size: 0.8rem;
   font-weight: 600;
 }
+
+/* 모바일: 수정/삭제 버튼 대신 행 전체를 눌러 수정 화면으로 이동 (PC는 기존과 동일) */
+@media (max-width: 720px) {
+  #menu-table th:last-child,
+  #menu-table td:last-child {
+    display: none;
+  }
+
+  #menu-table tbody tr {
+    cursor: pointer;
+  }
+
+  .admin-table-scroll table {
+    min-width: 0;
+  }
+
+  #menu-table th,
+  #menu-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  #menu-table td:first-child {
+    width: 44px;
+  }
+
+  #menu-table .menu-thumb {
+    width: 36px;
+    height: 36px;
+  }
+}

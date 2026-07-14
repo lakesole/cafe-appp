@@ -57,6 +57,9 @@ model Order {
   items       OrderItem[]
   payment     Payment?
   createdAt   DateTime    @default(now())
+
+  @@index([userId])
+  @@index([status])
 }
 
 model OrderItem {
@@ -69,6 +72,9 @@ model OrderItem {
   quantity        Int
   unitPrice       Int
   selectedOptions Json
+
+  @@index([orderId])
+  @@index([menuItemId])
 }
 
 model Payment {
@@ -104,6 +110,8 @@ model MenuItem {
   optionGroups OptionGroup[]
   orderItems   OrderItem[]
   createdAt    DateTime      @default(now())
+
+  @@index([categoryId])
 }
 
 model OptionGroup {
@@ -115,6 +123,8 @@ model OptionGroup {
   minSelect    Int            @default(0)
   maxSelect    Int            @default(1)
   optionChoices OptionChoice[]
+
+  @@index([menuItemId])
 }
 
 model OptionChoice {
@@ -123,6 +133,8 @@ model OptionChoice {
   optionGroupId Int
   name          String
   extraPrice    Int         @default(0)
+
+  @@index([optionGroupId])
 }
 
 model Question {
@@ -134,6 +146,8 @@ model Question {
   answer     String?
   answeredAt DateTime?
   createdAt  DateTime  @default(now())
+
+  @@index([userId])
 }
 
 enum SeatStatus {

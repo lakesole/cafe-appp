@@ -82,6 +82,17 @@
   accent-color: #d1451f;
 }
 
+.pay-method:has(input:disabled) {
+  color: #a8a196;
+  cursor: not-allowed;
+}
+
+.pay-method__hint {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #b3392c;
+}
+
 .checkout-summary {
   background: #f5f3ee;
   border: 1px solid #e7e3db;

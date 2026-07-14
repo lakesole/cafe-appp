@@ -2,6 +2,7 @@ import { OrderStatus, OrderType } from "@prisma/client";
 import { prisma } from "../prisma";
 import { HttpError } from "../utils/http-error";
 import { emitOrderStatusUpdate } from "../sockets";
+import { getStoreStatus } from "./store-status.service";
 
 const ORDER_TYPES: OrderType[] = ["DINE_IN", "TAKEOUT"];
 
@@ -66,6 +67,12 @@ export async function createOrder(
   }
   if (!isOrderType(data.orderType)) {
     throw new HttpError(400, "orderType은 DINE_IN 또는 TAKEOUT이어야 합니다.");
+  }
+  if (data.orderType === "DINE_IN") {
+    const { seatStatus } = await getStoreStatus();
+    if (seatStatus === "FULL") {
+      throw new HttpError(409, "매장 좌석이 만석이라 매장식사를 선택할 수 없습니다.");
+    }
   }
 
   const items = await Promise.all(data.items.map(buildOrderItem));

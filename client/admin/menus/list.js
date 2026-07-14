@@ -47,10 +47,10 @@ function renderTable() {
   tbody.innerHTML = items
     .map(
       (m) => `
-    <tr>
+    <tr data-id="${m.id}">
       <td>
         <div class="menu-thumb">
-          ${m.imageUrl ? `<img src="${m.imageUrl}" alt="${m.name}" />` : ""}
+          ${m.imageUrl ? `<img src="${m.imageUrl}" alt="${m.name}" loading="lazy" />` : ""}
         </div>
       </td>
       <td><span class="menu-table__name">${m.name}</span></td>
@@ -70,13 +70,24 @@ function renderTable() {
     .join("");
 
   tbody.querySelectorAll(".delete-btn").forEach((btn) => {
-    btn.addEventListener("click", async () => {
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation();
       if (!confirm("이 메뉴를 삭제할까요?")) return;
       await api.delete(`/admin/menu-items/${btn.dataset.id}`);
       await loadMenuItems();
     });
   });
 }
+
+const mobileLayoutQuery = window.matchMedia("(max-width: 720px)");
+
+tbody.addEventListener("click", (e) => {
+  if (!mobileLayoutQuery.matches) return;
+  if (e.target.closest("a, button")) return;
+  const row = e.target.closest("tr[data-id]");
+  if (!row) return;
+  window.location.href = `/admin/menus/edit?id=${row.dataset.id}`;
+});
 
 async function loadMenuItems() {
   MENU_ITEMS = await api.get("/admin/menu-items");

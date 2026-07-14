@@ -12,6 +12,8 @@ if (!isLoggedIn()) {
   const summaryTotalEl = document.getElementById("summary-total");
   const payBtn = document.getElementById("btn-pay");
   const seatBadgeEl = document.getElementById("checkout-seat-badge");
+  const dineInRadio = document.getElementById("dine-in-radio");
+  const dineInHint = document.getElementById("dine-in-hint");
 
   async function loadSeatStatus() {
     try {
@@ -20,6 +22,12 @@ if (!isLoggedIn()) {
       seatBadgeEl.textContent = isFull ? "매장 만석" : "매장 좌석 가능";
       seatBadgeEl.classList.toggle("seat-badge--full", isFull);
       seatBadgeEl.hidden = false;
+
+      dineInRadio.disabled = isFull;
+      dineInHint.hidden = !isFull;
+      if (isFull && dineInRadio.checked) {
+        document.querySelector('input[name="order-type"][value="TAKEOUT"]').checked = true;
+      }
     } catch {
       seatBadgeEl.hidden = true;
     }

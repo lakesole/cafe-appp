@@ -5,6 +5,7 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
 const menuId = new URLSearchParams(location.search).get("id");
 const categorySelect = document.getElementById("category-select");
 const form = document.getElementById("menu-form");
+const deleteBtn = document.getElementById("delete-btn");
 const previewImg = document.getElementById("preview-img");
 const previewEmpty = document.getElementById("preview-empty");
 const previewName = document.getElementById("preview-name");
@@ -56,6 +57,12 @@ form.addEventListener("submit", async (e) => {
     imageUrl: data.get("imageUrl"),
     isSoldOut: data.get("isSoldOut") === "on",
   });
+  location.href = "/admin/menus/list";
+});
+
+deleteBtn.addEventListener("click", async () => {
+  if (!confirm("이 메뉴를 삭제할까요?")) return;
+  await api.delete(`/admin/menu-items/${menuId}`);
   location.href = "/admin/menus/list";
 });
 

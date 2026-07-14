@@ -44,7 +44,7 @@ function renderGrid() {
       <li class="menu-card">
         <a href="detail?id=${menu.id}">
           <div class="menu-thumb">
-            <img src="${menu.imageUrl}" alt="${menu.name}" />
+            <img src="${menu.imageUrl}" alt="${menu.name}" loading="lazy" />
             ${menu.isSoldOut ? '<div class="soldout-overlay">품절</div>' : ""}
           </div>
           <div class="menu-body">

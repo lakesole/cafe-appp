@@ -63,8 +63,16 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
   renderTabs();
   renderQueue();
 
-  /* 실시간 신규 주문 알림 (Socket.IO) */
-  const socket = io({ auth: { token: getAccessToken() } });
+  /* 실시간 신규 주문 알림 (Socket.IO)
+     auth를 콜백으로 넘겨 재연결 시마다 최신 토큰을 읽는다. 만료로 연결이
+     거부되면(connect_error) 토큰을 갱신한 뒤 직접 재접속한다 — socket.io는
+     인증 실패로 거부된 연결을 자동으로 재시도하지 않는다. */
+  const socket = io({ auth: (cb) => cb({ token: getAccessToken() }) });
+  socket.on("connect_error", async () => {
+    if (typeof refreshAccessToken !== "function") return;
+    const newToken = await refreshAccessToken();
+    if (newToken) socket.connect();
+  });
   socket.on("order:new", (order) => {
     showToast(`🔔 새 주문이 들어왔어요! 주문 #${order.id} · ${order.user.name}님`);
     renderQueue();
