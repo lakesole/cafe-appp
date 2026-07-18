@@ -57,7 +57,11 @@ function renderTable() {
       <td>${m.category ? `<span class="menu-table__category">${m.category.name}</span>` : "-"}</td>
       <td>${m.price.toLocaleString()}원</td>
       <td>
-        <span class="badge ${m.isSoldOut ? "badge-soldout" : "badge-ok"}">${m.isSoldOut ? "품절" : "판매중"}</span>
+        <label class="switch">
+          <input type="checkbox" class="switch__input" data-id="${m.id}" ${m.isSoldOut ? "" : "checked"} />
+          <span class="switch__track"></span>
+        </label>
+        <span class="menu-status-label ${m.isSoldOut ? "is-soldout" : "is-ok"}">${m.isSoldOut ? "품절" : "판매중"}</span>
       </td>
       <td>
         <div class="row-actions">
@@ -77,13 +81,35 @@ function renderTable() {
       await loadMenuItems();
     });
   });
+
+  tbody.querySelectorAll(".switch__input").forEach((input) => {
+    input.addEventListener("change", async () => {
+      const id = Number(input.dataset.id);
+      const isSoldOut = !input.checked;
+      const labelEl = input.closest("td").querySelector(".menu-status-label");
+      input.disabled = true;
+      try {
+        await api.put(`/admin/menu-items/${id}`, { isSoldOut });
+        const item = MENU_ITEMS.find((m) => m.id === id);
+        if (item) item.isSoldOut = isSoldOut;
+        labelEl.textContent = isSoldOut ? "품절" : "판매중";
+        labelEl.classList.toggle("is-soldout", isSoldOut);
+        labelEl.classList.toggle("is-ok", !isSoldOut);
+      } catch (err) {
+        input.checked = !input.checked;
+        alert(err.message);
+      } finally {
+        input.disabled = false;
+      }
+    });
+  });
 }
 
 const mobileLayoutQuery = window.matchMedia("(max-width: 720px)");
 
 tbody.addEventListener("click", (e) => {
   if (!mobileLayoutQuery.matches) return;
-  if (e.target.closest("a, button")) return;
+  if (e.target.closest("a, button, label, input")) return;
   const row = e.target.closest("tr[data-id]");
   if (!row) return;
   window.location.href = `/admin/menus/edit?id=${row.dataset.id}`;

@@ -57,18 +57,46 @@ function renderAuthNav() {
   const link = document.getElementById("nav-auth-link");
   const nameEl = document.getElementById("nav-auth-name");
   const statusEl = document.getElementById("nav-auth-status");
-  if (!link || !nameEl) return;
 
   const user = getCurrentUser();
-  if (user) {
-    nameEl.textContent = `${user.name}님`;
-    if (statusEl) statusEl.textContent = "로그인 됨";
-    link.href = "/my";
-  } else {
-    nameEl.textContent = "로그인";
-    if (statusEl) statusEl.textContent = "계정에 접속하세요";
-    link.href = "/auth/login";
+
+  if (link && nameEl) {
+    if (user) {
+      nameEl.textContent = `${user.name}님`;
+      if (statusEl) statusEl.textContent = "로그인 됨";
+      link.href = "/my";
+    } else {
+      nameEl.textContent = "로그인";
+      if (statusEl) statusEl.textContent = "계정에 접속하세요";
+      link.href = "/auth/login";
+    }
   }
+
+  renderRoleNav(user);
+}
+
+const ROLE_NAV_META = {
+  ADMIN: { href: "/admin", label: "관리자 페이지", bottomLabel: "관리자" },
+  STAFF: { href: "/staff/list", label: "종업원 페이지", bottomLabel: "종업원" },
+};
+
+/** 고객 페이지 사이드바/하단 탭바의 관리자·종업원 바로가기(data-role-nav)를 역할에 맞게 갱신 */
+function renderRoleNav(user) {
+  const meta = user && ROLE_NAV_META[user.role];
+  document.querySelectorAll("[data-role-nav]").forEach((el) => {
+    el.classList.toggle("is-hidden", !meta);
+    if (!meta) return;
+    el.href = meta.href;
+    const labelEl = el.querySelector("[data-role-nav-label]");
+    if (labelEl) labelEl.textContent = el.classList.contains("app-bottom-nav__link") ? meta.bottomLabel : meta.label;
+  });
+}
+
+/** 관리자/종업원 헤더의 로그아웃 버튼(id="logout-btn")을 로그아웃 동작에 연결 */
+function wireLogoutButton() {
+  const btn = document.getElementById("logout-btn");
+  if (btn) btn.addEventListener("click", logout);
 }
 
 renderAuthNav();
+wireLogoutButton();

@@ -13,10 +13,10 @@ if (!isLoggedIn() || !["STAFF", "ADMIN"].includes(getCurrentUser().role)) {
   const statusTabsEl = document.getElementById("status-tabs");
   const orderQueueEl = document.getElementById("order-queue");
 
-  let activeStatus = "all";
+  let activeStatus = "PAID";
 
   function renderTabs() {
-    const tabs = [{ id: "all", label: "전체" }, ...STAFF_STATUSES.map((s) => ({ id: s, label: ORDER_STATUS_META[s].label }))];
+    const tabs = [...STAFF_STATUSES.map((s) => ({ id: s, label: ORDER_STATUS_META[s].label })), { id: "all", label: "전체" }];
     statusTabsEl.innerHTML = tabs
       .map(
         (tab) => `

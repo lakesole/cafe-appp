@@ -47,6 +47,27 @@ body {
   color: #fff;
 }
 
+.admin-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-header__btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: var(--side-text);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.admin-header__btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
 .admin-nav {
   display: flex;
   flex-wrap: wrap;

@@ -14,10 +14,10 @@ if (!isLoggedIn() || getCurrentUser().role !== "ADMIN") {
   const orderQueueEl = document.getElementById("order-queue");
   const emptyEl = document.getElementById("empty");
 
-  let activeStatus = "all";
+  let activeStatus = "PAID";
 
   function renderTabs() {
-    const tabs = [{ id: "all", label: "전체" }, ...QUEUE_STATUSES.map((s) => ({ id: s, label: ORDER_STATUS_META[s].label }))];
+    const tabs = [...QUEUE_STATUSES.map((s) => ({ id: s, label: ORDER_STATUS_META[s].label })), { id: "all", label: "전체" }];
     statusTabsEl.innerHTML = tabs
       .map(
         (tab) => `

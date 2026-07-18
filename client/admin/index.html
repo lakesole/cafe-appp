@@ -10,6 +10,10 @@
 <body>
   <header class="admin-header">
     <h1>New Lake Coffee</h1>
+    <div class="admin-header__actions">
+      <a href="/" class="admin-header__btn">메인 페이지</a>
+      <button type="button" id="logout-btn" class="admin-header__btn">로그아웃</button>
+    </div>
   </header>
   <nav class="admin-nav">
     <a href="/admin" class="is-active">대시보드</a>
@@ -24,6 +28,40 @@
     <h2>대시보드</h2>
     <div class="dashboard-grid" id="dashboard-grid"></div>
 
+    <section class="stats-section">
+      <h3>진행 중인 주문 현황</h3>
+      <div class="status-breakdown" id="order-status-breakdown"></div>
+    </section>
+
+    <div class="dash-columns">
+      <section class="stats-section">
+        <h3>최근 주문</h3>
+        <ul class="dash-list" id="recent-orders"></ul>
+      </section>
+
+      <section class="stats-section">
+        <h3>미답변 문의</h3>
+        <ul class="dash-list" id="recent-questions"></ul>
+      </section>
+    </div>
+
+    <div class="dash-columns">
+      <section class="stats-section">
+        <h3>인기 메뉴 TOP 5 <span class="stats-section__sub">(최근 7일 매출 기준)</span></h3>
+        <ul class="rank-list" id="top-menu-list"></ul>
+      </section>
+
+      <section class="stats-section">
+        <h3>카테고리별 매출 <span class="stats-section__sub">(최근 7일)</span></h3>
+        <ul class="category-breakdown" id="category-breakdown"></ul>
+      </section>
+    </div>
+
+    <section class="stats-section" id="soldout-section" hidden>
+      <h3>품절 메뉴</h3>
+      <div class="soldout-list" id="soldout-list"></div>
+    </section>
+
     <section class="seat-status" id="seat-status-section">
       <div class="seat-status__text">
         <p class="seat-status__label">매장 좌석 현황</p>
@@ -35,6 +73,7 @@
 
   <script src="/shared/api.js"></script>
   <script src="/shared/auth.js"></script>
+  <script src="/shared/cart.js"></script>
   <script src="index.js"></script>
 </body>
 </html>

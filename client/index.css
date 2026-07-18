@@ -124,6 +124,10 @@ body {
   flex: 1;
 }
 
+.is-hidden {
+  display: none !important;
+}
+
 .app-sidebar__user {
   display: flex;
   align-items: center;
